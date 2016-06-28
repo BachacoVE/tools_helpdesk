@@ -35,7 +35,7 @@ class tools_helpdesk_incidencia(osv.osv):
     _columns = {
         'codigo': fields.char('Código', size=10, help="Código de la Incidencia"),
         'solicitante_id': fields.many2one('res.users', string="Solicitante", help='Nombre Completo del Solicitante de la Incidencia'),
-        'dependencia_id': fields.many2one('tools.base.dependencia_gerencia','Dirigido a:'),
+        'res_partner_id': fields.many2one('res.partner','Organización:'),
         'categoria_incidencia_id': fields.many2one('tools.helpdesk.categoria_incidencia', string="Área de Incidencia"),
         'tipo_incidencia_ids': fields.many2many('tools.helpdesk.tipo_incidencia', 'incidencia_tipoincidencia_rel','incidencia_id', 'tipo_incidencia_id', string="Tipo de Incidencia"),
         'state': fields.selection([('registrado','Registrado'),('leido','Leido'),('asignado','Asignado'),('proceso','En Proceso'),('atendido','Atendido'),('resuelto','Resuelto')], "Status"),
