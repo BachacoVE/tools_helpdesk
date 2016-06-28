@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data noupdate="1">
+		  
+	<!-- Presidencia y Direcciones de Inces -->
+	<record id="dir_PRE" model="sisr.base.dependencia_direccion">
+		<field name="codigo">PRE</field>
+		<field name="nombre">Presidencia</field>
+		<field name="ubicacion">Av. Nueva Granada, Edificio Inces, Piso 11</field>
+	</record>
+
+    <record id="dir_EJE" model="sisr.base.dependencia_direccion">
+		<field name="codigo">DIR_EJE</field>
+		<field name="nombre">Dirección Ejecutiva</field>
+		<field name="ubicacion">Av. Nueva Granada, Edificio Inces, Piso 11</field>
+	</record>
+
+    <record id="dir_EST" model="sisr.base.dependencia_direccion">
+		<field name="codigo">DIR_EST</field>
+		<field name="nombre">Dirección Estratégica</field>
+		<field name="ubicacion">Av. Nueva Granada, Edificio Inces, Piso 11</field>
+	</record>
+
+
+<!-- AGREGADAS NUEVAS-->
+	<!--record id="dir_EST" model="sisr.base.dependencia_direccion">
+		<field name="codigo">DIR_EST</field>
+		<field name="nombre">Dirección Estratégica</field>
+		<field name="ubicacion">Av. Nueva Granada, Edificio Inces, Piso 11</field>
+	</record-->
+
+
+	
+	</data>
+</openerp>

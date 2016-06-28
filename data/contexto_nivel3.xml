@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data noupdate="1">
+		  
+	<!-- Gerencias de Línea -->
+	<record id="ger_lin_INF_SIS" model="sisr.base.dependencia_gerencia_linea">
+		<field name="codigo">GER_LIN_INF_SIS</field>
+		<field name="nombre">Desarrollo de Sistemas</field>
+		<field name="ubicacion">Av. Nueva Granada, Edificio Inces, Piso 1</field>
+        <field name="gerencia_general_id" ref="ger_INF"/>
+	</record>
+
+	<record id="ger_lin_INF_OPE" model="sisr.base.dependencia_gerencia_linea">
+		<field name="codigo">GER_LIN_INF_OPE</field>
+		<field name="nombre">Operaciones</field>
+		<field name="ubicacion">Av. Nueva Granada, Edificio Inces, Piso 1</field>
+        <field name="gerencia_general_id" ref="ger_INF"/>
+	</record>
+
+    <!--  -->
+	 
+	<record id="ger_lin_FIN_ADM" model="sisr.base.dependencia_gerencia_linea">
+		<field name="codigo">GER_LIN_ADM</field>
+		<field name="nombre">Admistración</field>
+		<field name="ubicacion">Av. Nueva Granada, Edificio Inces, Piso 2</field>
+        <field name="gerencia_general_id" ref="ger_FIN"/>
+	</record>
+
+	<!--record id="ger_lin_INF_UAD" model="sisr.base.dependencia_gerencia_linea">
+		<field name="codigo">GER_LIN_UAD</field>
+		<field name="nombre">Unidad Administrativa</field>
+		<field name="ubicacion">Av. Nueva Granada, Edificio Inces, Piso 1</field>
+        <field name="gerencia_general_id" ref="ger_INF"/>
+	</record-->
+
+	<record id="ger_lin_FIN_TES" model="sisr.base.dependencia_gerencia_linea">
+		<field name="codigo">GER_LIN_TEST</field>
+		<field name="nombre">Tesoreria</field>
+		<field name="ubicacion">Av. Nueva Granada, Edificio Inces, Piso Mezz</field>
+        <field name="gerencia_general_id" ref="ger_FIN"/>
+	</record>
+
+	<!--record id="ger_lin_FIN_UAD" model="sisr.base.dependencia_gerencia_linea">
+		<field name="codigo">GER_LIN_UAD</field>
+		<field name="nombre">Unidad Administrativa</field>
+		<field name="ubicacion">Av. Nueva Granada, Edificio Inces, Piso Mezz</field>
+        <field name="gerencia_general_id" ref="ger_FIN"/>
+	</record-->
+
+	<record id="ger_lin_FIN_COM" model="sisr.base.dependencia_gerencia_linea">
+		<field name="codigo">GER_LIN_COM</field>
+		<field name="nombre">Compras</field>
+		<field name="ubicacion">Av. Nueva Granada, Edificio Inces, Piso 2</field>
+        <field name="gerencia_general_id" ref="ger_FIN"/>
+	</record>
+
+	<record id="ger_lin_FIN_CEG" model="sisr.base.dependencia_gerencia_linea">
+		<field name="codigo">GER_LIN_CEG</field>
+		<field name="nombre">Control de Egresos</field>
+		<field name="ubicacion">Av. Nueva Granada, Edificio Inces, Piso 2</field>
+        <field name="gerencia_general_id" ref="ger_FIN"/>
+	</record>
+
+	<record id="ger_lin_FIN_SYT" model="sisr.base.dependencia_gerencia_linea">
+		<field name="codigo">GER_LIN_SYT</field>
+		<field name="nombre">Seguridad y Transporte</field>
+		<field name="ubicacion">Av. Nueva Granada, Edificio Inces, Sotano 1</field>
+        <field name="gerencia_general_id" ref="ger_FIN"/>
+	</record>
+
+	<record id="ger_lin_FIN_SBA" model="sisr.base.dependencia_gerencia_linea">
+		<field name="codigo">GER_LIN_SBA</field>
+		<field name="nombre">Servicios Básicos</field>
+		<field name="ubicacion">Av. Nueva Granada, Edificio Inces, Piso Mezz</field>
+        <field name="gerencia_general_id" ref="ger_FIN"/>
+	</record>
+
+	<record id="ger_lin_PLA_DOR" model="sisr.base.dependencia_gerencia_linea">
+		<field name="codigo">GER_LIN_DOR</field>
+		<field name="nombre">Dersarrollo Organizacional</field>
+		<field name="ubicacion">Av. Nueva Granada, Edificio Inces, Piso 2</field>
+        <field name="gerencia_general_id" ref="ger_PLA"/>
+	</record>
+
+	<record id="ger_lin_PLA_EST" model="sisr.base.dependencia_gerencia_linea">
+		<field name="codigo">GER_LIN_EST</field>
+		<field name="nombre">Estratégica</field>
+		<field name="ubicacion">Av. Nueva Granada, Edificio Inces, Piso 2</field>
+        <field name="gerencia_general_id" ref="ger_PLA"/>
+	</record>
+
+	<record id="ger_lin_PLA_OPE" model="sisr.base.dependencia_gerencia_linea">
+		<field name="codigo">GER_LIN_OPE</field>
+		<field name="nombre">Operativa</field>
+		<field name="ubicacion">Av. Nueva Granada, Edificio Inces, Piso 2</field>
+        <field name="gerencia_general_id" ref="ger_PLA"/>
+	</record>
+
+	<record id="ger_lin_PLA_FPR" model="sisr.base.dependencia_gerencia_linea">
+		<field name="codigo">GER_LIN_FPR</field>
+		<field name="nombre">Formulación Presupuestaria</field>
+		<field name="ubicacion">Av. Nueva Granada, Edificio Inces, Piso 2</field>
+        <field name="gerencia_general_id" ref="ger_PLA"/>
+	</record>
+
+	<record id="ger_lin_PLA_UAD" model="sisr.base.dependencia_gerencia_linea">
+		<field name="codigo">GER_LIN_UAD</field>
+		<field name="nombre">Unidad Administrativa</field>
+		<field name="ubicacion">Av. Nueva Granada, Edificio Inces, Piso 2</field>
+        <field name="gerencia_general_id" ref="ger_PLA"/>
+	</record>
+
+	<record id="ger_lin_TRI_FIS" model="sisr.base.dependencia_gerencia_linea">
+		<field name="codigo">GER_LIN_FIS</field>
+		<field name="nombre">Fiscalizacion</field>
+		<field name="ubicacion">Av. Nueva Granada, Edificio Inces, Piso 4</field>
+        <field name="gerencia_general_id" ref="ger_TRI"/>
+	</record>
+
+	<record id="ger_lin_TRI_DET" model="sisr.base.dependencia_gerencia_linea">
+		<field name="codigo">GER_LIN_DET</field>
+		<field name="nombre">Determinación Tributaria</field>
+		<field name="ubicacion">Av. Nueva Granada, Edificio Inces, Piso 4</field>
+        <field name="gerencia_general_id" ref="ger_TRI"/>
+	</record>
+
+	<record id="ger_lin_TRI_VER" model="sisr.base.dependencia_gerencia_linea">
+		<field name="codigo">GER_LIN_VER</field>
+		<field name="nombre">Verficación Administrativa</field>
+		<field name="ubicacion">Av. Nueva Granada, Edificio Inces, Piso 4</field>
+        <field name="gerencia_general_id" ref="ger_TRI"/>
+	</record>
+
+	<record id="ger_lin_TRI_UAD" model="sisr.base.dependencia_gerencia_linea">
+		<field name="codigo">GER_LIN_UAD</field>
+		<field name="nombre">Unidad Administrativa</field>
+		<field name="ubicacion">Av. Nueva Granada, Edificio Inces, Piso 4</field>
+        <field name="gerencia_general_id" ref="ger_TRI"/>
+	</record>
+
+	<record id="ger_lin_INS_ABL" model="sisr.base.dependencia_gerencia_linea">
+		<field name="codigo">GER_LIN_ABL</field>
+		<field name="nombre">Abastecimiento y Logistica</field>
+		<field name="ubicacion">Av. Nueva Granada, Edificio Inces, Piso 5</field>
+        <field name="gerencia_general_id" ref="ger_INS"/>
+	</record>
+
+	<record id="ger_lin_INS_MAN" model="sisr.base.dependencia_gerencia_linea">
+		<field name="codigo">GER_LIN_MAN</field>
+		<field name="nombre">Mantenimiento</field>
+		<field name="ubicacion">Av. Nueva Granada, Edificio Inces, Piso 5</field>
+        <field name="gerencia_general_id" ref="ger_INS"/>
+	</record>
+
+	<record id="ger_lin_INS_SGE" model="sisr.base.dependencia_gerencia_linea">
+		<field name="codigo">GER_LIN_SGE</field>
+		<field name="nombre">Servicio Generales</field>
+		<field name="ubicacion">Av. Nueva Granada, Edificio Inces, Piso 5</field>
+        <field name="gerencia_general_id" ref="ger_INS"/>
+	</record>
+
+	<record id="ger_lin_INS_CON" model="sisr.base.dependencia_gerencia_linea">
+		<field name="codigo">GER_LIN_CON</field>
+		<field name="nombre">Contratos</field>
+		<field name="ubicacion">Av. Nueva Granada, Edificio Inces, Piso 5</field>
+        <field name="gerencia_general_id" ref="ger_INS"/>
+	</record>
+
+	<record id="ger_lin_INS_UAD" model="sisr.base.dependencia_gerencia_linea">
+		<field name="codigo">GER_LIN_UAD</field>
+		<field name="nombre">Unidad Administrativa</field>
+		<field name="ubicacion">Av. Nueva Granada, Edificio Inces, Piso 5</field>
+        <field name="gerencia_general_id" ref="ger_INS"/>
+	</record>
+
+	<record id="ger_lin_RRH_ADM" model="sisr.base.dependencia_gerencia_linea">
+		<field name="codigo">GER_LIN_ADM</field>
+		<field name="nombre">Administración de Recursos</field>
+		<field name="ubicacion">Av. Nueva Granada, Edificio Inces, Piso 6</field>
+        <field name="gerencia_general_id" ref="ger_RRH"/>
+	</record>
+
+	<record id="ger_lin_RRH_POL" model="sisr.base.dependencia_gerencia_linea">
+		<field name="codigo">GER_LIN_POL</field>
+		<field name="nombre">Politicas de Recursos Humanos</field>
+		<field name="ubicacion">Av. Nueva Granada, Edificio Inces, Piso 6</field>
+        <field name="gerencia_general_id" ref="ger_RRH"/>
+	</record>
+
+	<record id="ger_lin_RRH_REL" model="sisr.base.dependencia_gerencia_linea">
+		<field name="codigo">GER_LIN_REL</field>
+		<field name="nombre">Relaciones Laborales</field>
+		<field name="ubicacion">Av. Nueva Granada, Edificio Inces, Piso 6</field>
+        <field name="gerencia_general_id" ref="ger_RRH"/>
+	</record>
+
+	<record id="ger_lin_OIR_PUP" model="sisr.base.dependencia_gerencia_linea">
+		<field name="codigo">GER_LIN_PUP</field>
+		<field name="nombre">Publicaciones y Prensa</field>
+		<field name="ubicacion">Av. Nueva Granada, Edificio Inces, Piso 7</field>
+        <field name="gerencia_general_id" ref="ger_OIR"/>
+	</record>
+
+	<record id="ger_lin_OIR_REP" model="sisr.base.dependencia_gerencia_linea">
+		<field name="codigo">GER_LIN_REP</field>
+		<field name="nombre">Relaciones Públicas</field>
+		<field name="ubicacion">Av. Nueva Granada, Edificio Inces, Piso 8</field>
+        <field name="gerencia_general_id" ref="ger_OIR"/>
+	</record>
+
+	<record id="ger_lin_OCI_COI" model="sisr.base.dependencia_gerencia_linea">
+		<field name="codigo">GER_LIN_COI</field>
+		<field name="nombre">Cooperación Internacionales</field>
+		<field name="ubicacion">Av. Nueva Granada, Edificio Inces, Piso 9</field>
+        <field name="gerencia_general_id" ref="ger_OCI"/>
+	</record>
+
+	<record id="ger_lin_OCI_CON" model="sisr.base.dependencia_gerencia_linea">
+		<field name="codigo">GER_LIN_CON</field>
+		<field name="nombre">Convenios Nacionales</field>
+		<field name="ubicacion">Av. Nueva Granada, Edificio Inces, Piso 9</field>
+        <field name="gerencia_general_id" ref="ger_OCI"/>
+	</record>
+
+	<record id="ger_lin_IMI_ADM" model="sisr.base.dependencia_gerencia_linea">
+		<field name="codigo">GER_LIN_ADM</field>
+		<field name="nombre">Administracion</field>
+		<field name="ubicacion">Av. Nueva Granada, Edificio Inces, Piso 8</field>
+        <field name="gerencia_general_id" ref="ger_IMI"/>
+	</record>
+
+	<record id="ger_lin_IMI_PLA" model="sisr.base.dependencia_gerencia_linea">
+		<field name="codigo">GER_LIN_PLA</field>
+		<field name="nombre">Planificación</field>
+		<field name="ubicacion">Av. Nueva Granada, Edificio Inces, Piso 8</field>
+        <field name="gerencia_general_id" ref="ger_IMI"/>
+	</record>
+
+	<record id="ger_lin_IMI_FOR" model="sisr.base.dependencia_gerencia_linea">
+		<field name="codigo">GER_LIN_FOR</field>
+		<field name="nombre">Formación</field>
+		<field name="ubicacion">Av. Nueva Granada, Edificio Inces, Piso 8</field>
+        <field name="gerencia_general_id" ref="ger_IMI"/>
+	</record>
+
+	<record id="ger_lin_IMI_RHU" model="sisr.base.dependencia_gerencia_linea">
+		<field name="codigo">GER_LIN_RHU</field>
+		<field name="nombre">Recursos Humanos</field>
+		<field name="ubicacion">Av. Nueva Granada, Edificio Inces, Piso 8</field>
+        <field name="gerencia_general_id" ref="ger_IMI"/>
+	</record>
+
+	<record id="ger_lin_IMI_CDG" model="sisr.base.dependencia_gerencia_linea">
+		<field name="codigo">GER_LIN_CDG</field>
+		<field name="nombre">Control de Gestión</field>
+		<field name="ubicacion">Av. Nueva Granada, Edificio Inces, Piso 8</field>
+        <field name="gerencia_general_id" ref="ger_IMI"/>
+	</record>
+
+	<record id="ger_lin_FFP_UAD" model="sisr.base.dependencia_gerencia_linea">
+		<field name="codigo">GER_LIN_UAD</field>
+		<field name="nombre">Unidad Administrativa</field>
+		<field name="ubicacion">Av. Nueva Granada, Edificio Inces, Piso 9</field>
+        <field name="gerencia_general_id" ref="ger_FFP"/>
+	</record>
+
+	<record id="ger_lin_FFP_PYC" model="sisr.base.dependencia_gerencia_linea">
+		<field name="codigo">GER_LIN_PYC</field>
+		<field name="nombre">Programación y Control</field>
+		<field name="ubicacion">Av. Nueva Granada, Edificio Inces, Piso 9</field>
+        <field name="gerencia_general_id" ref="ger_FFP"/>
+	</record>
+
+	<record id="ger_lin_FFP_TED" model="sisr.base.dependencia_gerencia_linea">
+		<field name="codigo">GER_LIN_TED</field>
+		<field name="nombre">Tecnología Educativa</field>
+		<field name="ubicacion">Av. Nueva Granada, Edificio Inces, Piso 9</field>
+        <field name="gerencia_general_id" ref="ger_FFP"/>
+	</record>
+
+	<record id="ger_lin_FFP_ICF" model="sisr.base.dependencia_gerencia_linea">
+		<field name="codigo">GER_LIN_ICF</field>
+		<field name="nombre">Investigación y Capacitación en Formación Profesional</field>
+		<field name="ubicacion">Av. Nueva Granada, Edificio Inces, Piso 9</field>
+        <field name="gerencia_general_id" ref="ger_FFP"/>
+	</record>
+
+	<record id="ger_lin_FFP_TEF" model="sisr.base.dependencia_gerencia_linea">
+		<field name="codigo">GER_LIN_TEF</field>
+		<field name="nombre">Técnica de Formación</field>
+		<field name="ubicacion">Av. Nueva Granada, Edificio Inces, Piso 9</field>
+        <field name="gerencia_general_id" ref="ger_FFP"/>
+	</record>
+
+	<record id="ger_lin_OAI_CPO" model="sisr.base.dependencia_gerencia_linea">
+		<field name="codigo">GER_LIN_CPO</field>
+		<field name="nombre">Control Posterior</field>
+		<field name="ubicacion">Av. Nueva Granada, Edificio Inces, Piso 9</field>
+        <field name="gerencia_general_id" ref="ger_OAI"/>
+	</record>
+
+	<record id="ger_lin_OAI_DTR" model="sisr.base.dependencia_gerencia_linea">
+		<field name="codigo">GER_LIN_DTR</field>
+		<field name="nombre">Determinación de Responsabilidad</field>
+		<field name="ubicacion">Av. Nueva Granada, Edificio Inces, Piso 10</field>
+        <field name="gerencia_general_id" ref="ger_OAI"/>
+	</record>
+
+	<record id="ger_lin_OAI_UAD" model="sisr.base.dependencia_gerencia_linea">
+		<field name="codigo">GER_LIN_UAD</field>
+		<field name="nombre">Unidad Administrativa</field>
+		<field name="ubicacion">Av. Nueva Granada, Edificio Inces, Piso 10</field>
+        <field name="gerencia_general_id" ref="ger_OAI"/>
+	</record>
+
+	<record id="ger_lin_CJU_RAR" model="sisr.base.dependencia_gerencia_linea">
+		<field name="codigo">GER_LIN_RAR</field>
+		<field name="nombre">Recursos Administrativos Reclamos Judiciales y Doctrinas</field>
+		<field name="ubicacion">Av. Nueva Granada, Edificio Inces, Piso 10</field>
+        <field name="gerencia_general_id" ref="ger_CJU"/>
+	</record>
+
+	<record id="ger_lin_CJU_COD" model="sisr.base.dependencia_gerencia_linea">
+		<field name="codigo">GER_LIN_COD</field>
+		<field name="nombre">Contratos Opiniones y Dictamenes</field>
+		<field name="ubicacion">Av. Nueva Granada, Edificio Inces, Piso 10</field>
+        <field name="gerencia_general_id" ref="ger_CJU"/>
+	</record>
+
+	<record id="ger_lin_CJU_UAD" model="sisr.base.dependencia_gerencia_linea">
+		<field name="codigo">GER_LIN_UAD</field>
+		<field name="nombre">Unidad Administrativa</field>
+		<field name="ubicacion">Av. Nueva Granada, Edificio Inces, Piso 10</field>
+        <field name="gerencia_general_id" ref="ger_CJU"/>
+	</record>
+
+	<record id="ger_lin_PDE_PRE" model="sisr.base.dependencia_gerencia_linea">
+		<field name="codigo">GER_LIN_PRE</field>
+		<field name="nombre">Presidencia</field>
+		<field name="ubicacion">Av. Nueva Granada, Edificio Inces, Piso 11</field>
+        <field name="gerencia_general_id" ref="ger_PDE"/>
+	</record>
+
+	<record id="ger_lin_PDE_DEJ" model="sisr.base.dependencia_gerencia_linea">
+		<field name="codigo">GER_LIN_DEJ</field>
+		<field name="nombre">Dirección Ejecutiva</field>
+		<field name="ubicacion">Av. Nueva Granada, Edificio Inces, Piso 11</field>
+        <field name="gerencia_general_id" ref="ger_PDE"/>
+	</record>
+
+
+	</data>
+</openerp>

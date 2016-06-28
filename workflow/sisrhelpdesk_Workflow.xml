@@ -1,0 +1,108 @@
+<openerp>
+    <data>
+
+        <!-- Declaracion del Workflow -->
+
+        <record model="workflow" id="helpdeskworkflow">
+            <field name="name">sisrhelpdesk_Workflow</field>
+            <field name="osv">sisr.helpdesk.incidencia</field>
+            <field name="on_create">True</field>
+        </record>
+
+        <!-- Declaracion de las Actividades del Workflow -->
+        
+        <record model="workflow.activity" id="act_registrado">
+            <field name="name">registrado</field>
+            <field name="wkf_id" ref="helpdeskworkflow"/>
+            <field name="flow_start" eval="True"/>
+            <field name="kind">function</field>
+            <field name="action">action_registrado()</field>
+        </record>
+
+        <record model="workflow.activity" id="act_leido">
+            <field name="name">leido</field>
+            <field name="wkf_id" ref="helpdeskworkflow"/>
+            <field name="kind">function</field>
+            <field name="action">action_leido()</field>
+        </record>
+
+
+        <record model="workflow.activity" id="act_asignado">
+            <field name="name">asignado</field>
+            <field name="wkf_id" ref="helpdeskworkflow"/>
+            <field name="kind">function</field>
+            <field name="action">action_asignado()</field>
+        </record>
+
+        <record model="workflow.activity" id="act_proceso">
+            <field name="name">proceso</field>
+            <field name="wkf_id" ref="helpdeskworkflow"/>
+            <field name="kind">function</field>
+            <field name="action">action_proceso()</field>
+        </record>
+
+        <record model="workflow.activity" id="act_atendido">
+            <field name="name">atendido</field>
+            <field name="wkf_id" ref="helpdeskworkflow"/>
+            <field name="kind">function</field>
+            <field name="action">action_atendido()</field>
+        </record>
+
+        <record model="workflow.activity" id="act_resuelto">
+            <field name="name">resuelto</field>
+            <field name="wkf_id" ref="helpdeskworkflow"/>
+            <!--field name="flow_stop" eval="True"/-->
+            <field name="kind">function</field>
+            <field name="action">action_resuelto()</field>
+        </record>
+
+        <record model="workflow.activity" id="act_culminado">
+            <field name="name">culminado</field>
+            <field name="wkf_id" ref="helpdeskworkflow"/>
+            <field name="flow_stop" eval="True"/>
+            <field name="kind">function</field>
+            <field name="action">action_culminado()</field>
+        </record>
+
+        
+        <!--Transiciones-->
+        
+        <record model="workflow.transition" id="trans_registrado_leido">
+            <field name="act_from" ref="act_registrado"/>
+            <field name="act_to" ref="act_leido"/>
+            <field name="signal">action_leido</field>
+        </record>
+
+        <record model="workflow.transition" id="trans_leido_asignado">
+            <field name="act_from" ref="act_leido"/>
+            <field name="act_to" ref="act_asignado"/>
+            <field name="signal">action_asignado</field>
+        </record>
+
+        <record model="workflow.transition" id="trans_asignado_proceso">
+            <field name="act_from" ref="act_asignado"/>
+            <field name="act_to" ref="act_proceso"/>
+            <field name="signal">action_proceso</field>
+        </record>
+        
+        <record model="workflow.transition" id="trans_proceso_atendido">
+            <field name="act_from" ref="act_proceso"/>
+            <field name="act_to" ref="act_atendido"/>
+            <field name="signal">action_atendido</field>
+        </record>
+
+        <record model="workflow.transition" id="trans_atendido_resuelto">
+            <field name="act_from" ref="act_atendido"/>
+            <field name="act_to" ref="act_resuelto"/>
+            <field name="signal">action_resuelto</field>
+        </record>
+
+        <record model="workflow.transition" id="trans_resuelto_culminado">
+            <field name="act_from" ref="act_resuelto"/>
+            <field name="act_to" ref="act_culminado"/>
+            <field name="signal">action_culminado</field>
+        </record>
+                
+    </data>
+</openerp>       
+

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+
+    <record model="ir.module.category" id="module_category_help_desk">
+        <field name="name">Help Desk</field>
+        <field name="description">Agrupa los grupos para la Gestión usuarios de Help Desk</field>
+        <field name="sequence">16</field>
+    </record>
+
+    <record id="group_help_desk_Gerente" model="res.groups">
+        <field name="name">Gerente</field>
+	<field name="category_id" ref="module_category_help_desk"/>
+    </record>
+
+    <record id="group_help_desk_Supervisor" model="res.groups">
+        <field name="name">Supervisor</field> 
+	<field name="category_id" ref="module_category_help_desk"/>     
+    </record>
+
+    <record id="group_help_desk_Analista" model="res.groups">
+        <field name="name">Analista</field>       
+	<field name="category_id" ref="module_category_help_desk"/>
+    </record>
+
+    <record id="group_help_desk_Usuario" model="res.groups">
+        <field name="name">Usuario</field>       
+    <field name="category_id" ref="module_category_help_desk"/>
+    </record>
+
+    <record id="group_help_desk_Seguimiento" model="res.groups">
+        <field name="name">Seguimiento y Control</field>       
+    <field name="category_id" ref="module_category_help_desk"/>
+    </record>
+    
+    </data>
+</openerp>

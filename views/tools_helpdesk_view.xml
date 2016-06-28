@@ -1,0 +1,552 @@
+<?xml version="1.0"?>
+<openerp>
+<data>
+
+
+	<record model="ir.ui.view" id="view_tools_helpdesk_incidencia_form">
+        <field name="name">tools.helpdesk.incidencia.form</field>
+        <field name="model">tools.helpdesk.incidencia</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="tools.helpdesk.incidencia">
+            <header>
+                <button name="action_leido" string="Leido" type="workflow"/>
+                <button name="action_asignado" string="Asignado" type="workflow"/>
+                <button name="action_proceso" string="En Proceso" type="workflow"/>
+                <button name="action_atendido" string="Atendido" type="workflow"/>
+                <button name="action_resuelto" string="Resuelto" type="workflow"/>
+                <field name="state" widget="statusbar" select="0"/>
+            </header>
+            <sheet>
+            <group col="4" colspan="2">
+                <field name="codigo" select="1" readonly="1"/>
+		<newline/>
+		
+		<!-- field name="contexto_nivel2_id" select="0" required="True" on_change="onchange_solicitante()"/ -->
+        <!-- field name="categoria_incidencia_id" select="2" required="True" domain="[('contexto_nivel2_id','=',contexto_nivel2_id)]"/ -->
+        <field name="categoria_incidencia_id" select="2" required="True" />
+        <field name="solicitante_id" colspan="4" required="True" select="1" readonly="1"/>
+        <field name="autorizado" colspan="4" required="True" select="1"/>
+		
+        <!-- field name="asignacion" colspan="4" select="1" domain="[('categoria_incidencia_id','=',categoria_incidencia_id)]" groups= "tools_helpdesk.group_help_desk_Gerente,tools_helpdesk.group_help_desk_Supervisor,tools_helpdesk.group_help_desk_Seguimiento,tools_helpdesk.group_help_desk_Analista,base.group_system"/ -->
+        <field name="asignacion" colspan="4" select="1" />
+		
+        <field name="denominacion" colspan="4" select="2"/>
+        <field name="fecha_actual" readonly="0" select="0"/>
+		<field name="prioridad" widget="priority"></field>
+
+        <separator string="Forma de Solicitud" colspan="6"/>
+        <field name="memo" select="0"/>
+        <field name="correo" select="0"/>
+        <field name="llamada" select="0"/>
+        <field name="presencial" select="0"/>
+        <field name="gestion" select="0"/>
+        <newline/>
+        <field name="n_memo" attrs="{'required':[('memo','=',True)], 'invisible':[('memo','=',False)]}"/>
+        <newline/>
+            </group>
+
+            <notebook>
+            <page string="Tipos de Incidencias">
+            <group col="4" colspan="4">
+            	<field name="tipo_incidencia_ids" nolabel="1" colspan="4" select="0" domain="[('categoria_incidencia_id','=',categoria_incidencia_id)]"/>
+            </group>
+            </page>
+
+            <page string="Descripción Detallada de la Incidencia">
+            <group col="4" colspan="4">
+            	<field name="descripcion" colspan="4" nolabel="1" select="0"/>
+            </group>
+            </page>
+
+		    <page string="Adjuntos">
+		    <group col="4" colspan="4">
+		    	<field name="adjunto" nolabel="1" colspan="4" select="0"/>
+		    	<newline/>
+		    </group>
+		    </page>
+
+            <!-- page string="Descripción Detallada del Procedimiento" groups= "tools_helpdesk.group_help_desk_Gerente,tools_helpdesk.group_help_desk_Supervisor,tools_helpdesk.group_help_desk_Seguimiento,tools_helpdesk.group_help_desk_Analista,base.group_system" -->
+				<page string="Descripción Detallada del Procedimiento">
+            <group col="4" colspan="4">
+            	<field name="procedimiento" colspan="4" nolabel="1" select="0"/>
+            	<newline/>
+            </group>
+		    </page>
+            </notebook>
+
+       
+            <notebook>
+                <!-- page string="Observaciones" groups= "tools_helpdesk.group_help_desk_Gerente,tools_helpdesk.group_help_desk_Supervisor,tools_helpdesk.group_help_desk_Seguimiento,tools_helpdesk.group_help_desk_Analista,base.group_system" -->
+					<page string="Observaciones">
+                <group col="4" colspan="4">
+                	<field name="observacion_ids" nolabel="1" colspan="4" select="0">
+                		<tree editable="True">
+                			<field name="observacion"/>
+                			<field name="state_rel"/>
+                		</tree>
+                	</field>
+                </group>
+                </page>
+ 
+                <!-- page string="Seguimiento de Incidencia" groups= "tools_helpdesk.group_help_desk_Gerente,tools_helpdesk.group_help_desk_Supervisor,base.group_system" -->
+				<page string="Seguimiento de Incidencia">
+   		    		<group col="4" colspan="4">
+   		    			<field name="fecha_creacion" colspan="2" select="0" readonly="True"/>
+   		    			<field name="fecha_leido" colspan="2" select="0" readonly="True"/>
+   		    			<field name="fecha_asignado_a" colspan="2" select="0" readonly="True"/>
+   		    			<field name="fecha_proceso" colspan="2" select="0" readonly="True"/>
+   		    			<field name="fecha_atendido" colspan="2" select="0" readonly="True"/>
+   		    			<field name="fecha_solucion" colspan="2" select="0" readonly="True"/>
+   		    			
+                        <separator string="Duración por proceso" colspan="4"/>
+   		    			<field name="dia_creacion" colspan="2" select="0" readonly="True"/>
+   		    			<field name="dia_leido" colspan="2" select="0" readonly="True"/>
+   		    			<field name="dia_asignado_a" colspan="2" select="0" readonly="True"/>
+   		    			<field name="dia_proceso" colspan="2" select="0" readonly="True"/>
+   		    			<field name="dia_atendido" colspan="2" select="0" readonly="True"/>
+   		    			<field name="dia_solucion" colspan="2" select="0" readonly="True"/>
+   		    			<field name="retraso" colspan="2" select="0"/>
+
+   		    		<newline/>
+   		    		</group>
+   		    	</page>
+   		    </notebook>
+            </sheet>
+            </form>
+           
+            <group>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </group>
+
+        </field>
+    </record>
+    <record model="ir.ui.view" id="view_tools_helpdesk_incidencia_tree">
+        <field name="name">tools.helpdesk.incidencia.tree</field>
+        <field name="model">tools.helpdesk.incidencia</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+<!-- PARA COLOCAR COLORES A LOS ESTATUS EN EL TREE -->
+            <tree string="tools.helpdesk.incidencia" colors=" red:state=='leido'; green:state=='resuelto'; blue:state=='asignado'; orange:state=='registrado'; brown:state=='proceso'; olive:state=='atendido'">
+                <field name="codigo"/>
+                <field name="solicitante_id"/>
+                <field name="categoria_incidencia_id"/>
+                <!--field name="forma_de_solicitud"/ -->
+                <field name="asignacion"/>
+                <field name="retraso"/>
+                <field name="state"/>
+            </tree>
+<!-- FIN DE LA SENTENCIA PARA LOS COLORES -->
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="action_tools_helpdesk_incidencia">
+        <field name="name">Registro de Tickets</field>
+        <field name="res_model">tools.helpdesk.incidencia</field>
+    <field name="domain">[]</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+   	<record model="ir.ui.view" id="view_tools_helpdesk_adjuntos_form">
+        <field name="name">tools.helpdesk.adjuntos.form</field>
+        <field name="model">tools.helpdesk.adjuntos</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Adjuntos">
+            <group col="2" colspan="4">
+            		<field name="adjunto"/>
+            		<field name="numero"/>
+            		<field name="nombre"/>
+            		<field name="observacion"/>
+            </group>
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="view_tools_helpdesk_adjuntos_tree">
+        <field name="name">tools.helpdesk.adjuntos.tree</field>
+        <field name="model">tools.helpdesk.adjuntos</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+               
+            <tree string="tools.helpdesk.adjuntos">
+                <!-- No se puede poner un binary en el tree
+                <field name="adjunto"/>
+                -->
+                <field name="numero"/>
+                <field name="nombre"/>
+                <field name="observacion"/>                          
+            </tree>
+        </field>
+    </record>    
+    <!--record model="ir.actions.act_window" id="action_tools_helpdesk_adjuntos">
+        <field name="name">Incidencia</field>
+        <field name="res_model">tools.helpdesk.adjuntos</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record-->
+        
+    <record model="ir.ui.view" id="view_tools_helpdesk_tipo_incidencia_form">
+        <field name="name">tools.helpdesk.tipo_incidencia.form</field>
+        <field name="model">tools.helpdesk.tipo_incidencia</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="tools.helpdesk.tipo_incidencia">
+            <group col="4" colspan="2">
+                <field name="codigo" select="1" />
+                <field name="nombre" select="2"/>
+                <field name="categoria_incidencia_id" select="0"/>
+                <newline/>
+                <separator string="Descripción" colspan="4"/>
+                <field name="descripcion" colspan="4" nolabel="1" select="0"/>
+                <separator string="Incidencias" colspan="4"/>
+                <field name="incidencia_ids" nolabel="1" colspan="4" select="0"/>
+            </group>
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="view_tools_helpdesk_tipo_incidencia_tree">
+        <field name="name">tools.helpdesk.tipo_incidencia.tree</field>
+        <field name="model">tools.helpdesk.tipo_incidencia</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="tools.helpdesk.tipo_incidencia">
+                <field name="codigo"/>
+                <field name="nombre"/>
+                <field name="categoria_incidencia_id"/>
+            </tree>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="action_tools_helpdesk_tipo_incidencia">
+        <field name="name">Tipo de Incidencia</field>
+        <field name="res_model">tools.helpdesk.tipo_incidencia</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!--PASAR A LA CLASE INHERIT>
+    <record model="ir.ui.view" id="view_tools_helpdesk_solicitante_form">
+        <field name="name">tools.helpdesk.solicitante.form</field>
+        <field name="model">tools.helpdesk.solicitante</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="tools.helpdesk.solicitante">
+            <sheet>
+            <notebook>
+            <page string="Personal">
+            <group col="4" colspan="4">
+                <field name="cedula" select="0" required="True"/>
+                <field name="estado_id" select="0" attrs="{'required':[('regional','=',True)], 'invisible':[('regional','=',False)]}"/>
+                <newline/>
+                <field name="nombres" select="2" required="True"/>
+                <field name="apellidos" select="2" required="True"/>
+                <field name="regional" select="0"/>
+                <field name="rector" select="0"/>
+
+            </group>
+            </page>
+
+            <page string="Contacto">
+            <group col="6" colspan="2">
+                <field name="email" select="0" required="True"/>
+                <newline/>
+                <field name="ext_telefono1" select="0" required="True"/>
+                <field name="ext_telefono2" select="0"/>
+                <field name="telefono_personal" select="0" required="True"/>
+            </group>
+            </page>
+            
+            <page string="Laboral">
+            <group col="2" colspan="2" >
+                <field name="cargo" select="0" required="True"/>
+                <field name="dependencia_direccion_id" required="True" select="0" />
+                <field name="dependencia_gerencia_id" select="0" required="True" domain="[('direccion_id','=',[dependencia_direccion_id])]" />
+                <field name="dependencia_gerencia_linea_id" select="0" domain="[('gerencia_general_id','=',[dependencia_gerencia_id])]" />
+                <field name="dependencia_cfs_id" select="0" required="False"/>
+                <field name="dependencia_division_id" select="0" required="False"/>
+                <field name="dependencia_coordinacion_id" select="0" required="False"/>
+            </group>
+            </page>
+        <page string="Incidencias">
+            <group col="4" colspan="4" required="True" string="Incidencias Asociadas">
+                <field name="incidencia_ids" nolabel="1" select="0" required="True" readonly="True"/>
+            </group>
+        </page>
+            </notebook>
+            </sheet>
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="view_tools_helpdesk_solicitante_tree">
+        <field name="name">tools.helpdesk.solicitante.tree</field>
+        <field name="model">tools.helpdesk.solicitante</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="tools.helpdesk.solicitante">
+                <field name="cedula"/>
+                <field name="nombres"/>
+                <field name="apellidos"/>
+                <field name="dependencia_direccion_id"/>
+                <field name="dependencia_gerencia_id"/>
+                <field name="email"/>
+                <field name="ext_telefono1"/>
+                <field name="ext_telefono2"/>
+                <field name="telefono_personal"/>
+
+            </tree>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="action_tools_helpdesk_solicitante">
+        <field name="name">Solicitante</field>
+        <field name="res_model">tools.helpdesk.solicitante</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record >
+     
+    <FIN DE ESTA CLASE SOLICITANTE A INHERIT-->  
+
+    <record model="ir.ui.view" id="view_tools_helpdesk_categoria_incidencia_form">
+        <field name="name">tools.helpdesk.categoria_incidencia.form</field>
+        <field name="model">tools.helpdesk.categoria_incidencia</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="tools.helpdesk.categoria_incidencia">
+            <group col="4" colspan="2">
+                <field name="codigo" select="1"/>
+                <field name="nombre" select="2"/>
+                <separator string="Tipos de Incidencia" colspan="4"/>
+                <field name="tipo_incidencia" nolabel="1" colspan="4" select="0"/>
+   		<!-- field name="dependencia_id" select="2"/ -->
+
+            </group>
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="view_tools_helpdesk_categoria_incidencia_tree">
+        <field name="name">tools.helpdesk.categoria_incidencia.tree</field>
+        <field name="model">tools.helpdesk.categoria_incidencia</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="tools.helpdesk.categoria_incidencia">
+                <field name="codigo"/>
+                <field name="nombre"/>
+		<!-- field name="dependencia_id"/ -->
+
+            </tree>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="action_tools_helpdesk_categoria_incidencia">
+        <field name="name">Cetegoría de Incidencia</field>
+        <field name="res_model">tools.helpdesk.categoria_incidencia</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+     
+    <record model="ir.ui.view" id="view_tools_helpdesk_observacion_form">
+        <field name="name">tools.helpdesk.observacion.form</field>
+        <field name="model">tools.helpdesk.observacion</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="tools.helpdesk.observacion">
+            <group col="4" colspan="2">
+                <separator string="Observación" colspan="4"/>
+                <field name="observacion" nolabel="1" colspan="4" select="1"/>
+                <field name="state_rel" select="2"/>
+                <!--field name="incidencia_id" select="0"/-->
+
+            </group>
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="view_tools_helpdesk_observacion_tree">
+        <field name="name">tools.helpdesk.observacion.tree</field>
+        <field name="model">tools.helpdesk.observacion</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="tools.helpdesk.observacion">
+                <field name="observacion"/>
+                <field name="state_rel"/>
+                <!--field name="incidencia_id"/-->
+
+            </tree>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="action_tools_helpdesk_observacion">
+        <field name="name">Observación</field>
+        <field name="res_model">tools.helpdesk.observacion</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+<!--Acá inicia la clase heredada de res.users-->
+<!--fin de la herencia desde res.users-->
+
+    <!-- Vistas de CONEXTO -->      
+    <record model="ir.ui.view" id="view_tools_helpdesk_contexto_nivel1_form">
+        <field name="name">tools.helpdesk.contexto_nivel1.form</field>
+        <field name="model">tools.helpdesk.contexto_nivel1</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="tools.helpdesk.contexto_nivel1">
+            <group col="4" colspan="2">
+                <field name="codigo" select="1"/>
+                <field name="nombre" select="2"/>
+                <field name="descripcion" colspan="4" select="0"/>
+                <field name="contexto_nivel2_ids" colspan="4" select="0"/>
+            </group>
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="view_tools_helpdesk_contexto_nivel1_tree">
+        <field name="name">tools.helpdesk.contexto_nivel1.tree</field>
+        <field name="model">tools.helpdesk.contexto_nivel1</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="tools.helpdesk.contexto_nivel1">
+                <field name="codigo"/>
+                <field name="nombre"/>
+                <field name="descripcion"/>
+            </tree>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="action_tools_helpdesk_contexto_nivel1">
+        <field name="name">Organizaciones</field>
+        <field name="res_model">tools.helpdesk.contexto_nivel1</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+        
+    <record model="ir.ui.view" id="view_tools_helpdesk_contexto_nivel2_form">
+        <field name="name">tools.helpdesk.contexto_nivel2.form</field>
+        <field name="model">tools.helpdesk.contexto_nivel2</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="tools.helpdesk.contexto_nivel2">
+            <group col="4" colspan="2">
+                <field name="codigo" select="1"/>
+                <field name="nombre" select="0"/>
+                <field name="descripcion" colspan="4" select="0"/>
+                <field name="contexto_nivel1_id" select="2"/>
+                <field name="contexto_nivel3_ids" select="0"/>
+           
+            </group>
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="view_tools_helpdesk_contexto_nivel2_tree">
+        <field name="name">tools.helpdesk.contexto_nivel2.tree</field>
+        <field name="model">tools.helpdesk.contexto_nivel2</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="tools.helpdesk.contexto_nivel2">
+                <field name="codigo"/>
+                <field name="nombre"/>
+                <field name="descripcion"/>
+                <field name="contexto_nivel1_id"/>
+            </tree>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="action_tools_helpdesk_contexto_nivel2">
+        <field name="name">Aplicaciones</field>
+        <field name="res_model">tools.helpdesk.contexto_nivel2</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record model="ir.ui.view" id="view_tools_helpdesk_contexto_nivel3_form">
+        <field name="name">tools.helpdesk.contexto_nivel3.form</field>
+        <field name="model">tools.helpdesk.contexto_nivel3</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="tools.helpdesk.contexto_nivel3">
+            <group col="4" colspan="2">
+                <field name="codigo" select="1"/>
+                <field name="nombre" select="2"/>
+                <field name="descripcion" colspan="4" select="0"/>
+                <field name="contexto_nivel2_id" select="0"/>
+                <newline/>
+                <field name="contexto_nivel4_ids" colspan="4" select="0"/>
+            </group>
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="view_tools_helpdesk_contexto_nivel3_tree">
+        <field name="name">tools.helpdesk.contexto_nivel3.tree</field>
+        <field name="model">tools.helpdesk.contexto_nivel3</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="tools.helpdesk.contexto_nivel3">
+                <field name="codigo"/>
+                <field name="nombre"/>
+                <field name="descripcion"/>
+                <field name="contexto_nivel2_id"/>
+
+            </tree>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="action_tools_helpdesk_contexto_nivel3">
+        <field name="name">Módulos</field>
+        <field name="res_model">tools.helpdesk.contexto_nivel3</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+         
+    <record model="ir.ui.view" id="view_tools_helpdesk_contexto_nivel4_form">
+        <field name="name">tools.helpdesk.contexto_nivel4.form</field>
+        <field name="model">tools.helpdesk.contexto_nivel4</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="tools.helpdesk.contexto_nivel4">
+            <group col="4" colspan="2">
+                <field name="codigo" select="1"/>
+                <field name="nombre" select="2"/>
+                <field name="descripcion" colspan="4" select="0"/>
+                <field name="contexto_nivel3_id" select="0"/>
+
+            </group>
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="view_tools_helpdesk_contexto_nivel4_tree">
+        <field name="name">tools.helpdesk.contexto_nivel4.tree</field>
+        <field name="model">tools.helpdesk.contexto_nivel4</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="tools.helpdesk.contexto_nivel4">
+                <field name="codigo"/>
+                <field name="nombre"/>
+                <field name="descripcion"/>
+                <field name="contexto_nivel3_id"/>
+
+            </tree>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="action_tools_helpdesk_contexto_nivel4">
+        <field name="name">Operaciones</field>
+        <field name="res_model">tools.helpdesk.contexto_nivel4</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    
+<menuitem name="Soporte" id="menu_tools_helpdesk"/>
+	<menuitem name="Gestión de Soporte" id="menu_tools_helpdesk_formularios" parent="menu_tools_helpdesk"/>
+		<menuitem name="Registro de Tickets" id="menu_tools_helpdesk_incidencia" sequence= "0" action="action_tools_helpdesk_incidencia" parent="menu_tools_helpdesk_formularios"/>
+
+<menuitem name="Configuración" id="menu_tools_helpdesk_configuracion" parent="menu_tools_helpdesk"/>
+    <menuitem name="Incidencias" id="menu_tools_helpdesk_configuracion_incidencias" parent="menu_tools_helpdesk_configuracion" sequence="0"/>
+        <menuitem name="Categoría de Incidencia" id="menu_tools_helpdesk_categoria_incidencia" action="action_tools_helpdesk_categoria_incidencia" parent="menu_tools_helpdesk_configuracion_incidencias" sequence="0"/>
+        <menuitem name="Tipo de Incidencia" id="menu_tools_helpdesk_tipo_incidencia" action="action_tools_helpdesk_tipo_incidencia" parent="menu_tools_helpdesk_configuracion_incidencias" sequence="1"/>
+
+    <menuitem name="Contexto de Incidencia" id="menu_tools_helpdesk_configuracion_contexto" parent="menu_tools_helpdesk_configuracion" sequence="1"/>
+        <menuitem name="Organizaciones" id="menu_tools_helpdesk_contexto_nivel1" action="action_tools_helpdesk_contexto_nivel1" parent="menu_tools_helpdesk_configuracion_contexto" sequence="10"/>
+        <menuitem name="Aplicaciones" id="menu_tools_helpdesk_contexto_nivel2" action="action_tools_helpdesk_contexto_nivel2" parent="menu_tools_helpdesk_configuracion_contexto" sequence="11"/>
+        <menuitem name="Módulos" id="menu_tools_helpdesk_contexto_nivel3" action="action_tools_helpdesk_contexto_nivel3" parent="menu_tools_helpdesk_configuracion_contexto"  sequence="12"/>
+        <menuitem name="Operaciones" id="menu_tools_helpdesk_contexto_nivel4" action="action_tools_helpdesk_contexto_nivel4" parent="menu_tools_helpdesk_configuracion_contexto"  sequence="13"/>
+
+    <!-- menuitem name="Talento Humano" id="menu_talento_humano" parent="menu_tools"/>
+        <menuitem name="Cargos" id="menu_tools_base_hr_cargo" action="action_tools_base_hr_cargo" parent="menu_talento_humano"/ -->
+
+</data>
+</openerp>

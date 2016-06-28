@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data noupdate="1">
+		  
+	<!-- Gerencias Generales y Regionales -->
+	<record id="ger_FIN" model="sisr.base.dependencia_gerencia">
+		<field name="codigo">GER_FIN</field>
+        <field name="tipo">general</field>
+		<field name="nombre">Finanzas</field>
+		<field name="ubicacion">Av. Nueva Granada, Edificio Inces, Piso 2</field>
+        <field name="direccion_id" ref="dir_PRE"/>
+	</record>
+    
+    <record id="ger_INF" model="sisr.base.dependencia_gerencia">
+		<field name="codigo">GER_INF</field>
+        <field name="tipo">general</field>
+		<field name="nombre">Informática</field>
+		<field name="ubicacion">Av. Nueva Granada, Edificio Inces, Piso 1</field>
+        <field name="direccion_id" ref="dir_PRE"/>
+	</record>
+
+    <!-- -->
+
+	<record id="ger_PLA" model="sisr.base.dependencia_gerencia">
+		<field name="codigo">GER_PLA</field>
+        <field name="tipo">general</field>
+		<field name="nombre">Planificación</field>
+		<field name="ubicacion">Av. Nueva Granada, Edificio Inces, Piso 2</field>
+        <field name="direccion_id" ref="dir_PRE"/>
+	</record>
+
+	<record id="ger_TRI" model="sisr.base.dependencia_gerencia">
+		<field name="codigo">GER_TRI</field>
+        <field name="tipo">general</field>
+		<field name="nombre">Tributos</field>
+		<field name="ubicacion">Av. Nueva Granada, Edificio Inces, Piso 4</field>
+        <field name="direccion_id" ref="dir_PRE"/>
+	</record>
+
+	<record id="ger_INS" model="sisr.base.dependencia_gerencia">
+		<field name="codigo">GER_INS</field>
+        <field name="tipo">general</field>
+		<field name="nombre">Infraestructura y Servicio</field>
+		<field name="ubicacion">Av. Nueva Granada, Edificio Inces, Piso 5</field>
+        <field name="direccion_id" ref="dir_PRE"/>
+	</record>
+
+	<record id="ger_RRH" model="sisr.base.dependencia_gerencia">
+		<field name="codigo">GER_RRH</field>
+        <field name="tipo">general</field>
+		<field name="nombre">Recursos Humanos</field>
+		<field name="ubicacion">Av. Nueva Granada, Edificio Inces, Piso 6</field>
+        <field name="direccion_id" ref="dir_PRE"/>
+	</record>
+
+	<record id="ger_OIR" model="sisr.base.dependencia_gerencia">
+		<field name="codigo">GER_OIR</field>
+        <field name="tipo">general</field>
+		<field name="nombre">Oficina de Información y Relaciones</field>
+		<field name="ubicacion">Av. Nueva Granada, Edificio Inces, Piso 8</field>
+        <field name="direccion_id" ref="dir_PRE"/>
+	</record>
+
+	<record id="ger_OCI" model="sisr.base.dependencia_gerencia">
+		<field name="codigo">GER_OCI</field>
+        <field name="tipo">general</field>
+		<field name="nombre">Oficina de Cooperación Nacional e Internacional</field>
+		<field name="ubicacion">Av. Nueva Granada, Edificio Inces, Piso 8</field>
+        <field name="direccion_id" ref="dir_PRE"/>
+	</record>
+
+	<record id="ger_IMI" model="sisr.base.dependencia_gerencia">
+		<field name="codigo">GER_IMI</field>
+        <field name="tipo">general</field>
+		<field name="nombre">Inces Militar</field>
+		<field name="ubicacion">Av. Nueva Granada, Edificio Inces, Piso 8</field>
+        <field name="direccion_id" ref="dir_PRE"/>
+	</record>
+
+	<record id="ger_FFP" model="sisr.base.dependencia_gerencia">
+		<field name="codigo">GER_FFP</field>
+        <field name="tipo">general</field>
+		<field name="nombre">Formación Profesional</field>
+		<field name="ubicacion">Av. Nueva Granada, Edificio Inces, Piso 9</field>
+        <field name="direccion_id" ref="dir_PRE"/>
+	</record>
+
+	<record id="ger_OAI" model="sisr.base.dependencia_gerencia">
+		<field name="codigo">GER_OAI</field>
+        <field name="tipo">general</field>
+		<field name="nombre">Oficina de Auditoría Interna</field>
+		<field name="ubicacion">Av. Nueva Granada, Edificio Inces, Piso 10</field>
+        <field name="direccion_id" ref="dir_PRE"/>
+	</record>
+
+	<record id="ger_CJU" model="sisr.base.dependencia_gerencia">
+		<field name="codigo">GER_CJU</field>
+        <field name="tipo">general</field>
+		<field name="nombre">Consultoría Jurídica</field>
+		<field name="ubicacion">Av. Nueva Granada, Edificio Inces, Piso 10</field>
+        <field name="direccion_id" ref="dir_PRE"/>
+	</record>
+
+	<record id="ger_PDE" model="sisr.base.dependencia_gerencia">
+		<field name="codigo">GER_PDE</field>
+        <field name="tipo">general</field>
+		<field name="nombre">Presidencia/Dirección Ejecutiva</field>
+		<field name="ubicacion">Av. Nueva Granada, Edificio Inces, Piso 11</field>
+        <field name="direccion_id" ref="dir_PRE"/>
+	</record>
+
+	<!--Dependencia_gerencia_regional-->
+
+	<record id="ger_COJ" model="sisr.base.dependencia_gerencia">
+		<field name="codigo">GER_COJ</field>
+        <field name="tipo">regional</field>
+		<field name="nombre">Regional Cojedes</field>
+		<field name="ubicacion">Inces Agrícola Jose Laurencio Silva, Vía Las Vegas, Sector El Limón. San Carlos. Cojedes</field>
+        <field name="direccion_id" ref="dir_PRE"/>
+	</record>
+    
+    <record id="ger_MIR" model="sisr.base.dependencia_gerencia">
+		<field name="codigo">GER_MIR</field>
+        <field name="tipo">regional</field>
+		<field name="nombre">Miranda</field>
+		<field name="ubicacion">2da Transversal Av. Principipal Los Cortijos. Edificio Colombeia, Piso 2. Los Cortijos de Lourdes, Municipio Sucre.</field>
+        <field name="direccion_id" ref="dir_PRE"/>
+	</record>
+
+	<record id="ger_AMA" model="sisr.base.dependencia_gerencia">
+		<field name="codigo">GER_AMA</field>
+        <field name="tipo">regional</field>
+		<field name="nombre">Amazonas</field>
+		<field name="ubicacion"></field>
+        <field name="direccion_id" ref="dir_PRE"/>
+	</record>
+
+	<record id="ger_ANZ" model="sisr.base.dependencia_gerencia">
+		<field name="codigo">GER_ANZ</field>
+        <field name="tipo">regional</field>
+		<field name="nombre">Anzoátegui</field>
+		<field name="ubicacion"></field>
+        <field name="direccion_id" ref="dir_PRE"/>
+	</record>
+
+	<record id="ger_APU" model="sisr.base.dependencia_gerencia">
+		<field name="codigo">GER_APU</field>
+        <field name="tipo">regional</field>
+		<field name="nombre">Apure</field>
+		<field name="ubicacion"></field>
+        <field name="direccion_id" ref="dir_PRE"/>
+	</record>
+
+	<record id="ger_ARA" model="sisr.base.dependencia_gerencia">
+		<field name="codigo">GER_ARA</field>
+        <field name="tipo">regional</field>
+		<field name="nombre">Aragua</field>
+		<field name="ubicacion"></field>
+        <field name="direccion_id" ref="dir_PRE"/>
+	</record>
+
+	<record id="ger_BAR" model="sisr.base.dependencia_gerencia">
+		<field name="codigo">GER_BAR</field>
+        <field name="tipo">regional</field>
+		<field name="nombre">Barinas</field>
+		<field name="ubicacion"></field>
+        <field name="direccion_id" ref="dir_PRE"/>
+	</record>
+
+	<record id="ger_BOL" model="sisr.base.dependencia_gerencia">
+		<field name="codigo">GER_BOL</field>
+        <field name="tipo">regional</field>
+		<field name="nombre">Bolívar</field>
+		<field name="ubicacion"></field>
+        <field name="direccion_id" ref="dir_PRE"/>
+	</record>
+
+	<record id="ger_CAR" model="sisr.base.dependencia_gerencia">
+		<field name="codigo">GER_CAR</field>
+        <field name="tipo">regional</field>
+		<field name="nombre">Carabobo</field>
+		<field name="ubicacion"></field>
+        <field name="direccion_id" ref="dir_PRE"/>
+	</record>
+
+	<record id="ger_DEA" model="sisr.base.dependencia_gerencia">
+		<field name="codigo">GER_DEA</field>
+        <field name="tipo">regional</field>
+		<field name="nombre">Delta Amacuro</field>
+		<field name="ubicacion"></field>
+        <field name="direccion_id" ref="dir_PRE"/>
+	</record>
+
+	<record id="ger_DTO" model="sisr.base.dependencia_gerencia">
+		<field name="codigo">GER_DTO</field>
+        <field name="tipo">regional</field>
+		<field name="nombre">Distrito Capital</field>
+		<field name="ubicacion"></field>
+        <field name="direccion_id" ref="dir_PRE"/>
+	</record>
+
+	<record id="ger_FAL" model="sisr.base.dependencia_gerencia">
+		<field name="codigo">GER_FAL</field>
+        <field name="tipo">regional</field>
+		<field name="nombre">Falcón</field>
+		<field name="ubicacion"></field>
+        <field name="direccion_id" ref="dir_PRE"/>
+	</record>
+
+	<record id="ger_GUA" model="sisr.base.dependencia_gerencia">
+		<field name="codigo">GER_GUA</field>
+        <field name="tipo">regional</field>
+		<field name="nombre">Guárico</field>
+		<field name="ubicacion"></field>
+        <field name="direccion_id" ref="dir_PRE"/>
+	</record>
+
+	<record id="ger_LAR" model="sisr.base.dependencia_gerencia">
+		<field name="codigo">GER_LAR</field>
+        <field name="tipo">regional</field>
+		<field name="nombre">Lara</field>
+		<field name="ubicacion"></field>
+        <field name="direccion_id" ref="dir_PRE"/>
+	</record>
+
+	<record id="ger_MER" model="sisr.base.dependencia_gerencia">
+		<field name="codigo">GER_MER</field>
+        <field name="tipo">regional</field>
+		<field name="nombre">Mérida</field>
+		<field name="ubicacion"></field>
+        <field name="direccion_id" ref="dir_PRE"/>
+	</record>
+
+	<record id="ger_MON" model="sisr.base.dependencia_gerencia">
+		<field name="codigo">GER_MON</field>
+        <field name="tipo">regional</field>
+		<field name="nombre">Monagas</field>
+		<field name="ubicacion"></field>
+        <field name="direccion_id" ref="dir_PRE"/>
+	</record>
+
+	<record id="ger_NVA" model="sisr.base.dependencia_gerencia">
+		<field name="codigo">GER_NVA</field>
+        <field name="tipo">regional</field>
+		<field name="nombre">Nueva Esparta</field>
+		<field name="ubicacion"></field>
+        <field name="direccion_id" ref="dir_PRE"/>
+	</record>
+
+	<record id="ger_POR" model="sisr.base.dependencia_gerencia">
+		<field name="codigo">GER_POR</field>
+        <field name="tipo">regional</field>
+		<field name="nombre">Portuguesa</field>
+		<field name="ubicacion"></field>
+        <field name="direccion_id" ref="dir_PRE"/>
+	</record>
+
+	<record id="ger_SUC" model="sisr.base.dependencia_gerencia">
+		<field name="codigo">GER_SUC</field>
+        <field name="tipo">regional</field>
+		<field name="nombre">Sucre</field>
+		<field name="ubicacion"></field>
+        <field name="direccion_id" ref="dir_PRE"/>
+	</record>
+
+	<record id="ger_TAC" model="sisr.base.dependencia_gerencia">
+		<field name="codigo">GER_TAC</field>
+        <field name="tipo">regional</field>
+		<field name="nombre">Táchira</field>
+		<field name="ubicacion"></field>
+        <field name="direccion_id" ref="dir_PRE"/>
+	</record>
+
+	<record id="ger_TRU" model="sisr.base.dependencia_gerencia">
+		<field name="codigo">GER_TRU</field>
+        <field name="tipo">regional</field>
+		<field name="nombre">Trujillo</field>
+		<field name="ubicacion"></field>
+        <field name="direccion_id" ref="dir_PRE"/>
+	</record>
+
+	<record id="ger_VAR" model="sisr.base.dependencia_gerencia">
+		<field name="codigo">GER_VAR</field>
+        <field name="tipo">regional</field>
+		<field name="nombre">Vargas</field>
+		<field name="ubicacion"></field>
+        <field name="direccion_id" ref="dir_PRE"/>
+	</record>
+
+	<record id="ger_YAR" model="sisr.base.dependencia_gerencia">
+		<field name="codigo">GER_YAR</field>
+        <field name="tipo">regional</field>
+		<field name="nombre">Yaracuy</field>
+		<field name="ubicacion"></field>
+        <field name="direccion_id" ref="dir_PRE"/>
+	</record>
+
+	<record id="ger_ZUL" model="sisr.base.dependencia_gerencia">
+		<field name="codigo">GER_ZUL</field>
+        <field name="tipo">regional</field>
+		<field name="nombre">Zulia</field>
+		<field name="ubicacion"></field>
+        <field name="direccion_id" ref="dir_PRE"/>
+	</record>
+
+	</data>
+</openerp>

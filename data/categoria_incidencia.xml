@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data noupdate="1">
+		  
+	<!-- Categorias de incidencias -->
+	<record id="categoria_incidencia_bugs" model="tools.helpdesk.categoria_incidencia">
+		<field name="codigo">BUGS</field>
+		<field name="nombre">Corrección de Errores</field>
+		<!-- field name="dependencia_id" ref="tools_helpdesk.ger_INF"/ -->
+	</record>
+	<record id="categoria_incidencia_mejo" model="tools.helpdesk.categoria_incidencia">
+		<field name="codigo">MEJO</field>
+		<field name="nombre">Mejoras o Ampliaciones</field>
+		<!-- field name="dependencia_id" ref="tools_helpdesk.ger_INF"/ -->
+	</record>
+	<record id="categoria_incidencia_nuev" model="tools.helpdesk.categoria_incidencia">
+		<field name="codigo">NUEV</field>
+		<field name="nombre">Nuevas Funcionalidades</field>
+		<!-- field name="dependencia_id" ref="tools_helpdesk.ger_INF"/ -->
+	</record>
+	<record id="categoria_incidencia_asis" model="tools.helpdesk.categoria_incidencia">
+		<field name="codigo">ASIS</field>
+		<field name="nombre">Asistencia a Usuarios</field>
+		<!-- field name="dependencia_id" ref="tools_helpdesk.ger_INF"/ -->
+	</record>
+	
+	</data>
+</openerp>

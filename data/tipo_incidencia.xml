@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data noupdate="1">
+	
+	<!--Tipos de la Categoria de Incidencias : BUGS  -->	
+	<record id="tipo_incidencia_sprtcu" model="tools.helpdesk.tipo_incidencia">
+		<field name="codigo">SPRTCU</field>
+		<field name="nombre"> </field>
+		<field name="categoria_incidencia_id" ref="categoria_incidencia_bugs"/>
+	</record>
+	<record id="tipo_incidencia_sprtici" model="tools.helpdesk.tipo_incidencia">
+		<field name="codigo">SPRTICI</field>
+		<field name="nombre">Instalación y Configuración de Impresoras</field>
+		<field name="categoria_incidencia_id" ref="categoria_incidencia_bugs"/>
+	</record>
+	<record id="tipo_incidencia_sprtap" model="tools.helpdesk.tipo_incidencia">
+		<field name="codigo">SPRTAP</field>
+		<field name="nombre">Actualización de Pluying</field>
+		<field name="categoria_incidencia_id" ref="categoria_incidencia_bugs"/>
+	</record>	
+	<record id="tipo_incidencia_sprtics" model="tools.helpdesk.tipo_incidencia">
+		<field name="codigo">SPRTICS</field>
+		<field name="nombre">Instalación y Configuración de Scanner</field>
+		<field name="categoria_incidencia_id" ref="categoria_incidencia_bugs"/>
+	</record>
+	<record id="tipo_incidencia_sprtcs" model="tools.helpdesk.tipo_incidencia">
+		<field name="codigo">SPRTCS</field>
+		<field name="nombre">Configuración de Sacofigo</field>
+		<field name="categoria_incidencia_id" ref="categoria_incidencia_bugs"/>
+	</record>
+	<record id="tipo_incidencia_sprtcsw" model="tools.helpdesk.tipo_incidencia">
+		<field name="codigo">SPRTCSW</field>
+		<field name="nombre">Configuración de Sirena Web</field>
+		<field name="categoria_incidencia_id" ref="categoria_incidencia_bugs"/>
+	</record>
+ 
+    <!--Tipos de la Categoria de Incidencias : MEJO  -->	
+	<record id="tipo_incidencia_sprtit" model="tools.helpdesk.tipo_incidencia">
+		<field name="codigo">SPRTIT</field>
+		<field name="nombre">Instalación de Tonner</field>
+		<field name="categoria_incidencia_id" ref="categoria_incidencia_mejo"/>
+	</record>
+	<record id="tipo_incidencia_sprtri" model="tools.helpdesk.tipo_incidencia">
+		<field name="codigo">SPRTRI</field>
+		<field name="nombre">Revisar Impresora</field>
+		<field name="categoria_incidencia_id" ref="categoria_incidencia_mejo"/>
+	</record>
+	<record id="tipo_incidencia_sprtrs" model="tools.helpdesk.tipo_incidencia">
+		<field name="codigo">SPRTRS</field>
+		<field name="nombre">Revisar Scanner</field>
+		<field name="categoria_incidencia_id" ref="categoria_incidencia_mejo"/>
+	</record>
+	<record id="tipo_incidencia_sprtbd" model="tools.helpdesk.tipo_incidencia">
+		<field name="codigo">SPRTBD</field>
+		<field name="nombre">Bases de Datos</field>
+		<field name="categoria_incidencia_id" ref="categoria_incidencia_mejo"/>
+	</record>
+	<record id="tipo_incidencia_sprtie" model="tools.helpdesk.tipo_incidencia">
+		<field name="codigo">SPRTIE</field>
+		<field name="nombre">Instalación de Equipos</field>
+		<field name="categoria_incidencia_id" ref="categoria_incidencia_mejo"/>
+	</record>
+	<record id="tipo_incidencia_sprtrc" model="tools.helpdesk.tipo_incidencia">
+		<field name="codigo">SPRTRC</field>
+		<field name="nombre">Revisar Componentes </field>
+		<field name="categoria_incidencia_id" ref="categoria_incidencia_mejo"/>
+	</record>
+	<record id="tipo_incidencia_sprtate" model="tools.helpdesk.tipo_incidencia">
+		<field name="codigo">SPRTATE</field>
+		<field name="nombre">Asistencia Técnica para Eventos</field>
+		<field name="categoria_incidencia_id" ref="categoria_incidencia_mejo"/>
+	</record>
+	<record id="tipo_incidencia_sprticl" model="tools.helpdesk.tipo_incidencia">
+		<field name="codigo">SPRTICL</field>
+		<field name="nombre">Instalación y configuración de Aplicaciones Linux</field>
+		<field name="categoria_incidencia_id" ref="categoria_incidencia_mejo"/>
+	</record>
+        
+    <!--Tipos de la Categoria de Incidencias : NUEV  -->
+	<record id="tipo_incidencia_bdperdep" model="tools.helpdesk.tipo_incidencia">
+		<field name="codigo">BDPERDEP</field>
+		<field name="nombre">Permisología en Dependencia </field>
+		<field name="categoria_incidencia_id" ref="categoria_incidencia_nuev"/>
+	</record>
+	<record id="tipo_incidencia_bdpera" model="tools.helpdesk.tipo_incidencia">
+		<field name="codigo">BDPERA</field>
+		<field name="nombre">Permisológia en Opcion de Actualizar</field>
+		<field name="categoria_incidencia_id" ref="categoria_incidencia_nuev"/>
+	</record>
+	<record id="tipo_incidencia_bdperm" model="tools.helpdesk.tipo_incidencia">
+		<field name="codigo">BDPERM</field>
+		<field name="nombre">Permisología en Módulos</field>
+		<field name="categoria_incidencia_id" ref="categoria_incidencia_nuev"/>
+	</record>
+	<record id="tipo_incidencia_bdpercu" model="tools.helpdesk.tipo_incidencia">
+		<field name="codigo">BDPERCU</field>
+		<field name="nombre">Creción de Usuario</field>
+		<field name="categoria_incidencia_id" ref="categoria_incidencia_nuev"/>
+	</record>
+	<record id="tipo_incidencia_bdcon" model="tools.helpdesk.tipo_incidencia">
+		<field name="codigo">BDCON</field>
+		<field name="nombre">Contraseña</field>
+		<field name="categoria_incidencia_id" ref="categoria_incidencia_nuev"/>
+	</record>
+	<record id="tipo_incidencia_bdexu" model="tools.helpdesk.tipo_incidencia">
+		<field name="codigo">BDEXU</field>
+		<field name="nombre">Exclusión de Usuario</field>
+		<field name="categoria_incidencia_id" ref="categoria_incidencia_nuev"/>
+	</record>
+	<record id="tipo_incidencia_bdrrh" model="tools.helpdesk.tipo_incidencia">
+		<field name="codigo">BDRRH</field>
+		<field name="nombre">RRHH</field>
+		<field name="categoria_incidencia_id" ref="categoria_incidencia_nuev"/>
+	</record>
+	<record id="tipo_incidencia_bdaud" model="tools.helpdesk.tipo_incidencia">
+		<field name="codigo">BDAUD</field>
+		<field name="nombre">Auditoria</field>
+		<field name="categoria_incidencia_id" ref="categoria_incidencia_nuev"/>
+	</record>
+	<record id="tipo_incidencia_bdacr" model="tools.helpdesk.tipo_incidencia">
+		<field name="codigo">BDACR</field>
+		<field name="nombre">Activación de Registros</field>
+		<field name="categoria_incidencia_id" ref="categoria_incidencia_nuev"/>
+	</record>
+	<record id="tipo_incidencia_bddesr" model="tools.helpdesk.tipo_incidencia">
+		<field name="codigo">BDDESR</field>
+		<field name="nombre">Desactivación de Registros</field>
+		<field name="categoria_incidencia_id" ref="categoria_incidencia_nuev"/>
+	</record>
+	<record id="tipo_incidencia_bdlsch" model="tools.helpdesk.tipo_incidencia">
+		<field name="codigo">BDLCH</field>
+		<field name="nombre">Liberación de Cheques</field>
+		<field name="categoria_incidencia_id" ref="categoria_incidencia_nuev"/>
+	</record>
+	<record id="tipo_incidencia_bdsiper" model="tools.helpdesk.tipo_incidencia">
+		<field name="codigo">BDSIPER</field>
+		<field name="nombre">Sincera Permisología </field>
+		<field name="categoria_incidencia_id" ref="categoria_incidencia_nuev"/>
+	</record>
+	<record id="tipo_incidencia_bdapro" model="tools.helpdesk.tipo_incidencia">
+		<field name="codigo">BDAPRO</field>
+		<field name="nombre">Actualización de Programas</field>
+		<field name="categoria_incidencia_id" ref="categoria_incidencia_nuev"/>
+	</record>
+
+
+    <!--Tipos de la Categoria de Incidencias : ASIS  -->
+	<record id="tipo_incidencia_desace" model="tools.helpdesk.tipo_incidencia">
+		<field name="codigo">DESACE</field>
+		<field name="nombre">Corrección de Errores</field>
+		<field name="categoria_incidencia_id" ref="categoria_incidencia_asis"/>
+	</record>
+	<record id="tipo_incidencia_desaanfun" model="tools.helpdesk.tipo_incidencia">
+		<field name="codigo">DESANFUN</field>
+		<field name="nombre">Nuevas Funcionalidades</field>
+		<field name="categoria_incidencia_id" ref="categoria_incidencia_asis"/>
+	</record>
+	<record id="tipo_incidencia_desaleinf" model="tools.helpdesk.tipo_incidencia">
+		<field name="codigo">DESALEINF</field>
+		<field name="nombre">Levantamiento de Información</field>
+		<field name="categoria_incidencia_id" ref="categoria_incidencia_asis"/>
+	</record>
+	<record id="tipo_incidencia_desadimo" model="tools.helpdesk.tipo_incidencia">
+		<field name="codigo">DESADIMO</field>
+		<field name="nombre">Diseño y Modelos</field>
+		<field name="categoria_incidencia_id" ref="categoria_incidencia_asis"/>
+	</record>
+	<record id="tipo_incidencia_desacaweb" model="tools.helpdesk.tipo_incidencia">
+		<field name="codigo">DESACAWEB</field>
+		<field name="nombre">Carga de Contenido a la Web</field>
+		<field name="categoria_incidencia_id" ref="categoria_incidencia_asis"/>
+	</record>
+    <record id="tipo_incidencia_orgmedp" model="tools.helpdesk.tipo_incidencia">
+		<field name="codigo">ORGMEDP</field>
+		<field name="nombre">Diagrama de Proceso</field>
+		<field name="categoria_incidencia_id" ref="categoria_incidencia_asis"/>
+	</record>
+	<record id="tipo_incidencia_orgmess" model="tools.helpdesk.tipo_incidencia">
+		<field name="codigo">ORGMESS</field>
+		<field name="nombre">Seguimiento de Sistemas</field>
+		<field name="categoria_incidencia_id" ref="categoria_incidencia_asis"/>
+	</record>
+	<record id="tipo_incidencia_orgmeds" model="tools.helpdesk.tipo_incidencia">
+		<field name="codigo">ORGMEDS</field>
+		<field name="nombre">Diagrama de Secuencia</field>
+		<field name="categoria_incidencia_id" ref="categoria_incidencia_asis"/>
+	</record>
+	<record id="tipo_incidencia_orgmedmt" model="tools.helpdesk.tipo_incidencia">
+		<field name="codigo">ORGMEDMT</field>
+		<field name="nombre">Diseñar Manual Técnico</field>
+		<field name="categoria_incidencia_id" ref="categoria_incidencia_asis"/>
+	</record>
+	<record id="tipo_incidencia_orgmedmu" model="tools.helpdesk.tipo_incidencia">
+		<field name="codigo">ORGMEDMU</field>
+		<field name="nombre">Diseñar Manual de Usuario</field>
+		<field name="categoria_incidencia_id" ref="categoria_incidencia_asis"/>
+	</record>
+	<record id="tipo_incidencia_orgmedocp" model="tools.helpdesk.tipo_incidencia">
+		<field name="codigo">ORGMEDOCP</field>
+		<field name="nombre">Documentación de Procesos de la Gerencia General de Informática</field>
+		<field name="categoria_incidencia_id" ref="categoria_incidencia_asis"/>
+	</record>		
+	<record id="tipo_incidencia_orgmeaia" model="tools.helpdesk.tipo_incidencia">
+		<field name="codigo">ORGMEAIA</field>
+		<field name="nombre">Apoyo en la Induccion de la aplicación a ser Implatadas</field>
+		<field name="categoria_incidencia_id" ref="categoria_incidencia_asis"/>
+	</record>
+		
+	</data>
+</openerp>

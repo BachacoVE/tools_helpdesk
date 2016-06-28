@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data noupdate="1">
+    
+    <record id="div_INF_GDS_DES" model="sisr.base.dependencia_division">
+		<field name="codigo">DES</field>
+		<field name="nombre">Desarrollo De Sistemas</field>
+		<field name="gerencia_linea_id" ref="ger_lin_INF_SIS"/>
+	</record>
+
+	<record id="div_INF_GDS_BDA" model="sisr.base.dependencia_division">
+		<field name="codigo">BDA</field>
+		<field name="nombre">Base De Datos</field>
+		<field name="gerencia_linea_id" ref="ger_lin_INF_SIS"/>
+	</record>
+
+	<record id="div_INF_OPE_SER" model="sisr.base.dependencia_division">
+		<field name="codigo">SER</field>
+		<field name="nombre">Servidores</field>
+		<field name="gerencia_linea_id" ref="ger_lin_INF_OPE"/>
+	</record>
+
+	<record id="div_INF_OPE_TEL" model="sisr.base.dependencia_division">
+		<field name="codigo">TEL</field>
+		<field name="nombre">Telecomunicaciones</field>
+		<field name="gerencia_linea_id" ref="ger_lin_INF_OPE"/>
+	</record>
+
+	<record id="div_INF_OPE_AUS" model="sisr.base.dependencia_division">
+		<field name="codigo">AUS</field>
+		<field name="nombre">Atención Al Usuario</field>
+		<field name="gerencia_linea_id" ref="ger_lin_INF_OPE"/>
+	</record>
+
+	<record id="div_FIN_ADM_CON" model="sisr.base.dependencia_division">
+		<field name="codigo">CON</field>
+		<field name="nombre">Contabilidad</field>
+		<field name="gerencia_linea_id" ref="ger_lin_FIN_ADM"/>
+	</record>
+
+	<record id="div_FIN_ADM_BIE" model="sisr.base.dependencia_division">
+		<field name="codigo">BIE</field>
+		<field name="nombre">Bienes Nacionales</field>
+		<field name="gerencia_linea_id" ref="ger_lin_FIN_ADM"/>
+	</record>
+
+	<record id="div_FIN_ADM_EJP" model="sisr.base.dependencia_division">
+		<field name="codigo">EJP</field>
+		<field name="nombre">Ejecución Presupuestaria</field>
+		<field name="gerencia_linea_id" ref="ger_lin_FIN_ADM"/>
+	</record>
+
+	<record id="div_FIN_ADM_CDP" model="sisr.base.dependencia_division">
+		<field name="codigo">CDP</field>
+		<field name="nombre">Control De Pagos</field>
+		<field name="gerencia_linea_id" ref="ger_lin_FIN_ADM"/>
+	</record>
+
+	<record id="div_FIN_TES_CAJ" model="sisr.base.dependencia_division">
+		<field name="codigo">CAJ</field>
+		<field name="nombre">Caja</field>
+		<field name="gerencia_linea_id" ref="ger_lin_FIN_TES"/>
+	</record>
+
+	<record id="div_FIN_TES_AFI" model="sisr.base.dependencia_division">
+		<field name="codigo">AFI</field>
+		<field name="nombre">Análisis Financiero</field>
+		<field name="gerencia_linea_id" ref="ger_lin_FIN_TES"/>
+	</record>
+
+	<record id="div_FIN_COM_ALM" model="sisr.base.dependencia_division">
+		<field name="codigo">ALM</field>
+		<field name="nombre">Almacén</field>
+		<field name="gerencia_linea_id" ref="ger_lin_FIN_COM"/>
+	</record>
+
+	<record id="div_FIN_SYT_SEG" model="sisr.base.dependencia_division">
+		<field name="codigo">SEG</field>
+		<field name="nombre">Seguridad</field>
+		<field name="gerencia_linea_id" ref="ger_lin_FIN_SYT"/>
+	</record>
+
+	<record id="div_FIN_SYT_TRA" model="sisr.base.dependencia_division">
+		<field name="codigo">TRA</field>
+		<field name="nombre">Transporte</field>
+		<field name="gerencia_linea_id" ref="ger_lin_FIN_SYT"/>
+	</record>
+
+	<record id="div_TRI_FIS_DTO" model="sisr.base.dependencia_division">
+		<field name="codigo">DTO</field>
+		<field name="nombre">Distrito Capital</field>
+		<field name="gerencia_linea_id" ref="ger_lin_TRI_FIS"/>
+	</record>
+
+	<record id="div_TRI_FIS_MIR" model="sisr.base.dependencia_division">
+		<field name="codigo">MIR</field>
+		<field name="nombre">Miranda</field>
+		<field name="gerencia_linea_id" ref="ger_lin_TRI_FIS"/>
+	</record>
+
+	<record id="div_TRI_FIS_VAR" model="sisr.base.dependencia_division">
+		<field name="codigo">VAR</field>
+		<field name="nombre">Vargas</field>
+		<field name="gerencia_linea_id" ref="ger_lin_TRI_FIS"/>
+	</record>
+
+	<record id="div_INS_ABL_ING" model="sisr.base.dependencia_division">
+		<field name="codigo">ING</field>
+		<field name="nombre">Ingeniería</field>
+		<field name="gerencia_linea_id" ref="ger_lin_INS_ABL"/>
+	</record>
+
+	<record id="div_INS_MAN_EDE" model="sisr.base.dependencia_division">
+		<field name="codigo">EDE</field>
+		<field name="nombre">Edificaciones Y Equipos</field>
+		<field name="gerencia_linea_id" ref="ger_lin_INS_MAN"/>
+	</record>
+
+	<record id="div_INS_SGE_PLF" model="sisr.base.dependencia_division">
+		<field name="codigo">PLF</field>
+		<field name="nombre">Planta Física</field>
+		<field name="gerencia_linea_id" ref="ger_lin_INS_SGE"/>
+	</record>
+
+	<record id="div_INS_SGE_SAU" model="sisr.base.dependencia_division">
+		<field name="codigo">SAU</field>
+		<field name="nombre">Servicios Auxiliares</field>
+		<field name="gerencia_linea_id" ref="ger_lin_INS_SGE"/>
+	</record>
+
+	<record id="div_INS_SGE_HYS" model="sisr.base.dependencia_division">
+		<field name="codigo">HYS</field>
+		<field name="nombre">Higiene Y Seguridad Industrial</field>
+		<field name="gerencia_linea_id" ref="ger_lin_INS_SGE"/>
+	</record>
+
+	<record id="div_RRH_ADM_PLB" model="sisr.base.dependencia_division">
+		<field name="codigo">PLB</field>
+		<field name="nombre">Planes Y Beneficios</field>
+		<field name="gerencia_linea_id" ref="ger_lin_RRH_ADM"/>
+	</record>
+
+	<record id="div_RRH_ADM_FID" model="sisr.base.dependencia_division">
+		<field name="codigo">FID</field>
+		<field name="nombre">Fideicomiso</field>
+		<field name="gerencia_linea_id" ref="ger_lin_RRH_ADM"/>
+	</record>
+
+	<record id="div_RRH_ADM_NOM" model="sisr.base.dependencia_division">
+		<field name="codigo">NOM</field>
+		<field name="nombre">Nómina</field>
+		<field name="gerencia_linea_id" ref="ger_lin_RRH_ADM"/>
+	</record>
+
+	<record id="div_RRH_ADM_RYC" model="sisr.base.dependencia_division">
+		<field name="codigo">RYC</field>
+		<field name="nombre">Registro Y Control</field>
+		<field name="gerencia_linea_id" ref="ger_lin_RRH_ADM"/>
+	</record>
+
+	<record id="div_RRH_ADM_UAD" model="sisr.base.dependencia_division">
+		<field name="codigo">UAD</field>
+		<field name="nombre">Unidad Administrativa</field>
+		<field name="gerencia_linea_id" ref="ger_lin_RRH_ADM"/>
+	</record>
+
+	<record id="div_RRH_POL_CYR" model="sisr.base.dependencia_division">
+		<field name="codigo">CYR</field>
+		<field name="nombre">Clasificación Y Remuneración</field>
+		<field name="gerencia_linea_id" ref="ger_lin_RRH_POL"/>
+	</record>
+
+	<record id="div_RRH_POL_SYD" model="sisr.base.dependencia_division">
+		<field name="codigo">SYD</field>
+		<field name="nombre">Selección Y Desarrollo</field>
+		<field name="gerencia_linea_id" ref="ger_lin_RRH_POL"/>
+	</record>
+
+	<record id="div_RRH_POL_COM" model="sisr.base.dependencia_division">
+		<field name="codigo">COM</field>
+		<field name="nombre">Comedor</field>
+		<field name="gerencia_linea_id" ref="ger_lin_RRH_POL"/>
+	</record>
+
+	<record id="div_RRH_POL_PES" model="sisr.base.dependencia_division">
+		<field name="codigo">PES</field>
+		<field name="nombre">Pre Escolar</field>
+		<field name="gerencia_linea_id" ref="ger_lin_RRH_POL"/>
+	</record>
+
+	<record id="div_RRH_POL_MAT" model="sisr.base.dependencia_division">
+		<field name="codigo">MAT</field>
+		<field name="nombre">Maternal</field>
+		<field name="gerencia_linea_id" ref="ger_lin_RRH_POL"/>
+	</record>
+
+	<record id="div_RRH_POL_CSM" model="sisr.base.dependencia_division">
+		<field name="codigo">CSM</field>
+		<field name="nombre">Coordinación De Servicios Médicos</field>
+		<field name="gerencia_linea_id" ref="ger_lin_RRH_POL"/>
+	</record>
+
+	<record id="div_FFP_TED_DIE" model="sisr.base.dependencia_division">
+		<field name="codigo">DIE</field>
+		<field name="nombre">Diseño Industrial Y Evaluación</field>
+		<field name="gerencia_linea_id" ref="ger_lin_FFP_TED"/>
+	</record>
+
+	<record id="div_FFP_TED_IOC" model="sisr.base.dependencia_division">
+		<field name="codigo">IOC</field>
+		<field name="nombre">Investigación Ocupacional</field>
+		<field name="gerencia_linea_id" ref="ger_lin_FFP_TED"/>
+	</record>
+
+	<record id="div_FFP_TED_RPA" model="sisr.base.dependencia_division">
+		<field name="codigo">RPA</field>
+		<field name="nombre">Recursos Para El Aprendizaje</field>
+		<field name="gerencia_linea_id" ref="ger_lin_FFP_TED"/>
+	</record>
+
+	<record id="div_FFP_ICF_CDP" model="sisr.base.dependencia_division">
+		<field name="codigo">CDP</field>
+		<field name="nombre">Capacitación Y Desarrollo Del Personal Docente</field>
+		<field name="gerencia_linea_id" ref="ger_lin_FFP_ICF"/>
+	</record>
+
+	<record id="div_FFP_ICF_EEP" model="sisr.base.dependencia_division">
+		<field name="codigo">EEP</field>
+		<field name="nombre">Estudios Especiales Y Proyectos</field>
+		<field name="gerencia_linea_id" ref="ger_lin_FFP_ICF"/>
+	</record>
+
+	<record id="div_FFP_ICF_DEI" model="sisr.base.dependencia_division">
+		<field name="codigo">DEI</field>
+		<field name="nombre">Documentación E Información</field>
+		<field name="gerencia_linea_id" ref="ger_lin_FFP_ICF"/>
+	</record>
+
+	<record id="div_FFP_TEF_FDE" model="sisr.base.dependencia_division">
+		<field name="codigo">FDE</field>
+		<field name="nombre">Formación Delegada</field>
+		<field name="gerencia_linea_id" ref="ger_lin_FFP_TEF"/>
+	</record>
+
+	<record id="div_FFP_TEF_AIP" model="sisr.base.dependencia_division">
+		<field name="codigo">AIP</field>
+		<field name="nombre">Asistencia Integral Al Participante</field>
+		<field name="gerencia_linea_id" ref="ger_lin_FFP_TEF"/>
+	</record>
+
+	<record id="div_FFP_TEF_PEA" model="sisr.base.dependencia_division">
+		<field name="codigo">PEA</field>
+		<field name="nombre">Proceso De Enseñanza Y Aprendizaje</field>
+		<field name="gerencia_linea_id" ref="ger_lin_FFP_TEF"/>
+	</record>
+
+	<record id="div_OAI_CPO_SRS" model="sisr.base.dependencia_division">
+		<field name="codigo">SRS</field>
+		<field name="nombre">Auditoria En Sede Regionales Y Sectoriales</field>
+		<field name="gerencia_linea_id" ref="ger_lin_OAI_CPO"/>
+	</record>
+
+	<record id="div_OAI_CPO_CCR" model="sisr.base.dependencia_division">
+		<field name="codigo">CCR</field>
+		<field name="nombre">Auditoria De Convenios Y Control De Recaudaciones</field>
+		<field name="gerencia_linea_id" ref="ger_lin_OAI_CPO"/>
+	</record>
+
+	<record id="div_PDE_PRE_COP" model="sisr.base.dependencia_division">
+		<field name="codigo">COP</field>
+		<field name="nombre">Coordinación Operativa</field>
+		<field name="gerencia_linea_id" ref="ger_lin_PDE_PRE"/>
+	</record>
+
+	<record id="div_PDE_PRE_SAS" model="sisr.base.dependencia_division">
+		<field name="codigo">SAS</field>
+		<field name="nombre">Sala Situacional</field>
+		<field name="gerencia_linea_id" ref="ger_lin_PDE_PRE"/>
+	</record>
+
+	<record id="div_PDE_PRE_UAD" model="sisr.base.dependencia_division">
+		<field name="codigo">UAD</field>
+		<field name="nombre">Unidad Administrativa</field>
+		<field name="gerencia_linea_id" ref="ger_lin_PDE_PRE"/>
+	</record>
+
+	<record id="div_PDE_DEJ_CCO" model="sisr.base.dependencia_division">
+		<field name="codigo">CCO</field>
+		<field name="nombre">Comisión De Contrataciones</field>
+		<field name="gerencia_linea_id" ref="ger_lin_PDE_DEJ"/>
+	</record>
+
+	<record id="div_PDE_DEJ_OAC" model="sisr.base.dependencia_division">
+		<field name="codigo">OAC</field>
+		<field name="nombre">Oficina De Atención Al Ciudadano</field>
+		<field name="gerencia_linea_id" ref="ger_lin_PDE_DEJ"/>
+	</record>
+
+	</data>
+</openerp>
