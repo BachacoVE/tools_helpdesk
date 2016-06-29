@@ -140,6 +140,22 @@
         </field>
     </record>
 
+<!-- esto es lo que permite que el campo solicitante_id se haga readonly cuando el grupo es usuario -->
+
+<record id="incidicendia_extended_view_form" model="ir.ui.view">
+            <field name="name">tools.helpdesk.incidencia.form.inherit</field>
+            <field name="model">tools.helpdesk.incidencia</field>
+            <field name="inherit_id" ref="view_tools_helpdesk_incidencia_form" />
+            <field name="groups_id" eval="[(6,0, [ref('tools_helpdesk.group_help_desk_Usuario')])]" />
+            <field name="arch" type="xml">                
+                <field name="solicitante_id" position="attributes">
+                   <attribute name="attrs">{'readonly':True}</attribute>                   
+                </field>                
+            </field>
+</record>   
+
+
+
     <record model="ir.ui.view" id="view_tools_helpdesk_incidencia_tree">
         <field name="name">tools.helpdesk.incidencia.tree</field>
         <field name="model">tools.helpdesk.incidencia</field>

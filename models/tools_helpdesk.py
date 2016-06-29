@@ -75,6 +75,10 @@ class tools_helpdesk_incidencia(osv.osv):
         'retraso': fields.integer('Dias Transcurridos', help="Conteo de dias a pertir de la fecha de entrega", readonly="True", compute="_compute_calculo_dias", store="False")
     }
 
+    _defaults = {
+        'solicitante_id': lambda self, cr, uid, ctx=None: uid
+    }
+
 
     @api.onchange('solicitante_id')
     def actualizar_organizacion_solicitante(self):
