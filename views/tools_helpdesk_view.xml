@@ -18,29 +18,94 @@
                 <field name="state" widget="statusbar" select="0"/>
             </header>
             <sheet>
+        <notebook>
+            <page string="Datos de Solicitud">
             <group col="4" colspan="2">
                 <field name="codigo" select="1" readonly="1"/>
-		          <newline/>
-		
-		<!-- field name="contexto_nivel2_id" select="0" required="True" on_change="onchange_solicitante()"/ -->
-        <!-- field name="categoria_incidencia_id" select="2" required="True" domain="[('contexto_nivel2_id','=',contexto_nivel2_id)]"/ -->
-        <field name="categoria_incidencia_id" select="2" required="True" />
-        <field name="solicitante_id" required="True" select="1" readonly="False"/>
-        <field name="res_partner_id" required="False" select="1" readonly="True" domain="[('is_company','=', True)]" />
-        <field name="contexto_nivel1_id" required="True" select="1" domain="[('res_partner_ids','=', [res_partner_id])]" />
-        <field name="contexto_nivel2_id" required="True" select="1" domain="[('contexto_nivel1_id','=', [contexto_nivel1_id])]" />
-        <field name="contexto_nivel3_id" required="True" select="1" domain="[('contexto_nivel2_id','=', [contexto_nivel2_id])]" />
+                <newline/>
+                <field name="solicitante_id" required="True" select="1" readonly="False"/>
+                <field name="res_partner_id" required="False" select="1" readonly="True" domain="[('is_company','=', True)]" />
+                <field name="contexto_nivel1_id" required="True" select="1" domain="[('res_partner_ids','=', [res_partner_id])]" />
+                <field name="contexto_nivel2_id" required="True" select="1" domain="[('contexto_nivel1_id','=', [contexto_nivel1_id])]" />
+                <field name="contexto_nivel3_id" required="True" select="1" domain="[('contexto_nivel2_id','=', [contexto_nivel2_id])]" />
+                <field name="categoria_incidencia_id" select="2" required="True" />
+                <field name="tipo_incidencia_ids" nolabel="1" colspan="4" select="0" domain="[('categoria_incidencia_id','=',categoria_incidencia_id)]"/>
+                <field name="denominacion" select="2"/>
+                <field name="fecha_actual" readonly="True" select="0"/>
+                <field name="prioridad" widget="priority"></field>
+            </group>
+            </page>
 
-        <field name="autorizado" required="True" select="1"/>
-		
+            <page string="Descripción Detallada de la Incidencia">
+            <group col="4" colspan="4">
+                <field name="descripcion" colspan="4" nolabel="1" select="0"/>
+            </group>
+            </page>
+
+            <page string="Adjuntos">
+            <group col="4" colspan="4">
+                <field name="adjunto" nolabel="1" colspan="4" select="0"/>
+                <newline/>
+            </group>
+            </page>
+
+
+
+
+            <page string="Soportista">
+            <notebook>        
+
+				<page string="Datos de la Asignación">
+                <group col="4" colspan="4">
+                    <field name="asignacion" select="1" />
+                    <field name="procedimiento" colspan="4" nolabel="1" select="0"/>
+                    <newline/>
+                </group>
+                </page>
+
+    			<page string="Observaciones">
+                <group col="4" colspan="4">
+                	<field name="observacion_ids" nolabel="1" colspan="4" select="0">
+                		<tree editable="True">
+                			<field name="observacion"/>
+                			<field name="state_rel"/>
+                		</tree>
+                    </field>
+                </group>
+                </page>
+
+    		  <page string="Seguimiento de Incidencia">
+    	    		<group col="4" colspan="4">
+    	    			<field name="fecha_creacion" colspan="2" select="0" readonly="True"/>
+    	    			<field name="fecha_leido" colspan="2" select="0" readonly="True"/>
+    	    			<field name="fecha_asignado_a" colspan="2" select="0" readonly="True"/>
+    	    			<field name="fecha_proceso" colspan="2" select="0" readonly="True"/>
+    	    			<field name="fecha_atendido" colspan="2" select="0" readonly="True"/>
+    	    			<field name="fecha_solucion" colspan="2" select="0" readonly="True"/>
+    	    			
+                    <separator string="Duración por proceso" colspan="4"/>
+    	    			<field name="dia_creacion" colspan="2" select="0" readonly="True"/>
+    	    			<field name="dia_leido" colspan="2" select="0" readonly="True"/>
+    	    			<field name="dia_asignado_a" colspan="2" select="0" readonly="True"/>
+    	    			<field name="dia_proceso" colspan="2" select="0" readonly="True"/>
+    	    			<field name="dia_atendido" colspan="2" select="0" readonly="True"/>
+    	    			<field name="dia_solucion" colspan="2" select="0" readonly="True"/>
+    	    			<field name="retraso" colspan="2" select="0"/>
+
+    	    		<newline/>
+    	    		</group>
+    	    	</page>
+
+
+        </notebook>
+        </page> 
+
+            
+        <!--field name="autorizado" required="True" select="1"/-->
         <!-- field name="asignacion" colspan="4" select="1" domain="[('categoria_incidencia_id','=',categoria_incidencia_id)]" groups= "tools_helpdesk.group_help_desk_Gerente,tools_helpdesk.group_help_desk_Supervisor,tools_helpdesk.group_help_desk_Seguimiento,tools_helpdesk.group_help_desk_Analista,base.group_system"/ -->
-        <field name="asignacion" select="1" />
-		
-        <field name="denominacion" select="2"/>
-        <field name="fecha_actual" readonly="0" select="0"/>
-		<field name="prioridad" widget="priority"></field>
+        
 
-        <separator string="Forma de Solicitud" colspan="6"/>
+        <!-- separator string="Forma de Solicitud" colspan="6"/>
         <field name="memo" select="0"/>
         <field name="correo" select="0"/>
         <field name="llamada" select="0"/>
@@ -48,75 +113,16 @@
         <field name="gestion" select="0"/>
         <newline/>
         <field name="n_memo" attrs="{'required':[('memo','=',True)], 'invisible':[('memo','=',False)]}"/>
-        <newline/>
-            </group>
-
-            <notebook>
-            <page string="Tipos de Incidencias">
-            <group col="4" colspan="4">
-            	<field name="tipo_incidencia_ids" nolabel="1" colspan="4" select="0" domain="[('categoria_incidencia_id','=',categoria_incidencia_id)]"/>
-            </group>
-            </page>
-
-            <page string="Descripción Detallada de la Incidencia">
-            <group col="4" colspan="4">
-            	<field name="descripcion" colspan="4" nolabel="1" select="0"/>
-            </group>
-            </page>
-
-		    <page string="Adjuntos">
-		    <group col="4" colspan="4">
-		    	<field name="adjunto" nolabel="1" colspan="4" select="0"/>
-		    	<newline/>
-		    </group>
-		    </page>
+        <newline/ -->
 
             <!-- page string="Descripción Detallada del Procedimiento" groups= "tools_helpdesk.group_help_desk_Gerente,tools_helpdesk.group_help_desk_Supervisor,tools_helpdesk.group_help_desk_Seguimiento,tools_helpdesk.group_help_desk_Analista,base.group_system" -->
-				<page string="Descripción Detallada del Procedimiento">
-            <group col="4" colspan="4">
-            	<field name="procedimiento" colspan="4" nolabel="1" select="0"/>
-            	<newline/>
-            </group>
-		    </page>
-            </notebook>
 
        
-            <notebook>
                 <!-- page string="Observaciones" groups= "tools_helpdesk.group_help_desk_Gerente,tools_helpdesk.group_help_desk_Supervisor,tools_helpdesk.group_help_desk_Seguimiento,tools_helpdesk.group_help_desk_Analista,base.group_system" -->
-					<page string="Observaciones">
-                <group col="4" colspan="4">
-                	<field name="observacion_ids" nolabel="1" colspan="4" select="0">
-                		<tree editable="True">
-                			<field name="observacion"/>
-                			<field name="state_rel"/>
-                		</tree>
-                	</field>
-                </group>
-                </page>
  
                 <!-- page string="Seguimiento de Incidencia" groups= "tools_helpdesk.group_help_desk_Gerente,tools_helpdesk.group_help_desk_Supervisor,base.group_system" -->
-				<page string="Seguimiento de Incidencia">
-   		    		<group col="4" colspan="4">
-   		    			<field name="fecha_creacion" colspan="2" select="0" readonly="True"/>
-   		    			<field name="fecha_leido" colspan="2" select="0" readonly="True"/>
-   		    			<field name="fecha_asignado_a" colspan="2" select="0" readonly="True"/>
-   		    			<field name="fecha_proceso" colspan="2" select="0" readonly="True"/>
-   		    			<field name="fecha_atendido" colspan="2" select="0" readonly="True"/>
-   		    			<field name="fecha_solucion" colspan="2" select="0" readonly="True"/>
-   		    			
-                        <separator string="Duración por proceso" colspan="4"/>
-   		    			<field name="dia_creacion" colspan="2" select="0" readonly="True"/>
-   		    			<field name="dia_leido" colspan="2" select="0" readonly="True"/>
-   		    			<field name="dia_asignado_a" colspan="2" select="0" readonly="True"/>
-   		    			<field name="dia_proceso" colspan="2" select="0" readonly="True"/>
-   		    			<field name="dia_atendido" colspan="2" select="0" readonly="True"/>
-   		    			<field name="dia_solucion" colspan="2" select="0" readonly="True"/>
-   		    			<field name="retraso" colspan="2" select="0"/>
 
-   		    		<newline/>
-   		    		</group>
-   		    	</page>
-   		    </notebook>
+            </notebook>
             </sheet>
             </form>
            
