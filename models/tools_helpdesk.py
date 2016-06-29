@@ -40,7 +40,7 @@ class tools_helpdesk_incidencia(osv.osv):
         'contexto_nivel2_id': fields.many2one('tools.helpdesk.contexto_nivel2','Módulo'),
         'contexto_nivel3_id': fields.many2one('tools.helpdesk.contexto_nivel3','Operación'),
         'categoria_incidencia_id': fields.many2one('tools.helpdesk.categoria_incidencia', string="Área de Incidencia"),
-        'tipo_incidencia_ids': fields.many2many('tools.helpdesk.tipo_incidencia', 'incidencia_tipoincidencia_rel','incidencia_id', 'tipo_incidencia_id', string="Tipo de Incidencia"),
+        'tipo_incidencia_id': fields.many2one('tools.helpdesk.tipo_incidencia', 'Tipo de Incidencia'),
         'state': fields.selection([('registrado','Registrado'),('leido','Leido'),('asignado','Asignado'),('proceso','En Proceso'),('atendido','Atendido'),('resuelto','Resuelto')], "Status"),
         'observacion_ids': fields.one2many('tools.helpdesk.observacion', 'incidencia_id', string="Observaciones", help='Observaciones de una incidencia'),
         'autorizado': fields.char('Autorizado por:', size=30, help='Colocar el Nombre y Apellido del autorizante'),
@@ -189,6 +189,7 @@ tools_helpdesk_incidencia()
 class tools_helpdesk_tipo_incidencia(osv.osv):
     """Especificación del tipo de Incidencia, depende del área de incidencia. Ej: Sistema X, Sistema Y, Consumibles, Impresora, Soporte Técnico, Correo, Acceso a Internet, Telefonía, Etc"""
     _name = 'tools.helpdesk.tipo_incidencia'
+    _rec_name = 'nombre'
     _columns = {
         'codigo': fields.char('Código', size=10, help='Código de este tipo de incidencia'),
         'nombre': fields.char('Nombre', size=60, help='Nombre de este tipo de incidencia'),

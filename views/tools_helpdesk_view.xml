@@ -29,7 +29,7 @@
                 <field name="contexto_nivel2_id" required="True" select="1" domain="[('contexto_nivel1_id','=', [contexto_nivel1_id])]" />
                 <field name="contexto_nivel3_id" required="True" select="1" domain="[('contexto_nivel2_id','=', [contexto_nivel2_id])]" />
                 <field name="categoria_incidencia_id" select="2" required="True" />
-                <field name="tipo_incidencia_ids" nolabel="1" colspan="4" select="0" domain="[('categoria_incidencia_id','=',categoria_incidencia_id)]"/>
+                <field name="tipo_incidencia_id" select="0" domain="[('categoria_incidencia_id','=',[categoria_incidencia_id])]"/>
                 <field name="denominacion" select="2"/>
                 <field name="fecha_actual" readonly="True" select="0"/>
                 <field name="prioridad" widget="priority"></field>
