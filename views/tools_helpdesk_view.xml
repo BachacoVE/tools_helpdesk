@@ -28,8 +28,8 @@
         <field name="solicitante_id" required="True" select="1" readonly="False"/>
         <field name="res_partner_id" required="False" select="1" readonly="True" domain="[('is_company','=', True)]" />
         <field name="contexto_nivel1_id" required="True" select="1" domain="[('res_partner_ids','=', [res_partner_id])]" />
-        <field name="contexto_nivel2_id" required="True" select="1" />
-        <field name="contexto_nivel3_id" required="True" select="1" />
+        <field name="contexto_nivel2_id" required="True" select="1" domain="[('contexto_nivel1_id','=', [contexto_nivel1_id])]" />
+        <field name="contexto_nivel3_id" required="True" select="1" domain="[('contexto_nivel2_id','=', [contexto_nivel2_id])]" />
 
         <field name="autorizado" required="True" select="1"/>
 		
