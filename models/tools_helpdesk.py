@@ -35,7 +35,7 @@ class tools_helpdesk_incidencia(osv.osv):
     _columns = {
         'codigo': fields.char('Código', size=10, help="Código de la Incidencia"),
         'solicitante_id': fields.many2one('res.users', string="Solicitante", help='Nombre Completo del Solicitante de la Incidencia'),
-        'res_partner_id': fields.many2one('res.partner','Organización'),
+        'res_partner_id': fields.related('solicitante_id','res_partner_id', type='many2one', relation='res.partner' , string='Organización'),
         'contexto_nivel1_id': fields.many2one('tools.helpdesk.contexto_nivel1','Aplicación'),
         'contexto_nivel2_id': fields.many2one('tools.helpdesk.contexto_nivel2','Módulo'),
         'contexto_nivel3_id': fields.many2one('tools.helpdesk.contexto_nivel3','Operación'),
@@ -73,6 +73,11 @@ class tools_helpdesk_incidencia(osv.osv):
         'dia_solucion': fields.char('Días Intervalo Resuelto a Cerrado'),
         'retraso': fields.integer('Dias Transcurridos', help="Conteo de dias a pertir de la fecha de entrega", readonly="True", compute="_compute_calculo_dias", store="False")
     }
+
+
+    @api.onchange('solicitante_id')
+    def actualizar_organizacion_solicitante(self):
+        self.res_partner_id = self.solicitante_id.res_partner_id.id
 
     def onchange_solicitante(self, cr, uid, ids):
         return {'value':{'solicitante_id': uid}}
