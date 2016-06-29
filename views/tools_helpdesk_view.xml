@@ -36,9 +36,9 @@
             </group>
             </page>
 
-            <page string="Descripción Detallada de la Incidencia">
+            <page string="Descripción Detallada">
             <group col="4" colspan="4">
-                <field name="descripcion" colspan="4" nolabel="1" select="0"/>
+                <field name="descripcion" string="Descripción Detallada" required="True" colspan="4" nolabel="1" select="0"/>
             </group>
             </page>
 
@@ -52,7 +52,8 @@
 
 
 
-            <page string="Soportista">
+            <page string="Soportista" groups="base.group_system,tools_helpdesk.group_help_desk_Analista,tools_helpdesk.group_help_desk_Supervisor">
+        
             <notebook>        
 
 				<page string="Datos de la Asignación">
