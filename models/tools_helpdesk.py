@@ -266,10 +266,12 @@ class tools_helpdesk_observacion(osv.osv):
     }
 tools_helpdesk_observacion()
 
-#class res_users_inherit(osv.osv):
-#    _inherit= 'res.users'
-#    _name= 'res.users'
-#    _columns = {
+class res_users_helpdesk_inherit(osv.osv):
+    _inherit= 'res.users'
+    _name= 'res.users'
+    _columns = {
+
+        'res_partner_id': fields.many2one('res.partner','Organización', help="Organización a la que pertenece el usuario. Necesario para HelpDesk"),
 #        'dependencia_id':fields.many2one('tools.base.dependencia_gerencia','Gerencia'),
 #        'categoria_incidencia_id':fields.many2one('tools.helpdesk.categoria_incidencia','Area'),
 #       'cedula': fields.char(string="Cédula", size=9, help='Cedula de Identidad del Solicitante'),
@@ -290,7 +292,7 @@ tools_helpdesk_observacion()
 #        'ext_telefono2': fields.char(string="Extensión 2", size=5, help='Extensión Telefónica del Solicitante: Ej: 2066'),
 #        'telefono_personal': fields.char(string="Teléfono Personal", size=11, help='Telefóno Personal del Solicitante. Ej: 04261231234'),
 #        'incidencia_ids': fields.one2many('tools.helpdesk.incidencia', 'solicitante_id', 'Incidencias Asociadas'),
-#}
+}
 #    _sql_constraints = [('cedula_solicitante_uniq', 'unique(cedula)', 'Este solicitante ya ha sido registrado en el sistema (cedula repetida)')]
 ##    def onchange_validar_caracter(self, uid, cr, ids, nombres):
 ##    	v={'value':{}}
@@ -318,8 +320,9 @@ tools_helpdesk_observacion()
 #        vals['apellidos'] = uid
 #        result = super(res_users_inherit, self).create(cr, uid, vals, context=context)
 #        return result
-#
-#res_users_inherit()
+
+
+res_users_helpdesk_inherit()
 
 #nueva clase para adjuntar mas de un documento a la incidencia.
 class tools_helpdesk_adjuntos(osv.osv):
