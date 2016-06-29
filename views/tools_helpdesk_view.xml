@@ -10,14 +10,15 @@
         <field name="arch" type="xml">
             <form string="tools.helpdesk.incidencia">
             <header>
-                <button name="action_leido" string="Leido" type="workflow"/>
-                <button name="action_asignado" string="Asignado" type="workflow"/>
-                <button name="action_proceso" string="En Proceso" type="workflow"/>
-                <button name="action_atendido" string="Atendido" type="workflow"/>
-                <button name="action_resuelto" string="Resuelto" type="workflow"/>
+                <button name="action_leido" string="Leido" type="workflow" groups="base.group_system,tools_helpdesk.group_help_desk_Analista,tools_helpdesk.group_help_desk_Supervisor"/>
+                <button name="action_asignado" string="Asignado" type="workflow" groups="base.group_system,tools_helpdesk.group_help_desk_Analista,tools_helpdesk.group_help_desk_Supervisor"/>
+                <button name="action_proceso" string="En Proceso" type="workflow" groups="base.group_system,tools_helpdesk.group_help_desk_Analista,tools_helpdesk.group_help_desk_Supervisor"/>
+                <button name="action_atendido" string="Atendido" type="workflow" groups="base.group_system,tools_helpdesk.group_help_desk_Analista,tools_helpdesk.group_help_desk_Supervisor"/>
+                <button name="action_resuelto" string="Resuelto" type="workflow" groups="base.group_system,tools_helpdesk.group_help_desk_Analista,tools_helpdesk.group_help_desk_Supervisor"/>
                 <field name="state" widget="statusbar" select="0"/>
             </header>
             <sheet>
+            
         <notebook>
             <page string="Datos de Solicitud">
             <group col="4" colspan="2">
@@ -69,7 +70,7 @@
                 	<field name="observacion_ids" nolabel="1" colspan="4" select="0">
                 		<tree editable="True">
                             <field name="observacion"/>
-                            <field name="state_rel"/>
+                            <field name="state"/>
                             <field name="create_date" readonly="True" string="Fecha"/>
                             <field name="create_uid" readonly="True" string="Usuario"/>
                         </tree>
@@ -365,7 +366,9 @@
             <group col="4" colspan="2">
                 <separator string="Observación" colspan="4"/>
                 <field name="observacion" nolabel="1" colspan="4" select="1"/>
-                <field name="state_rel" select="2"/>
+                <field name="state" select="2"/>
+                <field name="create_date" readonly="True"/>
+                <field name="create_uid" readonly="True"/>
                 <!--field name="incidencia_id" select="0"/-->
 
             </group>
@@ -379,9 +382,9 @@
         <field name="arch" type="xml">
             <tree string="tools.helpdesk.observacion">
                 <field name="observacion"/>
-                <field name="create_date" readonly="True"/>
-                <field name="create_uid" readonly="True"/>
-                <field name="state_rel"/>
+                <field name="create_date" />
+                <field name="create_uid" />
+                <field name="state"/>
                 <!--field name="incidencia_id"/-->
 
             </tree>

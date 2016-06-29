@@ -270,7 +270,7 @@ class tools_helpdesk_observacion(osv.osv):
     _name = 'tools.helpdesk.observacion'
     _columns = {
         'observacion': fields.text(string="Observación"),
-        'state_rel': fields.char(string="Status", size=30, help='Status que tiene la incidencia al momento de hacer la observación'),
+        'state': fields.selection([('registrado','Registrado'),('leido','Leido'),('asignado','Asignado'),('proceso','En Proceso'),('atendido','Atendido'),('resuelto','Resuelto')], string="Status", help='Status que tiene la incidencia al momento de hacer la observación'),
         'incidencia_id': fields.many2one('tools.helpdesk.incidencia', help='Relación Inversa del One2many'),
     }
 tools_helpdesk_observacion()
