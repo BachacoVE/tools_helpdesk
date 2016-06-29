@@ -44,7 +44,7 @@
 
             <page string="Adjuntos">
             <group col="4" colspan="4">
-                <field name="adjunto" nolabel="1" colspan="4" select="0"/>
+                <field name="adjunto_ids" nolabel="1" colspan="4" select="0"/>
                 <newline/>
             </group>
             </page>
@@ -68,14 +68,16 @@
                 <group col="4" colspan="4">
                 	<field name="observacion_ids" nolabel="1" colspan="4" select="0">
                 		<tree editable="True">
-                			<field name="observacion"/>
-                			<field name="state_rel"/>
-                		</tree>
+                            <field name="observacion"/>
+                            <field name="state_rel"/>
+                            <field name="create_date" readonly="True" string="Fecha"/>
+                            <field name="create_uid" readonly="True" string="Usuario"/>
+                        </tree>
                     </field>
                 </group>
                 </page>
 
-    		  <page string="Seguimiento de Incidencia">
+              <page string="Seguimiento de Incidencia">
     	    		<group col="4" colspan="4">
     	    			<field name="fecha_creacion" colspan="2" select="0" readonly="True"/>
     	    			<field name="fecha_leido" colspan="2" select="0" readonly="True"/>
@@ -171,10 +173,8 @@
         <field name="arch" type="xml">
             <form string="Adjuntos">
             <group col="2" colspan="4">
-            		<field name="adjunto"/>
-            		<field name="numero"/>
-            		<field name="nombre"/>
-            		<field name="observacion"/>
+                    <field name="adjunto"/>
+                    <field name="observacion"/>
             </group>
             </form>
         </field>
@@ -186,11 +186,7 @@
         <field name="arch" type="xml">
                
             <tree string="tools.helpdesk.adjuntos">
-                <!-- No se puede poner un binary en el tree
                 <field name="adjunto"/>
-                -->
-                <field name="numero"/>
-                <field name="nombre"/>
                 <field name="observacion"/>                          
             </tree>
         </field>
@@ -383,6 +379,8 @@
         <field name="arch" type="xml">
             <tree string="tools.helpdesk.observacion">
                 <field name="observacion"/>
+                <field name="create_date" readonly="True"/>
+                <field name="create_uid" readonly="True"/>
                 <field name="state_rel"/>
                 <!--field name="incidencia_id"/-->
 

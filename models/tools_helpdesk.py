@@ -29,6 +29,7 @@ import re
 
 class tools_helpdesk_incidencia(osv.osv):
     _name = 'tools.helpdesk.incidencia'
+    _description = 'Incidencia'
     _inherit = ['mail.thread', 'ir.needaction_mixin']
     _rec_name = 'codigo'
     
@@ -55,7 +56,7 @@ class tools_helpdesk_incidencia(osv.osv):
         'gestion':fields.boolean('Gestion Documental'),
         'n_memo':fields.char('Número de Memo'),
         #Para adjuntar los documentos a enviar.
-        'adjunto' : fields.one2many('tools.helpdesk.adjuntos', 'adjunto_id', string ="Adjuntos", help='Documentos adicionales, Respaldos Fisicos'),
+        'adjunto_ids' : fields.one2many('tools.helpdesk.adjuntos', 'incidencia_id', string ="Adjuntos", help='Documentos adicionales, Respaldos Fisicos'),
         #Fin del adjunto
         'descripcion': fields.text('Descripción'),
         'procedimiento': fields.text('Procedimiento en la Solución'),
@@ -335,14 +336,12 @@ res_users_helpdesk_inherit()
 #nueva clase para adjuntar mas de un documento a la incidencia.
 class tools_helpdesk_adjuntos(osv.osv):
     _name = 'tools.helpdesk.adjuntos'
-    _rec_name = 'nombre'
+    #_rec_name = 'nombre'
     _columns = {
 
-        'adjunto' : fields.binary(string="Adjuntos", help='Se suben los archivos adicionales que guardan relacion con el documento'),
-        'numero': fields.char(string="Número de adjunto", size=10, help='Numero de adjunto'),
-        'nombre': fields.char(string="Nombre del Archivo", size=60, help='Nombre del archivo adjuntado'),
+        'adjunto' : fields.binary(string="Adjuntos", attachment=True, help='Se suben los archivos adicionales que guardan relacion con el documento'),
         'observacion' : fields.text(string="Descripción", size=50, help='Breve nota sobre el archivo que se adjunta'),
-        'adjunto_id' : fields.many2one('tools.helpdesk.incidencia', 'incidencia'),
+        'incidencia_id' : fields.many2one('tools.helpdesk.incidencia', 'incidencia'),
 }
 tools_helpdesk_adjuntos()
 #Fin de la clase
