@@ -330,6 +330,8 @@
             <group col="4" colspan="2">
                 <field name="codigo" select="1"/>
                 <field name="nombre" select="2"/>
+                <separator string="Descripción" colspan="4"/>
+                <field name="descripcion" nolabel="1" colspan="4" select="2"/>
                 <separator string="Tipos de Incidencia" colspan="4"/>
                 <field name="tipo_incidencia" nolabel="1" colspan="4" select="0"/>
    		<!-- field name="dependencia_id" select="2"/ -->

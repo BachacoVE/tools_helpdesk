@@ -186,18 +186,6 @@ class tools_helpdesk_incidencia(osv.osv):
 tools_helpdesk_incidencia()
 
 
-class tools_helpdesk_tipo_incidencia(osv.osv):
-    """Especificación del tipo de Incidencia, depende del área de incidencia. Ej: Sistema X, Sistema Y, Consumibles, Impresora, Soporte Técnico, Correo, Acceso a Internet, Telefonía, Etc"""
-    _name = 'tools.helpdesk.tipo_incidencia'
-    _rec_name = 'nombre'
-    _columns = {
-        'codigo': fields.char('Código', size=10, help='Código de este tipo de incidencia'),
-        'nombre': fields.char('Nombre', size=60, help='Nombre de este tipo de incidencia'),
-        'incidencia_ids': fields.many2many('tools.helpdesk.incidencia', 'incidencia_tipoincidencia_rel', 'tipo_incidencia_id', 'incidencia_id', string="Incidencias", help='Incidencias realizadas para este tipo de incidencia'),
-        'categoria_incidencia_id': fields.many2one('tools.helpdesk.categoria_incidencia', string="Categoría de Incidencia", help='Categoría de la Incidencia a la que pertenece este tipo'),
-        'descripcion': fields.text('Descripción'),
-    }
-tools_helpdesk_tipo_incidencia()
 
 #class tools_helpdesk_solicitante(osv.osv):
 #    """Debería ser una Extensión de la clase hr.employee. Esta clase debe ir en tools.base"""
@@ -258,10 +246,24 @@ class tools_helpdesk_categoria_incidencia(osv.osv):
     _columns = {
         'codigo': fields.char('Código', size=10, help='Código de esta Categoría de incidencias'),
         'nombre': fields.char('Nombre', size=60, help='Nombre de esta Categoría de Incidencia'),
+        'descripcion': fields.text('Descripción'),
         'tipo_incidencia': fields.one2many('tools.helpdesk.tipo_incidencia', 'categoria_incidencia_id', string="tipos de Incidencia", help='Tipos de incidencias que pertenecen a esta Categoría'),
         #'dependencia_id': fields.many2one('tools.base.dependencia_gerencia','Dependencia')
     }
 tools_helpdesk_categoria_incidencia()
+
+class tools_helpdesk_tipo_incidencia(osv.osv):
+    """Especificación del tipo de Incidencia, depende del área de incidencia. Ej: Sistema X, Sistema Y, Consumibles, Impresora, Soporte Técnico, Correo, Acceso a Internet, Telefonía, Etc"""
+    _name = 'tools.helpdesk.tipo_incidencia'
+    _rec_name = 'nombre'
+    _columns = {
+        'codigo': fields.char('Código', size=10, help='Código de este tipo de incidencia'),
+        'nombre': fields.char('Nombre', size=60, help='Nombre de este tipo de incidencia'),
+        'incidencia_ids': fields.one2many('tools.helpdesk.incidencia', 'tipo_incidencia_id', string="Incidencias", help='Incidencias realizadas para este tipo de incidencia'),
+        'categoria_incidencia_id': fields.many2one('tools.helpdesk.categoria_incidencia', string="Categoría de Incidencia", help='Categoría de la Incidencia a la que pertenece este tipo'),
+        'descripcion': fields.text('Descripción'),
+    }
+tools_helpdesk_tipo_incidencia()
 
 class tools_helpdesk_observacion(osv.osv):
     _name = 'tools.helpdesk.observacion'
