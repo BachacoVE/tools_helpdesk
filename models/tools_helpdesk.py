@@ -29,9 +29,9 @@ import re
 
 class tools_helpdesk_incidencia(osv.osv):
     _name = 'tools.helpdesk.incidencia'
-    _description = 'Incidencia'
     _inherit = ['mail.thread', 'ir.needaction_mixin']
     _rec_name = 'codigo'
+    _description = 'Incidencia'
     
     _columns = {
         'codigo': fields.char('Código', size=10, help="Código de la Incidencia"),
@@ -40,7 +40,7 @@ class tools_helpdesk_incidencia(osv.osv):
         'contexto_nivel1_id': fields.many2one('tools.helpdesk.contexto_nivel1','Aplicación'),
         'contexto_nivel2_id': fields.many2one('tools.helpdesk.contexto_nivel2','Módulo'),
         'contexto_nivel3_id': fields.many2one('tools.helpdesk.contexto_nivel3','Operación'),
-        'categoria_incidencia_id': fields.many2one('tools.helpdesk.categoria_incidencia', string="Área de Incidencia"),
+        'categoria_incidencia_id': fields.many2one('tools.helpdesk.categoria_incidencia', string="Categoría de Incidencia"),
         'tipo_incidencia_id': fields.many2one('tools.helpdesk.tipo_incidencia', 'Tipo de Incidencia'),
         'state': fields.selection([('registrado','Registrado'),('leido','Leido'),('asignado','Asignado'),('proceso','En Proceso'),('atendido','Atendido'),('resuelto','Resuelto')], "Status"),
         'observacion_ids': fields.one2many('tools.helpdesk.observacion', 'incidencia_id', string="Observaciones", help='Observaciones de una incidencia'),
@@ -254,7 +254,7 @@ class tools_helpdesk_categoria_incidencia(osv.osv):
 tools_helpdesk_categoria_incidencia()
 
 class tools_helpdesk_tipo_incidencia(osv.osv):
-    """Especificación del tipo de Incidencia, depende del área de incidencia. Ej: Sistema X, Sistema Y, Consumibles, Impresora, Soporte Técnico, Correo, Acceso a Internet, Telefonía, Etc"""
+    """Especificación del tipo de Incidencia, depende de la categoría de incidencia. Ej: Sistema X, Sistema Y, Consumibles, Impresora, Soporte Técnico, Correo, Acceso a Internet, Telefonía, Etc"""
     _name = 'tools.helpdesk.tipo_incidencia'
     _rec_name = 'nombre'
     _columns = {
