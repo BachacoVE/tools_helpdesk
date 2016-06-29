@@ -25,8 +25,12 @@
 		<!-- field name="contexto_nivel2_id" select="0" required="True" on_change="onchange_solicitante()"/ -->
         <!-- field name="categoria_incidencia_id" select="2" required="True" domain="[('contexto_nivel2_id','=',contexto_nivel2_id)]"/ -->
         <field name="categoria_incidencia_id" select="2" required="True" />
-        <field name="solicitante_id" required="True" select="1" readonly="1"/>
-        <field name="res_partner_id" required="True" select="1" domain="[('company_type','=','company')]" />
+        <field name="solicitante_id" required="True" select="1" readonly="False"/>
+        <field name="res_partner_id" required="True" select="1" domain="[('is_company','=', True)]" />
+        <field name="contexto_nivel1_id" required="True" select="1" domain="[('res_partner_ids','=', [res_partner_id])]" />
+        <field name="contexto_nivel2_id" required="True" select="1" />
+        <field name="contexto_nivel3_id" required="True" select="1" />
+
         <field name="autorizado" required="True" select="1"/>
 		
         <!-- field name="asignacion" colspan="4" select="1" domain="[('categoria_incidencia_id','=',categoria_incidencia_id)]" groups= "tools_helpdesk.group_help_desk_Gerente,tools_helpdesk.group_help_desk_Supervisor,tools_helpdesk.group_help_desk_Seguimiento,tools_helpdesk.group_help_desk_Analista,base.group_system"/ -->
@@ -125,6 +129,7 @@
 
         </field>
     </record>
+
     <record model="ir.ui.view" id="view_tools_helpdesk_incidencia_tree">
         <field name="name">tools.helpdesk.incidencia.tree</field>
         <field name="model">tools.helpdesk.incidencia</field>
@@ -396,6 +401,7 @@
                 <field name="codigo" select="1"/>
                 <field name="nombre" select="2"/>
                 <field name="descripcion" colspan="4" select="0"/>
+                <field name="res_partner_ids" colspan="4" select="0"/>
                 <field name="contexto_nivel2_ids" colspan="4" select="0"/>
             </group>
             </form>
@@ -469,7 +475,6 @@
                 <field name="descripcion" colspan="4" select="0"/>
                 <field name="contexto_nivel2_id" select="0"/>
                 <newline/>
-                <field name="contexto_nivel4_ids" colspan="4" select="0"/>
             </group>
             </form>
         </field>
@@ -495,42 +500,8 @@
         <field name="view_mode">tree,form</field>
     </record>
          
-    <record model="ir.ui.view" id="view_tools_helpdesk_contexto_nivel4_form">
-        <field name="name">tools.helpdesk.contexto_nivel4.form</field>
-        <field name="model">tools.helpdesk.contexto_nivel4</field>
-        <field name="type">form</field>
-        <field name="arch" type="xml">
-            <form string="tools.helpdesk.contexto_nivel4">
-            <group col="4" colspan="2">
-                <field name="codigo" select="1"/>
-                <field name="nombre" select="2"/>
-                <field name="descripcion" colspan="4" select="0"/>
-                <field name="contexto_nivel3_id" select="0"/>
-
-            </group>
-            </form>
-        </field>
-    </record>
-    <record model="ir.ui.view" id="view_tools_helpdesk_contexto_nivel4_tree">
-        <field name="name">tools.helpdesk.contexto_nivel4.tree</field>
-        <field name="model">tools.helpdesk.contexto_nivel4</field>
-        <field name="type">tree</field>
-        <field name="arch" type="xml">
-            <tree string="tools.helpdesk.contexto_nivel4">
-                <field name="codigo"/>
-                <field name="nombre"/>
-                <field name="descripcion"/>
-                <field name="contexto_nivel3_id"/>
-
-            </tree>
-        </field>
-    </record>
-    <record model="ir.actions.act_window" id="action_tools_helpdesk_contexto_nivel4">
-        <field name="name">Operaciones</field>
-        <field name="res_model">tools.helpdesk.contexto_nivel4</field>
-        <field name="view_type">form</field>
-        <field name="view_mode">tree,form</field>
-    </record>
+    
+    
     
 <menuitem name="Soporte" id="menu_tools_helpdesk"/>
 	<menuitem name="Gestión de Soporte" id="menu_tools_helpdesk_formularios" parent="menu_tools_helpdesk"/>
@@ -542,10 +513,10 @@
         <menuitem name="Tipo de Incidencia" id="menu_tools_helpdesk_tipo_incidencia" action="action_tools_helpdesk_tipo_incidencia" parent="menu_tools_helpdesk_configuracion_incidencias" sequence="1"/>
 
     <menuitem name="Contexto de Incidencia" id="menu_tools_helpdesk_configuracion_contexto" parent="menu_tools_helpdesk_configuracion" sequence="1"/>
-        <menuitem name="Organizaciones" id="menu_tools_helpdesk_contexto_nivel1" action="action_tools_helpdesk_contexto_nivel1" parent="menu_tools_helpdesk_configuracion_contexto" sequence="10"/>
-        <menuitem name="Aplicaciones" id="menu_tools_helpdesk_contexto_nivel2" action="action_tools_helpdesk_contexto_nivel2" parent="menu_tools_helpdesk_configuracion_contexto" sequence="11"/>
-        <menuitem name="Módulos" id="menu_tools_helpdesk_contexto_nivel3" action="action_tools_helpdesk_contexto_nivel3" parent="menu_tools_helpdesk_configuracion_contexto"  sequence="12"/>
-        <menuitem name="Operaciones" id="menu_tools_helpdesk_contexto_nivel4" action="action_tools_helpdesk_contexto_nivel4" parent="menu_tools_helpdesk_configuracion_contexto"  sequence="13"/>
+        <menuitem name="Organizaciones" id="menu_tools_helpdesk_organizacion" action="base.action_partner_form" parent="menu_tools_helpdesk_configuracion_contexto" sequence="9"/>
+        <menuitem name="Aplicaciones" id="menu_tools_helpdesk_contexto_nivel1" action="action_tools_helpdesk_contexto_nivel1" parent="menu_tools_helpdesk_configuracion_contexto" sequence="10"/>
+        <menuitem name="Módulos" id="menu_tools_helpdesk_contexto_nivel2" action="action_tools_helpdesk_contexto_nivel2" parent="menu_tools_helpdesk_configuracion_contexto" sequence="11"/>
+        <menuitem name="Operaciones" id="menu_tools_helpdesk_contexto_nivel3" action="action_tools_helpdesk_contexto_nivel3" parent="menu_tools_helpdesk_configuracion_contexto"  sequence="12"/>
 
     <!-- menuitem name="Talento Humano" id="menu_talento_humano" parent="menu_tools"/>
         <menuitem name="Cargos" id="menu_tools_base_hr_cargo" action="action_tools_base_hr_cargo" parent="menu_talento_humano"/ -->

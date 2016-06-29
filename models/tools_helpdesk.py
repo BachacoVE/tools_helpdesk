@@ -35,7 +35,10 @@ class tools_helpdesk_incidencia(osv.osv):
     _columns = {
         'codigo': fields.char('Código', size=10, help="Código de la Incidencia"),
         'solicitante_id': fields.many2one('res.users', string="Solicitante", help='Nombre Completo del Solicitante de la Incidencia'),
-        'res_partner_id': fields.many2one('res.partner','Organización:'),
+        'res_partner_id': fields.many2one('res.partner','Organización'),
+        'contexto_nivel1_id': fields.many2one('tools.helpdesk.contexto_nivel1','Aplicación'),
+        'contexto_nivel2_id': fields.many2one('tools.helpdesk.contexto_nivel2','Módulo'),
+        'contexto_nivel3_id': fields.many2one('tools.helpdesk.contexto_nivel3','Operación'),
         'categoria_incidencia_id': fields.many2one('tools.helpdesk.categoria_incidencia', string="Área de Incidencia"),
         'tipo_incidencia_ids': fields.many2many('tools.helpdesk.tipo_incidencia', 'incidencia_tipoincidencia_rel','incidencia_id', 'tipo_incidencia_id', string="Tipo de Incidencia"),
         'state': fields.selection([('registrado','Registrado'),('leido','Leido'),('asignado','Asignado'),('proceso','En Proceso'),('atendido','Atendido'),('resuelto','Resuelto')], "Status"),
@@ -333,50 +336,50 @@ class tools_helpdesk_adjuntos(osv.osv):
 tools_helpdesk_adjuntos()
 #Fin de la clase
 
+#class tools_helpdesk_contexto_nivel1(osv.osv):
+#    """Estructura de Dependencias Administrativas"""
+#    _name = 'tools.helpdesk.contexto_nivel1'
+#    _rec_name = 'nombre'
+#    _columns = {
+#        'codigo': fields.char(string="Código", size=20, help='Código de la Organización'),
+#        'nombre': fields.char(string="Nombre", size=60, help='Nombre de la Organización'),
+#        'descripcion': fields.text(string="Descripción", help='Descripción de la Organización'),
+#       'contexto_nivel2_ids': fields.one2many('tools.helpdesk.contexto_nivel2', 'contexto_nivel1_id', string="Aplicaciones", help='Aplicaciones Soportadas para esta Organización'),
+#    }
+#tools_helpdesk_contexto_nivel1()
+
 class tools_helpdesk_contexto_nivel1(osv.osv):
     """Estructura de Dependencias Administrativas"""
     _name = 'tools.helpdesk.contexto_nivel1'
     _rec_name = 'nombre'
     _columns = {
-        'codigo': fields.char(string="Código", size=20, help='Código de la Organización'),
-        'nombre': fields.char(string="Nombre", size=60, help='Nombre de la Organización'),
-        'descripcion': fields.text(string="Descripción", help='Descripción de la Organización'),
-        'contexto_nivel2_ids': fields.one2many('tools.helpdesk.contexto_nivel2', 'contexto_nivel1_id', string="Aplicaciones", help='Aplicaciones Soportadas para esta Organización'),
-    }
-tools_helpdesk_contexto_nivel1()
-
-class tools_helpdesk_contexto_nivel2(osv.osv):
-    """Estructura de Dependencias Administrativas"""
-    _name = 'tools.helpdesk.contexto_nivel2'
-    _rec_name = 'nombre'
-    _columns = {
         'codigo': fields.char(string="Código", size=20, help='Código de la Aplicación'),
         'nombre': fields.char(string="Nombre", size=60, help='Nombre de la Aplicación'),
         'descripcion': fields.text(string="Descripción", help='Descripción de la Aplicación'),
-        'contexto_nivel1_id': fields.many2one('tools.helpdesk.contexto_nivel1', string="Organización", help='Organización que implementa esta aplicación'),
-        'contexto_nivel3_ids': fields.one2many('tools.helpdesk.contexto_nivel3','contexto_nivel2_id', string="Módulos", help='Módulos que pertenecen a esta Aplicación'),
+        'res_partner_ids': fields.many2many('res.partner','respartner_aplicacion_rel','contexto_nivel1_id','res_partner_id', string="Organización", help='Organización que implementa esta aplicación'),
+        'contexto_nivel2_ids': fields.one2many('tools.helpdesk.contexto_nivel2','contexto_nivel1_id', string="Módulo", help='Módulos que pertenecen a esta Aplicación'),
     }    
+tools_helpdesk_contexto_nivel1()
+
+class tools_helpdesk_contexto_nivel2(osv.osv):
+    _name = 'tools.helpdesk.contexto_nivel2'
+    _rec_name = 'nombre'
+    _columns = {
+        'codigo': fields.char(string="Código", size=20, help='Código del Módulo'),
+        'nombre': fields.char(string="Nombre", size=60, help='Nombre del Módulo'),
+        'descripcion': fields.text(string="Descripción", help='Descripción del Módulo'),
+        'contexto_nivel1_id': fields.many2one('tools.helpdesk.contexto_nivel1', string="Aplicación", help='Aplicación que implementa este módulo'),
+        'contexto_nivel3_ids': fields.one2many('tools.helpdesk.contexto_nivel3', 'contexto_nivel2_id', string="Operaciones", help='Operaciones disponibles en este Módulo'),
+    }
 tools_helpdesk_contexto_nivel2()
 
 class tools_helpdesk_contexto_nivel3(osv.osv):
     _name = 'tools.helpdesk.contexto_nivel3'
     _rec_name = 'nombre'
     _columns = {
-        'codigo': fields.char(string="Código", size=20, help='Código del Módulo'),
-        'nombre': fields.char(string="Nombre", size=60, help='Nombre del Módulo'),
-        'descripcion': fields.text(string="Descripción", help='Descripción del Módulo'),
-        'contexto_nivel2_id': fields.many2one('tools.helpdesk.contexto_nivel2', string="Aplicación", help='Aplicación que implementa este módulo'),
-        'contexto_nivel4_ids': fields.one2many('tools.helpdesk.contexto_nivel4', 'contexto_nivel3_id', string="Operaciones", help='Operaciones disponibles en este Módulo'),
-    }
-tools_helpdesk_contexto_nivel3()
-
-class tools_helpdesk_contexto_nivel4(osv.osv):
-    _name = 'tools.helpdesk.contexto_nivel4'
-    _rec_name = 'nombre'
-    _columns = {
         'codigo': fields.char(string="Código", size=20, help='Código de la Operación'),
         'nombre': fields.char(string="Nombre", size=60, help='Nombre de la Operación'),
         'descripcion': fields.text(string="Descripción", help='Descripción de la Operación'),
-        'contexto_nivel3_id': fields.many2one('tools.helpdesk.contexto_nivel3', string="Módulo", help='Módulo que implementa esta operación'),
+        'contexto_nivel2_id': fields.many2one('tools.helpdesk.contexto_nivel2', string="Módulo", help='Módulo que implementa esta operación'),
     }
-tools_helpdesk_contexto_nivel4()
+tools_helpdesk_contexto_nivel3()
