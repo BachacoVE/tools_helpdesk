@@ -22,8 +22,8 @@
 {
         "name" : "Gestión de Tickets",
         "version" : "0.1",
-        "author" : "OpenKnowledge Consultores",
-        "website" : "http://www.okc.com.ve",
+        "author" : "BachacoVE, Victor Inojosa, Dony Hernandez, Joan Espinoza, Jessika Colina, Hector Aguilar",
+        "website" : "http://www.bachaco.org.ve",
         "category" : "Tools",
         "description": """  Sistema de Gestión de Tickets (Incidencias)  """,
         "depends" : ['base', 'mail'],
