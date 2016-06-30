@@ -422,7 +422,7 @@
         <field name="inherit_id" ref="base.view_users_form"/>
         <field name="arch" type="xml">
             <field name="active" position="before">
-                <field name="res_partner_id" select="1"/>
+                <field name="res_partner_id" domain="[('customer','=',True)]" select="1"/>
             </field>
             <!--field name="partner_id" position="replace">
                 <field name="partner_id" readonly="0" required="0" groups="base.group_no_one" string="Organización"/>
