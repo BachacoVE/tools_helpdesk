@@ -4,8 +4,8 @@
         <!-- Declaracion del Workflow -->
 
         <record model="workflow" id="helpdeskworkflow">
-            <field name="name">sisrhelpdesk_Workflow</field>
-            <field name="osv">sisr.helpdesk.incidencia</field>
+            <field name="name">tools.helpdesk_workflow</field>
+            <field name="osv">tools.helpdesk.incidencia</field>
             <field name="on_create">True</field>
         </record>
 

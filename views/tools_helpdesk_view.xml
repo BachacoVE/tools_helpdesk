@@ -10,32 +10,106 @@
         <field name="arch" type="xml">
             <form string="tools.helpdesk.incidencia">
             <header>
-                <button name="action_leido" string="Leido" type="workflow"/>
-                <button name="action_asignado" string="Asignado" type="workflow"/>
-                <button name="action_proceso" string="En Proceso" type="workflow"/>
-                <button name="action_atendido" string="Atendido" type="workflow"/>
-                <button name="action_resuelto" string="Resuelto" type="workflow"/>
+                <button name="action_leido" string="Leido" type="workflow" groups="base.group_system,tools_helpdesk.group_help_desk_Analista,tools_helpdesk.group_help_desk_Supervisor"/>
+                <button name="action_asignado" string="Asignado" type="workflow" groups="base.group_system,tools_helpdesk.group_help_desk_Analista,tools_helpdesk.group_help_desk_Supervisor"/>
+                <button name="action_proceso" string="En Proceso" type="workflow" groups="base.group_system,tools_helpdesk.group_help_desk_Analista,tools_helpdesk.group_help_desk_Supervisor"/>
+                <button name="action_atendido" string="Atendido" type="workflow" groups="base.group_system,tools_helpdesk.group_help_desk_Analista,tools_helpdesk.group_help_desk_Supervisor"/>
+                <button name="action_resuelto" string="Resuelto" type="workflow" groups="base.group_system,tools_helpdesk.group_help_desk_Analista,tools_helpdesk.group_help_desk_Supervisor"/>
                 <field name="state" widget="statusbar" select="0"/>
             </header>
             <sheet>
+            
+        <notebook>
+            <page string="Datos de Solicitud">
             <group col="4" colspan="2">
                 <field name="codigo" select="1" readonly="1"/>
-		<newline/>
-		
-		<!-- field name="contexto_nivel2_id" select="0" required="True" on_change="onchange_solicitante()"/ -->
-        <!-- field name="categoria_incidencia_id" select="2" required="True" domain="[('contexto_nivel2_id','=',contexto_nivel2_id)]"/ -->
-        <field name="categoria_incidencia_id" select="2" required="True" />
-        <field name="solicitante_id" colspan="4" required="True" select="1" readonly="1"/>
-        <field name="autorizado" colspan="4" required="True" select="1"/>
-		
-        <!-- field name="asignacion" colspan="4" select="1" domain="[('categoria_incidencia_id','=',categoria_incidencia_id)]" groups= "tools_helpdesk.group_help_desk_Gerente,tools_helpdesk.group_help_desk_Supervisor,tools_helpdesk.group_help_desk_Seguimiento,tools_helpdesk.group_help_desk_Analista,base.group_system"/ -->
-        <field name="asignacion" colspan="4" select="1" />
-		
-        <field name="denominacion" colspan="4" select="2"/>
-        <field name="fecha_actual" readonly="0" select="0"/>
-		<field name="prioridad" widget="priority"></field>
+                <newline/>
+                <field name="solicitante_id" required="True" select="1"/>
+                <field name="res_partner_id" required="False" select="1" readonly="True"/>
+                <field name="contexto_nivel1_id" required="True" select="1" domain="[('res_partner_ids','=', [res_partner_id])]" />
+                <field name="contexto_nivel2_id" required="True" select="1" domain="[('contexto_nivel1_id','=', [contexto_nivel1_id])]" />
+                <field name="contexto_nivel3_id" required="True" select="1" domain="[('contexto_nivel2_id','=', [contexto_nivel2_id])]" />
+                <field name="categoria_incidencia_id" select="2" required="True" />
+                <field name="tipo_incidencia_id" select="0" domain="[('categoria_incidencia_id','=',[categoria_incidencia_id])]"/>
+                <field name="denominacion" select="2"/>
+                <field name="fecha_actual" readonly="True" select="0"/>
+                <field name="prioridad" widget="priority"></field>
+            </group>
+            </page>
 
-        <separator string="Forma de Solicitud" colspan="6"/>
+            <page string="Descripción Detallada">
+            <group col="4" colspan="4">
+                <field name="descripcion" string="Descripción Detallada" required="True" colspan="4" nolabel="1" select="0"/>
+            </group>
+            </page>
+
+            <page string="Adjuntos">
+            <group col="4" colspan="4">
+                <field name="adjunto_ids" nolabel="1" colspan="4" select="0"/>
+                <newline/>
+            </group>
+            </page>
+
+
+
+
+            <page string="Soportista" groups="base.group_system,tools_helpdesk.group_help_desk_Analista,tools_helpdesk.group_help_desk_Supervisor">
+        
+            <notebook>        
+
+				<page string="Datos de la Asignación">
+                <group col="4" colspan="4">
+                    <field name="asignacion" select="1" />
+                    <field name="procedimiento" colspan="4" nolabel="1" select="0"/>
+                    <newline/>
+                </group>
+                </page>
+
+    			<page string="Observaciones">
+                <group col="4" colspan="4">
+                	<field name="observacion_ids" nolabel="1" colspan="4" select="0">
+                		<tree editable="True">
+                            <field name="observacion"/>
+                            <field name="state"/>
+                            <field name="create_date" readonly="True" string="Fecha"/>
+                            <field name="create_uid" readonly="True" string="Usuario"/>
+                        </tree>
+                    </field>
+                </group>
+                </page>
+
+              <page string="Seguimiento de Incidencia">
+    	    		<group col="4" colspan="4">
+    	    			<field name="fecha_creacion" colspan="2" select="0" readonly="True"/>
+    	    			<field name="fecha_leido" colspan="2" select="0" readonly="True"/>
+    	    			<field name="fecha_asignado_a" colspan="2" select="0" readonly="True"/>
+    	    			<field name="fecha_proceso" colspan="2" select="0" readonly="True"/>
+    	    			<field name="fecha_atendido" colspan="2" select="0" readonly="True"/>
+    	    			<field name="fecha_solucion" colspan="2" select="0" readonly="True"/>
+    	    			
+                    <separator string="Duración por proceso" colspan="4"/>
+    	    			<field name="dia_creacion" colspan="2" select="0" readonly="True"/>
+    	    			<field name="dia_leido" colspan="2" select="0" readonly="True"/>
+    	    			<field name="dia_asignado_a" colspan="2" select="0" readonly="True"/>
+    	    			<field name="dia_proceso" colspan="2" select="0" readonly="True"/>
+    	    			<field name="dia_atendido" colspan="2" select="0" readonly="True"/>
+    	    			<field name="dia_solucion" colspan="2" select="0" readonly="True"/>
+    	    			<field name="retraso" colspan="2" select="0"/>
+
+    	    		<newline/>
+    	    		</group>
+    	    	</page>
+
+
+        </notebook>
+        </page> 
+
+            
+        <!--field name="autorizado" required="True" select="1"/-->
+        <!-- field name="asignacion" colspan="4" select="1" domain="[('categoria_incidencia_id','=',categoria_incidencia_id)]" groups= "tools_helpdesk.group_help_desk_Gerente,tools_helpdesk.group_help_desk_Supervisor,tools_helpdesk.group_help_desk_Seguimiento,tools_helpdesk.group_help_desk_Analista,base.group_system"/ -->
+        
+
+        <!-- separator string="Forma de Solicitud" colspan="6"/>
         <field name="memo" select="0"/>
         <field name="correo" select="0"/>
         <field name="llamada" select="0"/>
@@ -43,75 +117,16 @@
         <field name="gestion" select="0"/>
         <newline/>
         <field name="n_memo" attrs="{'required':[('memo','=',True)], 'invisible':[('memo','=',False)]}"/>
-        <newline/>
-            </group>
-
-            <notebook>
-            <page string="Tipos de Incidencias">
-            <group col="4" colspan="4">
-            	<field name="tipo_incidencia_ids" nolabel="1" colspan="4" select="0" domain="[('categoria_incidencia_id','=',categoria_incidencia_id)]"/>
-            </group>
-            </page>
-
-            <page string="Descripción Detallada de la Incidencia">
-            <group col="4" colspan="4">
-            	<field name="descripcion" colspan="4" nolabel="1" select="0"/>
-            </group>
-            </page>
-
-		    <page string="Adjuntos">
-		    <group col="4" colspan="4">
-		    	<field name="adjunto" nolabel="1" colspan="4" select="0"/>
-		    	<newline/>
-		    </group>
-		    </page>
+        <newline/ -->
 
             <!-- page string="Descripción Detallada del Procedimiento" groups= "tools_helpdesk.group_help_desk_Gerente,tools_helpdesk.group_help_desk_Supervisor,tools_helpdesk.group_help_desk_Seguimiento,tools_helpdesk.group_help_desk_Analista,base.group_system" -->
-				<page string="Descripción Detallada del Procedimiento">
-            <group col="4" colspan="4">
-            	<field name="procedimiento" colspan="4" nolabel="1" select="0"/>
-            	<newline/>
-            </group>
-		    </page>
-            </notebook>
 
        
-            <notebook>
                 <!-- page string="Observaciones" groups= "tools_helpdesk.group_help_desk_Gerente,tools_helpdesk.group_help_desk_Supervisor,tools_helpdesk.group_help_desk_Seguimiento,tools_helpdesk.group_help_desk_Analista,base.group_system" -->
-					<page string="Observaciones">
-                <group col="4" colspan="4">
-                	<field name="observacion_ids" nolabel="1" colspan="4" select="0">
-                		<tree editable="True">
-                			<field name="observacion"/>
-                			<field name="state_rel"/>
-                		</tree>
-                	</field>
-                </group>
-                </page>
  
                 <!-- page string="Seguimiento de Incidencia" groups= "tools_helpdesk.group_help_desk_Gerente,tools_helpdesk.group_help_desk_Supervisor,base.group_system" -->
-				<page string="Seguimiento de Incidencia">
-   		    		<group col="4" colspan="4">
-   		    			<field name="fecha_creacion" colspan="2" select="0" readonly="True"/>
-   		    			<field name="fecha_leido" colspan="2" select="0" readonly="True"/>
-   		    			<field name="fecha_asignado_a" colspan="2" select="0" readonly="True"/>
-   		    			<field name="fecha_proceso" colspan="2" select="0" readonly="True"/>
-   		    			<field name="fecha_atendido" colspan="2" select="0" readonly="True"/>
-   		    			<field name="fecha_solucion" colspan="2" select="0" readonly="True"/>
-   		    			
-                        <separator string="Duración por proceso" colspan="4"/>
-   		    			<field name="dia_creacion" colspan="2" select="0" readonly="True"/>
-   		    			<field name="dia_leido" colspan="2" select="0" readonly="True"/>
-   		    			<field name="dia_asignado_a" colspan="2" select="0" readonly="True"/>
-   		    			<field name="dia_proceso" colspan="2" select="0" readonly="True"/>
-   		    			<field name="dia_atendido" colspan="2" select="0" readonly="True"/>
-   		    			<field name="dia_solucion" colspan="2" select="0" readonly="True"/>
-   		    			<field name="retraso" colspan="2" select="0"/>
 
-   		    		<newline/>
-   		    		</group>
-   		    	</page>
-   		    </notebook>
+            </notebook>
             </sheet>
             </form>
            
@@ -124,6 +139,23 @@
 
         </field>
     </record>
+
+<!-- esto es lo que permite que el campo solicitante_id se haga readonly cuando el grupo es usuario -->
+
+<record id="incidicendia_extended_view_form" model="ir.ui.view">
+            <field name="name">tools.helpdesk.incidencia.form.inherit</field>
+            <field name="model">tools.helpdesk.incidencia</field>
+            <field name="inherit_id" ref="view_tools_helpdesk_incidencia_form" />
+            <field name="groups_id" eval="[(6,0, [ref('tools_helpdesk.group_help_desk_Usuario')])]" />
+            <field name="arch" type="xml">                
+                <field name="solicitante_id" position="attributes">
+                   <attribute name="attrs">{'readonly':True}</attribute>                   
+                </field>                
+            </field>
+</record>   
+
+
+
     <record model="ir.ui.view" id="view_tools_helpdesk_incidencia_tree">
         <field name="name">tools.helpdesk.incidencia.tree</field>
         <field name="model">tools.helpdesk.incidencia</field>
@@ -133,6 +165,7 @@
             <tree string="tools.helpdesk.incidencia" colors=" red:state=='leido'; green:state=='resuelto'; blue:state=='asignado'; orange:state=='registrado'; brown:state=='proceso'; olive:state=='atendido'">
                 <field name="codigo"/>
                 <field name="solicitante_id"/>
+                <field name="res_partner_id"/>
                 <field name="categoria_incidencia_id"/>
                 <!--field name="forma_de_solicitud"/ -->
                 <field name="asignacion"/>
@@ -157,10 +190,8 @@
         <field name="arch" type="xml">
             <form string="Adjuntos">
             <group col="2" colspan="4">
-            		<field name="adjunto"/>
-            		<field name="numero"/>
-            		<field name="nombre"/>
-            		<field name="observacion"/>
+                    <field name="adjunto"/>
+                    <field name="observacion"/>
             </group>
             </form>
         </field>
@@ -172,11 +203,7 @@
         <field name="arch" type="xml">
                
             <tree string="tools.helpdesk.adjuntos">
-                <!-- No se puede poner un binary en el tree
                 <field name="adjunto"/>
-                -->
-                <field name="numero"/>
-                <field name="nombre"/>
                 <field name="observacion"/>                          
             </tree>
         </field>
@@ -316,6 +343,8 @@
             <group col="4" colspan="2">
                 <field name="codigo" select="1"/>
                 <field name="nombre" select="2"/>
+                <separator string="Descripción" colspan="4"/>
+                <field name="descripcion" nolabel="1" colspan="4" select="2"/>
                 <separator string="Tipos de Incidencia" colspan="4"/>
                 <field name="tipo_incidencia" nolabel="1" colspan="4" select="0"/>
    		<!-- field name="dependencia_id" select="2"/ -->
@@ -353,7 +382,9 @@
             <group col="4" colspan="2">
                 <separator string="Observación" colspan="4"/>
                 <field name="observacion" nolabel="1" colspan="4" select="1"/>
-                <field name="state_rel" select="2"/>
+                <field name="state" select="2"/>
+                <field name="create_date" readonly="True"/>
+                <field name="create_uid" readonly="True"/>
                 <!--field name="incidencia_id" select="0"/-->
 
             </group>
@@ -367,7 +398,9 @@
         <field name="arch" type="xml">
             <tree string="tools.helpdesk.observacion">
                 <field name="observacion"/>
-                <field name="state_rel"/>
+                <field name="create_date" />
+                <field name="create_uid" />
+                <field name="state"/>
                 <!--field name="incidencia_id"/-->
 
             </tree>
@@ -381,6 +414,23 @@
     </record>
 
 <!--Acá inicia la clase heredada de res.users-->
+
+<record model="ir.ui.view" id="view_res_users_extended">
+        <field name="name">res.users.form.helpdesk.extended</field>
+        <field name="model">res.users</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="base.view_users_form"/>
+        <field name="arch" type="xml">
+            <field name="active" position="before">
+                <field name="res_partner_id" domain="[('customer','=',True)]" select="1"/>
+            </field>
+            <!--field name="partner_id" position="replace">
+                <field name="partner_id" readonly="0" required="0" groups="base.group_no_one" string="Organización"/>
+            </field-->
+
+        </field>
+    </record>
+
 <!--fin de la herencia desde res.users-->
 
     <!-- Vistas de CONEXTO -->      
@@ -394,6 +444,7 @@
                 <field name="codigo" select="1"/>
                 <field name="nombre" select="2"/>
                 <field name="descripcion" colspan="4" select="0"/>
+                <field name="res_partner_ids" colspan="4" select="0"/>
                 <field name="contexto_nivel2_ids" colspan="4" select="0"/>
             </group>
             </form>
@@ -467,7 +518,6 @@
                 <field name="descripcion" colspan="4" select="0"/>
                 <field name="contexto_nivel2_id" select="0"/>
                 <newline/>
-                <field name="contexto_nivel4_ids" colspan="4" select="0"/>
             </group>
             </form>
         </field>
@@ -493,42 +543,8 @@
         <field name="view_mode">tree,form</field>
     </record>
          
-    <record model="ir.ui.view" id="view_tools_helpdesk_contexto_nivel4_form">
-        <field name="name">tools.helpdesk.contexto_nivel4.form</field>
-        <field name="model">tools.helpdesk.contexto_nivel4</field>
-        <field name="type">form</field>
-        <field name="arch" type="xml">
-            <form string="tools.helpdesk.contexto_nivel4">
-            <group col="4" colspan="2">
-                <field name="codigo" select="1"/>
-                <field name="nombre" select="2"/>
-                <field name="descripcion" colspan="4" select="0"/>
-                <field name="contexto_nivel3_id" select="0"/>
-
-            </group>
-            </form>
-        </field>
-    </record>
-    <record model="ir.ui.view" id="view_tools_helpdesk_contexto_nivel4_tree">
-        <field name="name">tools.helpdesk.contexto_nivel4.tree</field>
-        <field name="model">tools.helpdesk.contexto_nivel4</field>
-        <field name="type">tree</field>
-        <field name="arch" type="xml">
-            <tree string="tools.helpdesk.contexto_nivel4">
-                <field name="codigo"/>
-                <field name="nombre"/>
-                <field name="descripcion"/>
-                <field name="contexto_nivel3_id"/>
-
-            </tree>
-        </field>
-    </record>
-    <record model="ir.actions.act_window" id="action_tools_helpdesk_contexto_nivel4">
-        <field name="name">Operaciones</field>
-        <field name="res_model">tools.helpdesk.contexto_nivel4</field>
-        <field name="view_type">form</field>
-        <field name="view_mode">tree,form</field>
-    </record>
+    
+    
     
 <menuitem name="Soporte" id="menu_tools_helpdesk"/>
 	<menuitem name="Gestión de Soporte" id="menu_tools_helpdesk_formularios" parent="menu_tools_helpdesk"/>
@@ -540,10 +556,10 @@
         <menuitem name="Tipo de Incidencia" id="menu_tools_helpdesk_tipo_incidencia" action="action_tools_helpdesk_tipo_incidencia" parent="menu_tools_helpdesk_configuracion_incidencias" sequence="1"/>
 
     <menuitem name="Contexto de Incidencia" id="menu_tools_helpdesk_configuracion_contexto" parent="menu_tools_helpdesk_configuracion" sequence="1"/>
-        <menuitem name="Organizaciones" id="menu_tools_helpdesk_contexto_nivel1" action="action_tools_helpdesk_contexto_nivel1" parent="menu_tools_helpdesk_configuracion_contexto" sequence="10"/>
-        <menuitem name="Aplicaciones" id="menu_tools_helpdesk_contexto_nivel2" action="action_tools_helpdesk_contexto_nivel2" parent="menu_tools_helpdesk_configuracion_contexto" sequence="11"/>
-        <menuitem name="Módulos" id="menu_tools_helpdesk_contexto_nivel3" action="action_tools_helpdesk_contexto_nivel3" parent="menu_tools_helpdesk_configuracion_contexto"  sequence="12"/>
-        <menuitem name="Operaciones" id="menu_tools_helpdesk_contexto_nivel4" action="action_tools_helpdesk_contexto_nivel4" parent="menu_tools_helpdesk_configuracion_contexto"  sequence="13"/>
+        <menuitem name="Organizaciones" id="menu_tools_helpdesk_organizacion" action="base.action_partner_form" parent="menu_tools_helpdesk_configuracion_contexto" sequence="9"/>
+        <menuitem name="Aplicaciones" id="menu_tools_helpdesk_contexto_nivel1" action="action_tools_helpdesk_contexto_nivel1" parent="menu_tools_helpdesk_configuracion_contexto" sequence="10"/>
+        <menuitem name="Módulos" id="menu_tools_helpdesk_contexto_nivel2" action="action_tools_helpdesk_contexto_nivel2" parent="menu_tools_helpdesk_configuracion_contexto" sequence="11"/>
+        <menuitem name="Operaciones" id="menu_tools_helpdesk_contexto_nivel3" action="action_tools_helpdesk_contexto_nivel3" parent="menu_tools_helpdesk_configuracion_contexto"  sequence="12"/>
 
     <!-- menuitem name="Talento Humano" id="menu_talento_humano" parent="menu_tools"/>
         <menuitem name="Cargos" id="menu_tools_base_hr_cargo" action="action_tools_base_hr_cargo" parent="menu_talento_humano"/ -->
