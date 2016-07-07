@@ -30,7 +30,8 @@ Para los permisos de acceso revisar archivo “Matriz CRUD”
 * Atendido: Oliva
 * Resulto: Verde
 
-```<tree string="tools.helpdesk.incidencia" 
+```
+<tree string="tools.helpdesk.incidencia" 
          colors= "orange:state=='registrado';
                   red:state=='recibido';
                   blue:state=='asignado';
@@ -40,7 +41,8 @@ Para los permisos de acceso revisar archivo “Matriz CRUD”
       
       <!-- Aquí van los campos del tree -->
     
-    </tree>```
+    </tree>
+```
 
 ### Cómo bloquear (Solo lectura) un campo según el grupo del usuario conectado
  
