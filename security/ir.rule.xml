@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
-	<data noupdate="1">
+	<!--data noupdate="1"-->
+	<data>
 	  
 	<!--reglas de usuario-->
-	<record id="group_gerente_area_incidencia" model="ir.rule">
+	<!--record id="group_gerente_area_incidencia" model="ir.rule">
 		<field name="name">regla de lectura de incidencia para gerente</field>
 		<field name="model_id" ref="model_tools_helpdesk_incidencia"/>
 		<field name="groups" eval="[(4, ref('group_help_desk_Gerente'))]"/>
@@ -12,17 +13,17 @@
 		<field name="perm_create" eval="0"/>
 		<field name="perm_unlink" eval="0"/>
 		<field name="domain_force">[('dependencia_id','=',user.dependencia_id.id)]</field>
-	</record>
+	</record-->
 
 	<record id="group_supervisor_area_incidencia" model="ir.rule">
-		<field name="name">regla de lectura de area incidencia</field>
+		<field name="name">regla de lectura para supervisor</field>
 		<field name="model_id" ref="model_tools_helpdesk_incidencia"/>
 		<field name="groups" eval="[(4, ref('group_help_desk_Supervisor'))]"/>
 		<field name="perm_read" eval="1"/>
 		<field name="perm_write" eval="0"/>
 		<field name="perm_create" eval="0"/>
 		<field name="perm_unlink" eval="0"/>
-		<field name="domain_force">[('area_incidencia_id','=',user.area_incidencia_id.id)]</field>
+		<field name="domain_force">[('res_partner_id','=',user.res_partner_id.id)]</field>
 	</record>
 
 	<record id="rule_usuario_incidencia" model="ir.rule">
@@ -33,7 +34,7 @@
 		<field name="perm_write" eval="0"/>
 		<field name="perm_create" eval="0"/>
 		<field name="perm_unlink" eval="0"/>
-		<field name="domain_force">[('res_partner_id','=',user.res_partner_id.id)]</field>
+		<field name="domain_force">[('solicitante_id','=',user.id)]</field>
 	</record>
 
 

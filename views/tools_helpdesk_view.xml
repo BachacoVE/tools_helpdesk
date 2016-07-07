@@ -10,11 +10,11 @@
         <field name="arch" type="xml">
             <form string="tools.helpdesk.incidencia">
             <header>
-                <button name="action_leido" string="Leido" type="workflow" groups="base.group_system,tools_helpdesk.group_help_desk_Analista,tools_helpdesk.group_help_desk_Supervisor"/>
-                <button name="action_asignado" string="Asignado" type="workflow" groups="base.group_system,tools_helpdesk.group_help_desk_Analista,tools_helpdesk.group_help_desk_Supervisor"/>
-                <button name="action_proceso" string="En Proceso" type="workflow" groups="base.group_system,tools_helpdesk.group_help_desk_Analista,tools_helpdesk.group_help_desk_Supervisor"/>
-                <button name="action_atendido" string="Atendido" type="workflow" groups="base.group_system,tools_helpdesk.group_help_desk_Analista,tools_helpdesk.group_help_desk_Supervisor"/>
-                <button name="action_resuelto" string="Resuelto" type="workflow" groups="base.group_system,tools_helpdesk.group_help_desk_Analista,tools_helpdesk.group_help_desk_Supervisor"/>
+                <button name="action_leido" string="Leido" type="workflow" groups="base.group_system,tools_helpdesk.group_help_desk_Analista"/>
+                <button name="action_asignado" string="Asignado" type="workflow" groups="base.group_system,tools_helpdesk.group_help_desk_Analista"/>
+                <button name="action_proceso" string="En Proceso" type="workflow" groups="base.group_system,tools_helpdesk.group_help_desk_Analista"/>
+                <button name="action_atendido" string="Atendido" type="workflow" groups="base.group_system,tools_helpdesk.group_help_desk_Analista"/>
+                <button name="action_resuelto" string="Resuelto" type="workflow" groups="base.group_system,tools_helpdesk.group_help_desk_Analista"/>
                 <field name="state" widget="statusbar" select="0"/>
             </header>
             <sheet>
@@ -146,7 +146,7 @@
             <field name="name">tools.helpdesk.incidencia.form.inherit</field>
             <field name="model">tools.helpdesk.incidencia</field>
             <field name="inherit_id" ref="view_tools_helpdesk_incidencia_form" />
-            <field name="groups_id" eval="[(6,0, [ref('tools_helpdesk.group_help_desk_Usuario')])]" />
+            <field name="groups_id" eval="[(6,0, [ref('tools_helpdesk.group_help_desk_Usuario')])]"/>
             <field name="arch" type="xml">                
                 <field name="solicitante_id" position="attributes">
                    <attribute name="attrs">{'readonly':True}</attribute>                   
