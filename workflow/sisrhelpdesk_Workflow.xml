@@ -19,11 +19,11 @@
             <field name="action">action_registrado()</field>
         </record>
 
-        <record model="workflow.activity" id="act_leido">
-            <field name="name">leido</field>
+        <record model="workflow.activity" id="act_recibido">
+            <field name="name">recibido</field>
             <field name="wkf_id" ref="helpdeskworkflow"/>
             <field name="kind">function</field>
-            <field name="action">action_leido()</field>
+            <field name="action">action_recibido()</field>
         </record>
 
 
@@ -67,14 +67,14 @@
         
         <!--Transiciones-->
         
-        <record model="workflow.transition" id="trans_registrado_leido">
+        <record model="workflow.transition" id="trans_registrado_recibido">
             <field name="act_from" ref="act_registrado"/>
-            <field name="act_to" ref="act_leido"/>
-            <field name="signal">action_leido</field>
+            <field name="act_to" ref="act_recibido"/>
+            <field name="signal">action_recibido</field>
         </record>
 
-        <record model="workflow.transition" id="trans_leido_asignado">
-            <field name="act_from" ref="act_leido"/>
+        <record model="workflow.transition" id="trans_recibido_asignado">
+            <field name="act_from" ref="act_recibido"/>
             <field name="act_to" ref="act_asignado"/>
             <field name="signal">action_asignado</field>
         </record>

@@ -43,7 +43,7 @@ class tools_helpdesk_incidencia(models.Model):
     contexto_nivel3_id = fields.Many2one('tools.helpdesk.contexto_nivel3','Operación')
     categoria_incidencia_id = fields.Many2one('tools.helpdesk.categoria_incidencia', string="Categoría de Incidencia")
     tipo_incidencia_id = fields.Many2one('tools.helpdesk.tipo_incidencia', 'Tipo de Incidencia')
-    state = fields.Selection([('registrado','Registrado'),('leido','Leido'),('asignado','Asignado'),('proceso','En Proceso'),('atendido','Atendido'),('resuelto','Resuelto')], "Status")
+    state = fields.Selection([('registrado','Registrado'),('recibido','Recibido'),('asignado','Asignado'),('proceso','En Proceso'),('atendido','Atendido'),('resuelto','Resuelto')], "Status")
     observacion_ids = fields.One2many('tools.helpdesk.observacion', 'incidencia_id', string="Observaciones", help='Observaciones de una incidencia')
     autorizado = fields.Char('Autorizado por:', size=30, help='Colocar el Nombre y Apellido del autorizante')
     asignacion = fields.Many2one('res.users', 'Asignado a:')
@@ -62,14 +62,14 @@ class tools_helpdesk_incidencia(models.Model):
     descripcion = fields.Text('Descripción')
     procedimiento = fields.Text('Procedimiento en la Solución')
     fecha_creacion = fields.Datetime('Fecha de Creación', default=0)
-    fecha_leido = fields.Datetime('Fecha de Leido')
+    fecha_recibido = fields.Datetime('Fecha de Recibido')
     fecha_asignado_a = fields.Datetime('Fecha Asignado a')
     fecha_proceso = fields.Datetime('Fecha Proceso')
     fecha_atendido = fields.Datetime('Fecha Resuelto')
     fecha_solucion = fields.Datetime('Fecha Cerrado')
     dia_creacion = fields.Char('Días de Creado')
-    dia_leido = fields.Char('Días Intervalo Creado a Leido')
-    dia_asignado_a = fields.Char('Días Intervalo Leido a Asignado')
+    dia_recibido = fields.Char('Días Intervalo Creado a Recibido')
+    dia_asignado_a = fields.Char('Días Intervalo Recibido a Asignado')
     dia_proceso = fields.Char('Días Intervalo Asignado a Proceso')
     dia_atendido = fields.Char('Días Intervalo Proceso a Resuelto')
     dia_solucion = fields.Char('Días Intervalo Resuelto a Cerrado')
@@ -104,18 +104,18 @@ class tools_helpdesk_incidencia(models.Model):
         self.state='registrado'
 
     @api.one
-    def action_leido(self):
-        self.fecha_leido=datetime.today()
-        diferencia=self.calcular_dias(self.fecha_creacion, self.fecha_leido)
-        self.dia_leido=diferencia.days
-        self.state='leido'
+    def action_recibido(self):
+        self.fecha_recibido=datetime.today()
+        diferencia=self.calcular_dias(self.fecha_creacion, self.fecha_recibido)
+        self.dia_recibido=diferencia.days
+        self.state='recibido'
 
     @api.one
     def action_asignado(self):
         if not self.asignacion:
             raise osv.except_osv(('Error'),('Debes llenar el campo: asignado a'))
         self.fecha_asignado_a=datetime.today()
-        diferencia=self.calcular_dias(self.fecha_leido, self.fecha_asignado_a)
+        diferencia=self.calcular_dias(self.fecha_recibido, self.fecha_asignado_a)
         self.dia_asignado_a=diferencia.days
         self.state='asignado'
 
@@ -274,7 +274,7 @@ class tools_helpdesk_observacion(models.Model):
     _name = 'tools.helpdesk.observacion'
 
     observacion = fields.Text(string="Observación")
-    state = fields.Selection([('registrado','Registrado'),('leido','Leido'),('asignado','Asignado'),('proceso','En Proceso'),('atendido','Atendido'),('resuelto','Resuelto')], string="Status", help='Status que tiene la incidencia al momento de hacer la observación')
+    state = fields.Selection([('registrado','Registrado'),('recibido','Recibido'),('asignado','Asignado'),('proceso','En Proceso'),('atendido','Atendido'),('resuelto','Resuelto')], string="Status", help='Status que tiene la incidencia al momento de hacer la observación')
     incidencia_id = fields.Many2one('tools.helpdesk.incidencia', help='Relación Inversa del One2many')
     
 
