@@ -21,6 +21,27 @@ Para los permisos de acceso revisar archivo “Matriz CRUD”
 * El usuario no puede modificar el solicitante al registrar una incidencia. Tendrá precargado su usuario (ver más abajo cómo)
 * El workflow es manipulado solo por el Analista
 
+### Nomenclatura de Colores de la vista lista de incidencia
+
+* Registrado: Naranja
+* Recibido: Rojo
+* Asignado: Azul
+* En Proceso: Marrón
+* Atendido: Oliva
+* Resulto: Verde
+
+```<tree string="tools.helpdesk.incidencia" 
+         colors= "orange:state=='registrado';
+                  red:state=='recibido';
+                  blue:state=='asignado';
+                  brown:state=='proceso';
+                  green:state=='resuelto';
+                  olive:state=='atendido'">
+      
+      <!-- Aquí van los campos del tree -->
+    
+    </tree>```
+
 ### Cómo bloquear (Solo lectura) un campo según el grupo del usuario conectado
  
 En el view.xml
@@ -43,3 +64,8 @@ En el view.xml
 En el archivo: .../addons/web/static/src/js/view_form.js (en mi versión del archivo, línea 5620)
 En el atributo `this.max_upload_size = 25 * 1024 * 1024; // 25Mo` establece
   `this.max_upload_size = 5 * 1024 * 1024; // 5Mo`
+
+
+
+
+
