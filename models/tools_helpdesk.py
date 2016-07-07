@@ -337,7 +337,7 @@ class tools_helpdesk_adjuntos(models.Model):
     _name = 'tools.helpdesk.adjuntos'
     #_rec_name = 'nombre'
     
-    adjunto = fields.Binary(string="Adjuntos", attachment=True, help='Se suben los archivos adicionales que guardan relacion con el documento')
+    adjunto = fields.Binary(string="Adjuntos", attachment=True, help='Se suben los archivos adicionales que guardan relacion con el documento', filters="*.png,*.svg,*.jpg,*jpeg,*.pdf,*.ods,*.xls,*.xlsx,*.odt,*.doc,*.docx,*.ppt,*.pptx,*.odp")
     observacion = fields.Text(string="Descripción", size=50, help='Breve nota sobre el archivo que se adjunta')
     incidencia_id = fields.Many2one('tools.helpdesk.incidencia', 'incidencia')
 
