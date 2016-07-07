@@ -1,7 +1,7 @@
 ## Módulo: tools_helpdesk
 Para los permisos de acceso revisar archivo “Matriz CRUD”
 
-### Reglas de Acceso
+### Reglas de Acceso (security/ir.rule.xml)
 * El Analista de soporte puede ver todas las Incidencias, de todas las organizaciones
 * El Supervisor organizacional solo puede ver las incidencias de su organización
   * <field name="domain_force">[('res_partner_id','=',user.res_partner_id.id)]</field>
@@ -21,7 +21,7 @@ Para los permisos de acceso revisar archivo “Matriz CRUD”
 * El usuario no puede modificar el solicitante al registrar una incidencia. Tendrá precargado su usuario (ver más abajo cómo)
 * El workflow es manipulado solo por el Analista
 
-### Cómo ocultar un campo según el grupo del usuario conectado
+### Cómo bloquear (Solo lectura) un campo según el grupo del usuario conectado
  
 En el view.xml
 ```
