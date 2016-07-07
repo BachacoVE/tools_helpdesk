@@ -37,3 +37,9 @@ En el view.xml
             </field>
 </record>   
 ```
+
+### Cómo cambiar el tamaño máximo para un archivo en un campo Binary
+
+En el archivo: .../addons/web/static/src/js/view_form.js (en mi versión del archivo, línea 5620)
+En el atributo `this.max_upload_size = 25 * 1024 * 1024; // 25Mo` establece
+  `this.max_upload_size = 5 * 1024 * 1024; // 5Mo`
