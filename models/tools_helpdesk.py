@@ -48,7 +48,7 @@ class tools_helpdesk_incidencia(models.Model):
     autorizado = fields.Char('Autorizado por:', size=30, help='Colocar el Nombre y Apellido del autorizante')
     asignacion = fields.Many2one('res.users', 'Asignado a:')
     denominacion = fields.Char('Descripción Corta', size=90)
-    prioridad = fields.Selection([('1','Baja'), ('2', 'Media'),('3','Alta'), ('4','Urgente')],'Prioridad')
+    prioridad = fields.Selection([('0','Ninguna'),('1','Baja'), ('2', 'Media'),('3','Urgente')],'Prioridad', default='0')
     fecha_actual = fields.Date('Fecha de la solicitud',  help='Fecha cuando se reporto la incidenciaa', default=datetime.today())
     #memo = fields.Boolean('Memo')
     #correo = fields.Boolean('Correo Electrónico')
