@@ -35,7 +35,7 @@
         	'security/ir.model.access.csv',
 			'security/ir.rule.xml',
         	'views/tools_helpdesk_view.xml',
-			'workflow/sisrhelpdesk_Workflow.xml',			
+			'workflow/toosl_helpdesk_workflow.xml',			
 			'data/categoria_incidencia.xml',
 			'data/tipo_incidencia.xml',			
 			#'data/contexto_nivel1.xml',
