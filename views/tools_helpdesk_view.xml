@@ -166,6 +166,7 @@
 <!-- PARA COLOCAR COLORES A LOS ESTATUS EN EL TREE -->
             <tree string="tools.helpdesk.incidencia" colors=" red:state=='recibido'; green:state=='resuelto'; blue:state=='asignado'; orange:state=='registrado'; brown:state=='proceso'; olive:state=='atendido'">
                 <field name="codigo"/>
+                <field name="denominacion" string="Título"/>
                 <field name="solicitante_id"/>
                 <field name="res_partner_id"/>
                 <field name="categoria_incidencia_id"/>
