@@ -165,6 +165,7 @@
         <field name="arch" type="xml">
 <!-- PARA COLOCAR COLORES A LOS ESTATUS EN EL TREE -->
             <tree string="tools.helpdesk.incidencia" colors=" red:state=='recibido'; green:state=='resuelto'; blue:state=='asignado'; orange:state=='registrado'; brown:state=='proceso'; olive:state=='atendido'">
+<!-- FIN DE LA SENTENCIA PARA LOS COLORES -->
                 <field name="codigo"/>
                 <field name="denominacion" string="Título"/>
                 <field name="solicitante_id"/>
@@ -175,9 +176,39 @@
                 <field name="retraso"/>
                 <field name="state"/>
             </tree>
-<!-- FIN DE LA SENTENCIA PARA LOS COLORES -->
         </field>
     </record>
+
+    <record id="view_tools_helpdesk_incidencia_search" model="ir.ui.view">
+        <field  name="name">tools.helpdesk.incidencia.search</field>
+        <field  name="model">tools.helpdesk.incidencia</field>
+        <field  name="arch" type="xml">
+        <search string="Search Incidencias">
+            <field name="denominacion" string="Título"/>
+            <field name="solicitante_id"/>
+            <field name="asignacion"/>
+            <!-- field name="res_partner_id"/ -->
+            <!-- field name="contexto_nivel1_id"/ -->
+            <!-- field name="categoria_incidencia_id"/ -->
+            <!--field name="forma_de_solicitud"/ -->
+            <!-- field name="retraso"/ -->
+            <field name="state"/>
+            <group expand="0" string="Filtrado">
+                <filter string="Míos" domain="['|',('solicitante_id','=',uid),('asignacion','=',uid)]"/>
+            </group>
+            <group expand="0" string="Agrupado por">
+                <filter string="Aplicación" domain="[]" context="{'group_by':'contexto_nivel1_id'}"/>
+                <filter string="Módulo" domain="[]" context="{'group_by':'contexto_nivel2_id'}"/>
+                <filter string="Creación" domain="[]" context="{'group_by':'create_date'}"/>
+                <filter string="Asignado a" domain="[]" context="{'group_by':'asignacion'}"/>
+                <filter string="Estado" domain="[]" context="{'group_by':'state'}"/>
+        </group>
+
+</search>
+
+        </field>
+</record>
+
     <record model="ir.actions.act_window" id="action_tools_helpdesk_incidencia">
         <field name="name">Registro de Tickets</field>
         <field name="res_model">tools.helpdesk.incidencia</field>
