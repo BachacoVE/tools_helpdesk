@@ -103,12 +103,20 @@ class tools_helpdesk_incidencia(models.Model):
     def action_registrado(self):
         self.state='registrado'
 
+    def enviar_mensaje_status(self):
+        """Método utilizado para definir el mensaje junto al status
+        que se enviará en el mensaje dentro de openchatter"""
+        message = "El estatus ha sido cambiado a <strong><em>%s</em></strong>" % self.state
+        self.message_post(body=message)
+
     @api.one
     def action_recibido(self):
         self.fecha_recibido=datetime.today()
         diferencia=self.calcular_dias(self.fecha_creacion, self.fecha_recibido)
         self.dia_recibido=diferencia.days
         self.state='recibido'
+        self.enviar_mensaje_status()
+        
 
     @api.one
     def action_asignado(self):
@@ -118,6 +126,9 @@ class tools_helpdesk_incidencia(models.Model):
         diferencia=self.calcular_dias(self.fecha_recibido, self.fecha_asignado_a)
         self.dia_asignado_a=diferencia.days
         self.state='asignado'
+        self.enviar_mensaje_status()
+        self.message_subscribe_users(user_ids=[self.asignacion.id])
+
 
     # PARA ENVIAR E-MAIL            
         cuerpo_mensaje = """Se le ha asignado una tarea en HELP DESK:<br>
@@ -139,6 +150,7 @@ class tools_helpdesk_incidencia(models.Model):
         diferencia=self.calcular_dias(self.fecha_asignado_a, self.fecha_proceso)
         self.dia_proceso=diferencia.days
         self.state='proceso'
+        self.enviar_mensaje_status()
 
     @api.one
     def action_atendido(self):
@@ -146,6 +158,7 @@ class tools_helpdesk_incidencia(models.Model):
         diferencia=self.calcular_dias(self.fecha_proceso, self.fecha_atendido)
         self.dia_atendido=diferencia.days
         self.state='atendido'
+        self.enviar_mensaje_status()
 
     @api.one
     def action_resuelto(self):
@@ -153,6 +166,7 @@ class tools_helpdesk_incidencia(models.Model):
         diferencia=self.calcular_dias(self.fecha_atendido, self.fecha_solucion)
         self.dia_solucion=diferencia.days
         self.state='resuelto'
+        self.enviar_mensaje_status()
     # PARA ENVIAR E-MAIL AL SOLICITANTE           
         cuerpo_mensaje = """Su INCIDENCIA ya fue resuelta por el departamento HELP DESK:<br>
         Codigo: %s,<br>
