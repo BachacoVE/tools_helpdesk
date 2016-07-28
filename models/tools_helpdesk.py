@@ -99,15 +99,17 @@ class tools_helpdesk_incidencia(models.Model):
     
     # Accion para Botones en el proceso Workflow
 
-    @api.one
-    def action_registrado(self):
-        self.state='registrado'
 
     def enviar_mensaje_status(self):
         """Método utilizado para definir el mensaje junto al status
         que se enviará en el mensaje dentro de openchatter"""
         message = "El estatus ha sido cambiado a <strong><em>%s</em></strong>" % self.state
         self.message_post(body=message)
+
+    @api.one
+    def action_registrado(self):
+        self.state='registrado'
+        self.message_subscribe_users(user_ids=[1])
 
     @api.one
     def action_recibido(self):
