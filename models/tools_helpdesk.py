@@ -85,13 +85,13 @@ class tools_helpdesk_incidencia(models.Model):
     #def actualizar_organizacion_solicitante(self):
     #    self.res_partner_id = self.solicitante_id.res_partner_id.id
 
-    def onchange_solicitante(self, cr, uid, ids):
-        return {'value':{'solicitante_id': uid}}
+    #def onchange_solicitante(self, cr, uid, ids):
+    #    return {'value':{'solicitante_id': uid}}
 
     _order='codigo desc'  #PARA ORDENAR POR CODICO DE MAYOR A MENOR
 
     def create(self, cr, uid, vals, context=None):
-        vals['solicitante_id'] = uid
+        #vals['solicitante_id'] = uid
         vals.update({'codigo':self.pool.get('ir.sequence').get(cr, uid, 'tools.helpdesk.incidencia')}) 
         vals.update({'fecha_creacion':datetime.today()})
         new_id = super(tools_helpdesk_incidencia, self).create(cr, uid, vals, context=None)
