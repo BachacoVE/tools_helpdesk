@@ -109,7 +109,7 @@ class tools_helpdesk_incidencia(models.Model):
     @api.one
     def action_registrado(self):
         self.state='registrado'
-        self.message_subscribe_users(user_ids=[1])
+        self.message_subscribe_users(user_ids=[1,self.solicitante_id.id])
 
     @api.one
     def action_recibido(self):
