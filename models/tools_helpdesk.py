@@ -104,7 +104,7 @@ class tools_helpdesk_incidencia(models.Model):
         """Método utilizado para definir el mensaje junto al status
         que se enviará en el mensaje dentro de openchatter"""
         message = "El estatus ha sido cambiado a <strong><em>%s</em></strong>" % self.state
-        self.message_post(body=message,type='email')
+        self.message_post(body=message,type='email', subtype='mail.mt_comment')
 
     @api.one
     def action_registrado(self):
