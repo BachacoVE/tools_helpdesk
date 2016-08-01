@@ -27,22 +27,28 @@
         <notebook>
             <page string="Datos de Solicitud">
             <group col="4" colspan="2">
-                <separator string="Contexto de la Incidencia"  colspan="4" />
+            <separator string="Contexto de la Incidencia" colspan="4"/>
+               <group col="2" colspan="2">
                 <field name="codigo" select="1" readonly="1"/>
-                <field name="solicitante_id" required="True" select="1"/>
                 <field name="res_partner_id" required="False" select="1" readonly="True"/>
+                <field name="solicitante_id" required="True" select="1"/>
+              </group>
+              <group col="2" colspan="2">
                 <field name="contexto_nivel1_id" required="True" select="1" domain="[('res_partner_ids','=', [res_partner_id])]"/>
                 <field name="contexto_nivel2_id" required="True" select="1" domain="[('contexto_nivel1_id','=', [contexto_nivel1_id])]"/>
                 <field name="contexto_nivel3_id" required="True" select="1" domain="[('contexto_nivel2_id','=', [contexto_nivel2_id])]"/>
-
-                <separator string="Caracterización de la Incidencia"   colspan="4" />
+            </group>
+            </group>
+            <group col="4" colspan="2">
+                <separator string="Caracterización de la Incidencia" colspan="4"/>
                 <field name="categoria_incidencia_id" select="2" required="True"/>
                 <field name="tipo_incidencia_id" select="0" domain="[('categoria_incidencia_id','=',[categoria_incidencia_id])]"/>
-                <field name="denominacion" string="Titulo o Etiqueta del Ticket" select="2" colspan="4" />
+                <field name="denominacion" string="Titulo o Etiqueta del Ticket" select="2" colspan="4"/>
                 <field name="fecha_actual" readonly="True" select="0"/>
                 <field name="prioridad" widget="priority"/>
             </group>
             </page>
+
 
             <page string="Descripción Detallada">
             <group col="4" colspan="4">
