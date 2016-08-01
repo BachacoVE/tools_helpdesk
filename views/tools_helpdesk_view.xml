@@ -19,7 +19,7 @@
                 <button name="action_atendido" string="Atendido" type="workflow" states="proceso"
                 	groups="base.group_system,tools_helpdesk.group_help_desk_Analista"/>
                 <button name="action_resuelto" string="Resuelto" type="workflow" states="atendido"
-                	groups="base.group_system,tools_helpdesk.group_help_desk_Analista"/>
+                	groups="base.group_system,tools_helpdesk.group_help_desk_Usuario,tools_helpdesk.group_help_desk_Supervisor,tools_helpdesk.group_help_desk_Analista"/>
                 <field name="state" widget="statusbar" select="0"/>
             </header>
             <sheet>
