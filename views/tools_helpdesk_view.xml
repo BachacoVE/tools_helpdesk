@@ -10,11 +10,16 @@
         <field name="arch" type="xml">
             <form string="tools.helpdesk.incidencia">
             <header>
-                <button name="action_recibido" string="Recibido" type="workflow" groups="base.group_system,tools_helpdesk.group_help_desk_Analista"/>
-                <button name="action_asignado" string="Asignado" type="workflow" groups="base.group_system,tools_helpdesk.group_help_desk_Analista"/>
-                <button name="action_proceso" string="En Proceso" type="workflow" groups="base.group_system,tools_helpdesk.group_help_desk_Analista"/>
-                <button name="action_atendido" string="Atendido" type="workflow" groups="base.group_system,tools_helpdesk.group_help_desk_Analista"/>
-                <button name="action_resuelto" string="Resuelto" type="workflow" groups="base.group_system,tools_helpdesk.group_help_desk_Analista"/>
+                <button name="action_recibido" string="Recibido" type="workflow" states="registrado"
+                	groups="base.group_system,tools_helpdesk.group_help_desk_Analista"/>
+                <button name="action_asignado" string="Asignado" type="workflow" states="recibido"
+                	groups="base.group_system,tools_helpdesk.group_help_desk_Analista"/>
+                <button name="action_proceso" string="En Proceso" type="workflow"  states="asignado"
+                	groups="base.group_system,tools_helpdesk.group_help_desk_Analista"/>
+                <button name="action_atendido" string="Atendido" type="workflow" states="proceso"
+                	groups="base.group_system,tools_helpdesk.group_help_desk_Analista"/>
+                <button name="action_resuelto" string="Resuelto" type="workflow" states="atendido"
+                	groups="base.group_system,tools_helpdesk.group_help_desk_Usuario,tools_helpdesk.group_help_desk_Supervisor,tools_helpdesk.group_help_desk_Analista"/>
                 <field name="state" widget="statusbar" select="0"/>
             </header>
             <sheet>
