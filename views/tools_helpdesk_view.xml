@@ -237,6 +237,7 @@
             <group col="2" colspan="4">
                     <field name="adjunto"/>
                     <field name="observacion"/>
+                    <field name="create_date" readonly="True" string="Fecha" />
             </group>
             </form>
         </field>
@@ -250,6 +251,7 @@
             <tree string="tools.helpdesk.adjuntos">
                 <field name="adjunto"/>
                 <field name="observacion"/>                          
+                <field name="create_date" readonly="True" string="Fecha" />
             </tree>
         </field>
     </record>    
