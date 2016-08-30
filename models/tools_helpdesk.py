@@ -133,14 +133,14 @@ class tools_helpdesk_incidencia(models.Model):
 
 
     # PARA ENVIAR E-MAIL            
-        cuerpo_mensaje = """Se le ha asignado una tarea en HELP DESK:<br>
+        cuerpo_mensaje = """Se le ha asignado una Ticket en Help Desk:<br>
         Codigo: %s,<br>
         Asunto: %s,<br>
         Descripcion: %s,<br> """ % (self.codigo, self.denominacion, self.descripcion)
         const_mail = {'email_from' : self.solicitante_id.email,
                       'email_to' : self.asignacion.login,
                       #'partner_ids' : [(0,0,{'res_partner_id':self.asignacion.partner_id, 'mail_message_id': ids_mail})],
-                      'subject' : self.denominacion,
+                      'subject' : "Re: %s" % self.codigo,
                       'body_html' : cuerpo_mensaje}
         ids_mail = self.env['mail.mail'].create(const_mail).send()
         return True 
@@ -162,6 +162,31 @@ class tools_helpdesk_incidencia(models.Model):
         self.state='atendido'
         self.enviar_mensaje_status()
 
+
+        # PARA ENVIAR E-MAIL AL SOLICITANTE           
+        cuerpo_mensaje = """
+
+        Estimado usuario,<br>
+        Le informamos que su REQUERIMIENTO DE SOPORTE, bajo el ticket No. <strong>%s</strong>,<br>
+        ha sido procesado satisfactoriamente, por el Departamento de HELPDESK.<br>
+        Su estatus actual es: <strong>ATENDIDO</strong><br>
+        El asunto de su Ticket es: <em>%s</em><br>
+        La Descripcion de su Ticket es: <em>%s</em><br>
+        <br>
+        Por favor, confirme que fue solucionado su requerimiento cambiando el estatus a RESUELTO<br>
+        Puede seguir su ticket a traves de la direccion http://ovniticket.ovnicom.com:8069<br>
+        """ % (self.codigo, self.denominacion, self.descripcion)
+
+        const_mail = {'email_from' : self.asignacion.login,
+                      'email_to' : self.solicitante_id.email,                      
+                      #'partner_ids' : [(0,0,{'res_partner_id':self.asignacion.partner_id, 'mail_message_id': ids_mail})],
+                      'subject' : "Re: %s" % self.codigo,
+                      'body_html' : cuerpo_mensaje}
+
+        ids_mail = self.env['mail.mail'].create(const_mail).send()
+
+
+
     @api.one
     def action_resuelto(self):
         self.fecha_solucion=datetime.today()
@@ -170,17 +195,11 @@ class tools_helpdesk_incidencia(models.Model):
         self.state='resuelto'
         self.enviar_mensaje_status()
     # PARA ENVIAR E-MAIL AL SOLICITANTE           
-        cuerpo_mensaje = """Su INCIDENCIA ya fue resuelta por el departamento HELP DESK:<br>
-        Codigo: %s,<br>
-        Asunto: %s,<br>
-        Descripcion: %s,<br> """ % (self.codigo, self.denominacion, self.descripcion)
-        const_mail = {'email_from' : self.asignacion.login,
-                      'email_to' : self.solicitante_id.email,                      
-                      #'partner_ids' : [(0,0,{'res_partner_id':self.asignacion.partner_id, 'mail_message_id': ids_mail})],
-                      'subject' : self.denominacion,
-                      'body_html' : cuerpo_mensaje}
-
-        ids_mail = self.env['mail.mail'].create(const_mail).send()
+        #cuerpo_mensaje = """Su INCIDENCIA ya fue resuelta por el departamento HELP DESK:<br>
+        #Codigo: %s,<br>
+        #Asunto: %s,<br>
+        #Descripcion: %s,<br> """ % (self.codigo, self.denominacion, self.descripcion)
+        
         return True 
     # FIN DE EMAIL AL SOLICITANTE
 

@@ -68,6 +68,21 @@ En el atributo `this.max_upload_size = 25 * 1024 * 1024; // 25Mo` establece
   `this.max_upload_size = 5 * 1024 * 1024; // 5Mo`
 
 
+### Enviar un correo a través de un email.template
 
+Creamos nuestro método
+```
+    @api.cr_uid_id_context
+    def send_mail(self, cr, uid, ids, context=None, template=''):
+       for object in self.browse(cr, uid, ids, context=context):
+            template_id = self.pool.get('email.template').search(cr, uid, [("name","=",template)])
+            if template_id:
+                mail_message = self.pool.get('email.template').send_mail(cr,uid,template_id[0],object.id)
+```
+
+Y lo invocamos de la siguiente manera:
+```
+    self.send_mail(template='ticket_asignado')
+```
 
 
