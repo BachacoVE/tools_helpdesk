@@ -190,6 +190,18 @@
         </field>
     </record>
 
+    <record model="ir.ui.view" id="view_tools_helpdesk_inicidencia_graph">
+        <field name="name">tools.helpdesk.incidencia.graph</field>
+        <field name="model">tools.helpdesk.incidencia</field>
+        <field name="arch" type="xml">
+            <graph string="Estadisticas de Incidencias" orientation="horizontal" type="bar" stacked="True">
+                <!-- field name="fecha_creacion" interval="day"/ -->
+                <field name="asignacion" type="row"/>
+                <field name="state" type="col"/>
+            </graph>
+        </field>
+    </record>
+
     <record id="view_tools_helpdesk_incidencia_search" model="ir.ui.view">
         <field  name="name">tools.helpdesk.incidencia.search</field>
         <field  name="model">tools.helpdesk.incidencia</field>
@@ -225,7 +237,7 @@
         <field name="res_model">tools.helpdesk.incidencia</field>
     <field name="domain">[]</field>
         <field name="view_type">form</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">graph,tree,form</field>
     </record>
 
    	<record model="ir.ui.view" id="view_tools_helpdesk_adjuntos_form">
