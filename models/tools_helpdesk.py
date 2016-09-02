@@ -43,7 +43,7 @@ class tools_helpdesk_incidencia(models.Model):
     contexto_nivel3_id = fields.Many2one('tools.helpdesk.contexto_nivel3','Operación')
     categoria_incidencia_id = fields.Many2one('tools.helpdesk.categoria_incidencia', string="Categoría de Incidencia")
     tipo_incidencia_id = fields.Many2one('tools.helpdesk.tipo_incidencia', 'Tipo de Incidencia')
-    state = fields.Selection([('registrado','Registrado'),('recibido','Recibido'),('asignado','Asignado'),('proceso','En Proceso'),('atendido','Atendido'),('resuelto','Resuelto')], "Status")
+    state = fields.Selection([('registrado','Registrado'),('recibido','Recibido'),('asignado','Asignado'),('proceso','En Proceso'),('atendido','Atendido'),('resuelto','Resuelto'),('anulado','Anulado')], "Status")
     observacion_ids = fields.One2many('tools.helpdesk.observacion', 'incidencia_id', string="Observaciones", help='Observaciones de una incidencia')
     autorizado = fields.Char('Autorizado por:', size=30, help='Colocar el Nombre y Apellido del autorizante')
     asignacion = fields.Many2one('res.users', 'Asignado a:')
@@ -163,6 +163,7 @@ class tools_helpdesk_incidencia(models.Model):
         self.enviar_mensaje_status()
 
 
+
         # PARA ENVIAR E-MAIL AL SOLICITANTE           
         cuerpo_mensaje = """
 
@@ -194,16 +195,16 @@ class tools_helpdesk_incidencia(models.Model):
         self.dia_solucion=diferencia.days
         self.state='resuelto'
         self.enviar_mensaje_status()
-    # PARA ENVIAR E-MAIL AL SOLICITANTE           
-        #cuerpo_mensaje = """Su INCIDENCIA ya fue resuelta por el departamento HELP DESK:<br>
-        #Codigo: %s,<br>
-        #Asunto: %s,<br>
-        #Descripcion: %s,<br> """ % (self.codigo, self.denominacion, self.descripcion)
-        
+       
         return True 
-    # FIN DE EMAIL AL SOLICITANTE
+
+    @api.one
+    def action_anulado(self):
+        self.state='anulado'
+        self.enviar_mensaje_status()
 
     #Fin de las acciones en los botones
+
 
     # PARA CALCULAR LOS DIAS DE UN PROCESO A OTRO  
     def calcular_dias(self, fecha_primera, fecha_segunda):
