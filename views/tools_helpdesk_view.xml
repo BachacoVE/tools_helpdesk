@@ -209,6 +209,7 @@
         <field  name="model">tools.helpdesk.incidencia</field>
         <field  name="arch" type="xml">
         <search string="Search Incidencias">
+            <field name="codigo"/>
             <field name="denominacion" string="Título"/>
             <field name="solicitante_id"/>
             <field name="asignacion"/>
