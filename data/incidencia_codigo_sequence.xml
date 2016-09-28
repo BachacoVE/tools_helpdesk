@@ -2,10 +2,10 @@
 <openerp>
     <data>
 
-        <record id="incidencia_codigo_sequence" model="ir.sequence.type">
+        <!--record id="incidencia_codigo_sequence" model="ir.sequence.type">
             <field name="name">Codigo Incidencia</field>
             <field name="code">tools.helpdesk.incidencia</field>
-        </record>
+        </record-->
 
         <record id="seq_codigo_incidencia" model="ir.sequence">
             <field name="name">Codigo Incidencia</field>

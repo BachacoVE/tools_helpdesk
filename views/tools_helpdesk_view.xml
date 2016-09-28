@@ -483,7 +483,7 @@
         <field name="type">form</field>
         <field name="inherit_id" ref="base.view_users_form"/>
         <field name="arch" type="xml">
-            <field name="active" position="before">
+            <field name="partner_id" position="before">
                 <field name="res_partner_id" domain="[('customer','=',True)]" select="1"/>
             </field>
             <!--field name="partner_id" position="replace">
