@@ -187,6 +187,7 @@
                 <!--field name="forma_de_solicitud"/ -->
                 <field name="asignacion"/>
                 <field name="retraso"/>
+                <field name="prioridad"/>
                 <field name="state"/>
             </tree>
         </field>
@@ -219,6 +220,8 @@
             <!--field name="forma_de_solicitud"/ -->
             <!-- field name="retraso"/ -->
             <field name="state"/>
+            <field name="prioridad"/>
+            <field name="codigo"/>
             <group expand="0" string="Filtrado">
                 <filter string="Míos" domain="['|',('solicitante_id','=',uid),('asignacion','=',uid)]"/>
             </group>
@@ -228,12 +231,11 @@
                 <filter string="Creación" domain="[]" context="{'group_by':'create_date'}"/>
                 <filter string="Asignado a" domain="[]" context="{'group_by':'asignacion'}"/>
                 <filter string="Estado" domain="[]" context="{'group_by':'state'}"/>
-        </group>
-
-</search>
-
+                <filter string="Prioridad" domain="[]" context="{'group_by':'prioridad'}"/>
+            </group>
+        </search>
         </field>
-</record>
+    </record>
 
     <record model="ir.actions.act_window" id="action_tools_helpdesk_incidencia">
         <field name="name">Registro de Tickets</field>
@@ -525,7 +527,7 @@
         </field>
     </record>
     <record model="ir.actions.act_window" id="action_tools_helpdesk_contexto_nivel1">
-        <field name="name">Áplicaciones</field>
+        <field name="name">Aplicaciones</field>
         <field name="res_model">tools.helpdesk.contexto_nivel1</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
