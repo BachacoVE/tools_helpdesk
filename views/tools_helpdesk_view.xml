@@ -431,7 +431,7 @@
         </field>
     </record>
     <record model="ir.actions.act_window" id="action_tools_helpdesk_categoria_incidencia">
-        <field name="name">Cetegoría de Incidencia</field>
+        <field name="name">Categoría de Incidencia</field>
         <field name="res_model">tools.helpdesk.categoria_incidencia</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>

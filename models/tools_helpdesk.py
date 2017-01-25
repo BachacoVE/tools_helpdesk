@@ -73,7 +73,7 @@ class tools_helpdesk_incidencia(models.Model):
     dia_proceso = fields.Char('Días Intervalo Asignado a Proceso')
     dia_atendido = fields.Char('Días Intervalo Proceso a Resuelto')
     dia_solucion = fields.Char('Días Intervalo Resuelto a Cerrado')
-    retraso = fields.Integer('Dias Transcurridos', help="Conteo de dias a pertir de la fecha de entrega", readonly="True", compute="_compute_calculo_dias", store="False")
+    retraso = fields.Integer('Dias Transcurridos', help="Conteo de dias a partir de la fecha de entrega", readonly="True", compute="_compute_calculo_dias", store="False")
 
 
     _defaults = {
