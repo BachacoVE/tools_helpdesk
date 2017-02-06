@@ -82,7 +82,7 @@
 
     			<page string="Observaciones">
                 <group col="4" colspan="4">
-                	<field name="observacion_ids" nolabel="1" colspan="4" select="0">
+                	<field name="observacion_ids" nolabel="1" colspan="4" select="0" context="{'default_state' : state}">
                 		<tree editable="True">
                             <field name="observacion"/>
                             <field name="state"/>
