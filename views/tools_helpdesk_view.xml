@@ -74,7 +74,7 @@
 
 				<page string="Datos de la Asignación">
                 <group col="4" colspan="4">
-                    <field name="asignacion" select="1" />
+                    <field name="asignacion" select="1" domain="[('groups_id.name','=','Soportista')]"/>
                     <field name="procedimiento" colspan="4" nolabel="1" select="0"/>
                     <newline/>
                 </group>
