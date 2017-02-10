@@ -372,7 +372,14 @@ class res_users_helpdesk_inherit(models.Model):
 class tools_helpdesk_adjuntos(models.Model):
     _name = 'tools.helpdesk.adjuntos'
     #_rec_name = 'nombre'
-    
+
+    @api.one
+    def obtenerNombreArchivo(self):
+        """ Esta función agrega el nombre del adjunto (binario) en el campo 'nombre' """
+        if self.nombre:
+            self.nombre = self.adjunto
+
+    nombre = fields.Char('Nombre del Archivo', store=True, compute ='obtenerNombreArchivo')
     adjunto = fields.Binary(string="Adjuntos", attachment=True, help='Se suben los archivos adicionales que guardan relacion con el documento', filters="*.png,*.svg,*.jpg,*jpeg,*.pdf,*.ods,*.xls,*.xlsx,*.odt,*.doc,*.docx,*.ppt,*.pptx,*.odp")
     observacion = fields.Text(string="Descripción", size=50, help='Breve nota sobre el archivo que se adjunta')
     incidencia_id = fields.Many2one('tools.helpdesk.incidencia', 'incidencia')

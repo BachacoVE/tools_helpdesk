@@ -252,7 +252,8 @@
         <field name="arch" type="xml">
             <form string="Adjuntos">
             <group col="2" colspan="4">
-                    <field name="adjunto"/>
+                    <field name="nombre" readonly="0" invisible="1"/>
+                    <field name="adjunto" filename="nombre"/>
                     <field name="observacion"/>
                     <field name="create_date" readonly="True" string="Fecha" />
             </group>
@@ -266,8 +267,9 @@
         <field name="arch" type="xml">
                
             <tree string="tools.helpdesk.adjuntos">
-                <field name="adjunto"/>
-                <field name="observacion"/>                          
+                <field name="nombre" invisible="1"/>
+                <field name="adjunto" filename="nombre"/>
+                <field name="observacion"/>
                 <field name="create_date" readonly="True" string="Fecha" />
             </tree>
         </field>
