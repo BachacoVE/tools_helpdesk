@@ -82,7 +82,7 @@
 
     			<page string="Observaciones">
                 <group col="4" colspan="4">
-                	<field name="observacion_ids" nolabel="1" colspan="4" select="0">
+                	<field name="observacion_ids" nolabel="1" colspan="4" select="0" context="{'default_state' : state}">
                 		<tree editable="True">
                             <field name="observacion"/>
                             <field name="state"/>
@@ -252,7 +252,8 @@
         <field name="arch" type="xml">
             <form string="Adjuntos">
             <group col="2" colspan="4">
-                    <field name="adjunto"/>
+                    <field name="nombre" readonly="0" invisible="1"/>
+                    <field name="adjunto" filename="nombre"/>
                     <field name="observacion"/>
                     <field name="create_date" readonly="True" string="Fecha" />
             </group>
@@ -266,8 +267,9 @@
         <field name="arch" type="xml">
                
             <tree string="tools.helpdesk.adjuntos">
-                <field name="adjunto"/>
-                <field name="observacion"/>                          
+                <field name="nombre" invisible="1"/>
+                <field name="adjunto" filename="nombre"/>
+                <field name="observacion"/>
                 <field name="create_date" readonly="True" string="Fecha" />
             </tree>
         </field>
@@ -431,7 +433,7 @@
         </field>
     </record>
     <record model="ir.actions.act_window" id="action_tools_helpdesk_categoria_incidencia">
-        <field name="name">Cetegoría de Incidencia</field>
+        <field name="name">Categoría de Incidencia</field>
         <field name="res_model">tools.helpdesk.categoria_incidencia</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
