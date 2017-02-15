@@ -164,8 +164,11 @@
             <field name="groups_id" eval="[(6,0, [ref('tools_helpdesk.group_help_desk_Usuario')])]"/>
             <field name="arch" type="xml">                
                 <field name="solicitante_id" position="attributes">
-                   <attribute name="attrs">{'readonly':True}</attribute>                   
-                </field>                
+                   <attribute name="attrs">{'readonly':True}</attribute>
+                </field>
+                <field name="asignacion" position="attributes">
+                   <attribute name="attrs">{'readonly':True}</attribute>
+                </field>
             </field>
 </record>   
 
