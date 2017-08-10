@@ -74,7 +74,7 @@
 
 				<page string="Datos de la Asignación">
                 <group col="4" colspan="4">
-                    <field name="asignacion" select="1" />
+                    <field name="asignacion" select="1" domain="[('groups_id.name','=','Soportista')]"/>
                     <field name="procedimiento" colspan="4" nolabel="1" select="0"/>
                     <newline/>
                 </group>
@@ -94,27 +94,27 @@
                 </page>
 
               <page string="Seguimiento de Incidencia">
-    	    		<group col="4" colspan="4">
-    	    			<field name="fecha_creacion" colspan="2" select="0" readonly="True"/>
-    	    			<field name="fecha_recibido" colspan="2" select="0" readonly="True"/>
-    	    			<field name="fecha_asignado_a" colspan="2" select="0" readonly="True"/>
-    	    			<field name="fecha_proceso" colspan="2" select="0" readonly="True"/>
-    	    			<field name="fecha_atendido" colspan="2" select="0" readonly="True"/>
-    	    			<field name="fecha_solucion" colspan="2" select="0" readonly="True"/>
-    	    			
-                    <separator string="Duración por proceso" colspan="4"/>
-    	    			<field name="dia_creacion" colspan="2" select="0" readonly="True"/>
-    	    			<field name="dia_recibido" colspan="2" select="0" readonly="True"/>
-    	    			<field name="dia_asignado_a" colspan="2" select="0" readonly="True"/>
-    	    			<field name="dia_proceso" colspan="2" select="0" readonly="True"/>
-    	    			<field name="dia_atendido" colspan="2" select="0" readonly="True"/>
-    	    			<field name="dia_solucion" colspan="2" select="0" readonly="True"/>
-    	    			<field name="retraso" colspan="2" select="0"/>
-
-    	    		<newline/>
-    	    		</group>
-    	    	</page>
-
+                    <group col="4" colspan="4">
+                        <group col="2" colspan="2" string ="Marcas de Tiempo">
+                            <field name="fecha_creacion" colspan="2" select="0" readonly="True"/>
+                            <field name="fecha_recibido" colspan="2" select="0" readonly="True"/>
+                            <field name="fecha_asignado_a" colspan="2" select="0" readonly="True"/>
+                            <field name="fecha_proceso" colspan="2" select="0" readonly="True"/>
+                            <field name="fecha_atendido" colspan="2" select="0" readonly="True"/>
+                            <field name="fecha_solucion" colspan="2" select="0" readonly="True"/>
+                        </group>
+                        <group col="2" colspan="2" string="Intervalos">
+                            <!--field name="dia_creacion" colspan="2" select="0" readonly="True"/-->
+                            <field name="dia_recibido" colspan="2" select="0" readonly="True"/>
+                            <field name="dia_asignado_a" colspan="2" select="0" readonly="True"/>
+                            <field name="dia_proceso" colspan="2" select="0" readonly="True"/>
+                            <field name="dia_atendido" colspan="2" select="0" readonly="True"/>
+                            <field name="dia_solucion" colspan="2" select="0" readonly="True"/>
+                            <field name="retraso" colspan="2" select="0"/>
+                            <field name="transcurrido_resuelto" colspan="2" select="0"/>
+                        </group>
+                    </group>
+                </page>
 
         </notebook>
         </page> 
@@ -164,8 +164,11 @@
             <field name="groups_id" eval="[(6,0, [ref('tools_helpdesk.group_help_desk_Usuario')])]"/>
             <field name="arch" type="xml">                
                 <field name="solicitante_id" position="attributes">
-                   <attribute name="attrs">{'readonly':True}</attribute>                   
-                </field>                
+                   <attribute name="attrs">{'readonly':True}</attribute>
+                </field>
+                <field name="asignacion" position="attributes">
+                   <attribute name="attrs">{'readonly':True}</attribute>
+                </field>
             </field>
 </record>   
 
