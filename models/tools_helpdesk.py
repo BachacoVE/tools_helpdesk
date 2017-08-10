@@ -49,7 +49,7 @@ class tools_helpdesk_incidencia(models.Model):
     asignacion = fields.Many2one('res.users', 'Asignado a:',states={'anulado':[('readonly',True)],'resuelto':[('readonly',True)]})
     denominacion = fields.Char('Descripción Corta', size=90,states={'anulado':[('readonly',True)],'resuelto':[('readonly',True)]})
     prioridad = fields.Selection([('0','Ninguna'),('1','Baja'), ('2', 'Media'),('3','Urgente')],'Prioridad', default='0',states={'anulado':[('readonly',True)],'resuelto':[('readonly',True)]})
-    fecha_actual = fields.Date('Fecha de la solicitud',  help='Fecha cuando se reporto la incidenciaa', default=datetime.today())
+    fecha_actual = fields.Datetime('Fecha de la solicitud',  help='Fecha cuando se reporto la incidencia', default=datetime.today())
     #memo = fields.Boolean('Memo')
     #correo = fields.Boolean('Correo Electrónico')
     #llamada = fields.Boolean('Llamada Telefonica')
@@ -65,15 +65,19 @@ class tools_helpdesk_incidencia(models.Model):
     fecha_recibido = fields.Datetime('Fecha de Recibido')
     fecha_asignado_a = fields.Datetime('Fecha Asignado a')
     fecha_proceso = fields.Datetime('Fecha Proceso')
-    fecha_atendido = fields.Datetime('Fecha Resuelto')
-    fecha_solucion = fields.Datetime('Fecha Cerrado')
-    dia_creacion = fields.Char('Días de Creado')
+    fecha_atendido = fields.Datetime('Fecha Atendido')
+    fecha_solucion = fields.Datetime('Fecha Resuelto')
+    # dia_creacion = fields.Char('Días de Creado')
     dia_recibido = fields.Char('Días Intervalo Creado a Recibido')
     dia_asignado_a = fields.Char('Días Intervalo Recibido a Asignado')
     dia_proceso = fields.Char('Días Intervalo Asignado a Proceso')
-    dia_atendido = fields.Char('Días Intervalo Proceso a Resuelto')
-    dia_solucion = fields.Char('Días Intervalo Resuelto a Cerrado')
-    retraso = fields.Integer('Dias Transcurridos', help="Conteo de dias a partir de la fecha de entrega", readonly="True", compute="_compute_calculo_dias", store="False")
+    dia_atendido = fields.Char('Días Intervalo Proceso a Atendido')
+    dia_solucion = fields.Char('Días Intervalo Atendido a Resuelto')
+    # retraso = fields.Integer('Dias Transcurridos', help="Conteo de dias a partir de la fecha de entrega", readonly="True", compute="_compute_calculo_dias", store="False")
+    retraso = fields.Integer('Dias Transcurridos hasta Atendido', help="Conteo de dias a partir de la fecha de creación hasta la atención de la Incidencia", readonly=True, compute="_compute_calculo_dias", store=False)
+    transcurrido_resuelto = fields.Integer('Dias Transcurridos hasta Resuelto',
+        help="Conteo de dias a partir de la fecha de creación hasta la la confirmación de Resuelto por parte del Cliente",
+        readonly=True, compute="_compute_calculo_dias_resuelto", store=False)
 
 
     _defaults = {
@@ -98,7 +102,6 @@ class tools_helpdesk_incidencia(models.Model):
         return new_id
     
     # Accion para Botones en el proceso Workflow
-
 
     def enviar_mensaje_status(self):
         """Método utilizado para definir el mensaje junto al status
@@ -211,21 +214,41 @@ class tools_helpdesk_incidencia(models.Model):
         formato_fecha = "%Y-%m-%d"
         fc = datetime.strptime(fecha_primera, "%Y-%m-%d %H:%M:%S")
         fh = datetime.strptime(fecha_segunda, "%Y-%m-%d %H:%M:%S")
+        """
         fecha_hoy = datetime.strftime(fh, formato_fecha)
         fecha_creado = datetime.strftime(fc, formato_fecha)
         diferencia = datetime.strptime(fecha_hoy, formato_fecha) - datetime.strptime(fecha_creado, formato_fecha) #fecha_hoy - fecha_creado
+        """
+        diferencia = fh - fc #fecha_hoy - fecha_creado
+
         return diferencia
     #FIN DEL CALCULO PARA LOS DIAS DE UN PROCESO A OTRO
 
     #CALCULA LOS DIAS TRANSCURRIDOS
+
+    @api.one
     @api.depends('fecha_actual')
     def _compute_calculo_dias(self):
-        carga = datetime.strptime(self.fecha_actual,'%Y-%m-%d')
-        dias = datetime.today() - carga
-        self.retraso = dias.days
+        if self.state not in ('atendido','resuelto','anulado'):
+            carga = datetime.strptime(self.fecha_actual,'%Y-%m-%d %H:%M:%S')
+            dias = datetime.today() - carga
+            self.retraso = dias.days
+        elif self.state not in ('anulado'):
+            diferencia=self.calcular_dias(self.fecha_actual, (self.fecha_atendido or datetime.today()))
+            self.retraso=diferencia.days
         return True
-    #FIN CALCULOS DE DIAS TRANSCURRIDOS
 
+    @api.one
+    @api.depends('fecha_actual')
+    def _compute_calculo_dias_resuelto(self):
+        if self.state not in ('resuelto','anulado'):
+            carga = datetime.strptime(self.fecha_actual,'%Y-%m-%d %H:%M:%S')
+            dias = datetime.today() - carga
+            self.transcurrido_resuelto = dias.days
+        elif self.state not in ('anulado'):
+            diferencia=self.calcular_dias(self.fecha_actual, (self.fecha_solucion or datetime.today()))
+            self.transcurrido_resuelto=diferencia.days
+        return True
 
 
 

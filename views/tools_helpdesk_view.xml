@@ -94,27 +94,27 @@
                 </page>
 
               <page string="Seguimiento de Incidencia">
-    	    		<group col="4" colspan="4">
-    	    			<field name="fecha_creacion" colspan="2" select="0" readonly="True"/>
-    	    			<field name="fecha_recibido" colspan="2" select="0" readonly="True"/>
-    	    			<field name="fecha_asignado_a" colspan="2" select="0" readonly="True"/>
-    	    			<field name="fecha_proceso" colspan="2" select="0" readonly="True"/>
-    	    			<field name="fecha_atendido" colspan="2" select="0" readonly="True"/>
-    	    			<field name="fecha_solucion" colspan="2" select="0" readonly="True"/>
-    	    			
-                    <separator string="Duración por proceso" colspan="4"/>
-    	    			<field name="dia_creacion" colspan="2" select="0" readonly="True"/>
-    	    			<field name="dia_recibido" colspan="2" select="0" readonly="True"/>
-    	    			<field name="dia_asignado_a" colspan="2" select="0" readonly="True"/>
-    	    			<field name="dia_proceso" colspan="2" select="0" readonly="True"/>
-    	    			<field name="dia_atendido" colspan="2" select="0" readonly="True"/>
-    	    			<field name="dia_solucion" colspan="2" select="0" readonly="True"/>
-    	    			<field name="retraso" colspan="2" select="0"/>
-
-    	    		<newline/>
-    	    		</group>
-    	    	</page>
-
+                    <group col="4" colspan="4">
+                        <group col="2" colspan="2" string ="Marcas de Tiempo">
+                            <field name="fecha_creacion" colspan="2" select="0" readonly="True"/>
+                            <field name="fecha_recibido" colspan="2" select="0" readonly="True"/>
+                            <field name="fecha_asignado_a" colspan="2" select="0" readonly="True"/>
+                            <field name="fecha_proceso" colspan="2" select="0" readonly="True"/>
+                            <field name="fecha_atendido" colspan="2" select="0" readonly="True"/>
+                            <field name="fecha_solucion" colspan="2" select="0" readonly="True"/>
+                        </group>
+                        <group col="2" colspan="2" string="Intervalos">
+                            <!--field name="dia_creacion" colspan="2" select="0" readonly="True"/-->
+                            <field name="dia_recibido" colspan="2" select="0" readonly="True"/>
+                            <field name="dia_asignado_a" colspan="2" select="0" readonly="True"/>
+                            <field name="dia_proceso" colspan="2" select="0" readonly="True"/>
+                            <field name="dia_atendido" colspan="2" select="0" readonly="True"/>
+                            <field name="dia_solucion" colspan="2" select="0" readonly="True"/>
+                            <field name="retraso" colspan="2" select="0"/>
+                            <field name="transcurrido_resuelto" colspan="2" select="0"/>
+                        </group>
+                    </group>
+                </page>
 
         </notebook>
         </page> 
